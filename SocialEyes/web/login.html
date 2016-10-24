@@ -2,35 +2,40 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Material Login Form</title>
-    
-    
+    <title>SocialEyes</title>
+
+
     <link rel="stylesheet" href="css/reset.css">
 
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/login.css">
 
-    
-    
-    
+
+
+
   </head>
 
   <body>
 
 <!-- Pen Title-->
 <div class="pen-title">
-  <h1>Welcome to <span style="color:#cc0d0d;font-size:48px;">#SocialEyes</span></h1>
-</div>
+  <img alt="logo" src="img/socialeyesLogoOnlyEye.png" style="height:5%; width:5%; "/>
+  <br/>
+  <br>
+  <br>
+
+  <h1>First step to <span style="color:#cc0d0d;font-size:64px;">#SocialEyes</span></h1>
+  </div>
 <div class="container">
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form method="post" action="php/login.php">
+    <form method="post" action="../src/login/login.php">
       <div class="input-container">
-        <input type="text" id="Username" name="Username" required="required"/>
-        <label for="Username">Username</label>
+        <input type="text" id="Email" name="Email" required="required"/>
+        <label for="Email">Email</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
@@ -46,13 +51,18 @@
   </div>
   <div class="card alt">
     <div class="toggle"></div>
-    <h1 class="title">Register 
+    <h1 class="title">Register
     <div class="close"></div>
     </h1>
-    <form method="post" action="php/signup.php">
+    <form method="post" action="../src/login/signup.php">
       <div class="input-container">
         <input type="text" id="Username" name="Username" required="required"/>
         <label for="Username">Username</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="text" id="Email" name="Email" required="required"/>
+        <label for="Email">Email</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
@@ -73,7 +83,7 @@
 </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-        <script src="js/index.js"></script>
+        <script src="js/login.js"></script>
 <!--raja is great-->
   </body>
 </html>
