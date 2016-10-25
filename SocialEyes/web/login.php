@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['uid']))
+{
+	header('Location: ../../web/home.html');
+	exit(0);
+}
+?>
 <!DOCTYPE html>
 <html >
   <head>
@@ -32,7 +40,7 @@
   <div class="card"></div>
   <div class="card">
     <h1 class="title">Login</h1>
-    <form method="post" action="../src/login/login.php">
+    <form method="post" action="../src/login/signin.php">
       <div class="input-container">
         <input type="text" id="Email" name="Email" required="required"/>
         <label for="Email">Email</label>
@@ -71,7 +79,7 @@
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="Repeat Password" name="Repeat Password" required="required"/>
+        <input type="password" id="Repeat Password" name="RepeatPassword" required="required"/>
         <label for="Repeat Password">Repeat Password</label>
         <div class="bar"></div>
       </div>
