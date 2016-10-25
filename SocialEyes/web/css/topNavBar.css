@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+.navbar{
+	border-radius: 0px;
+	background-color: #cc0d0d;
+	border-color: #7b0000;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover{
+	background-color: #7b0000;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #7b0000;
+}
