@@ -1,3 +1,10 @@
+<?php
+/*
+ * @author ilaya
+ * file to add navbar
+ */
+?>
+<link rel="stylesheet" href="css/topNavBar.css" />
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -19,18 +26,21 @@
 			<ul class="nav navbar-nav">
 
 			</ul>
-			<form class="navbar-form navbar-left">
+			<div class="col-md-6" style="margin-top: .5em;">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search"> <span
 						class="input-group-btn">
-						<button type="submit" class="btn btn-default">
+						<button class="btn btn-default" type="button">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
 				</div>
-			</form>
+				<!-- /input-group -->
+			</div>
+			<!-- /.col-lg-6 -->
+
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
+				<li><a href="home.php">Home <span class="sr-only">(current)</span></a></li>
 				<li><a href="<?php echo "profile/".$_SESSION['uid']?>">Profile</a></li>
 				<li><a href="../src/login/logout.php">Logout</a></li>
 			</ul>
