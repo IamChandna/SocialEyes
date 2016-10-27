@@ -9,11 +9,9 @@ if (isset ( $_SESSION ['uid'] )) {
 	exit ( 0 );
 }
 
+include_once 'databaseConn.php';
 include_once 'credentials.php';
-$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-if (! $con) {
-	echo "Error : Unable to open database\n";
-}
+$con = databaseConn();
 $query = "select password,uid,uname from jaipal.users where emailid='" . $_POST ['Email'] . "';";
 $ret = pg_query ( $con, $query );
 pg_close ( $con );

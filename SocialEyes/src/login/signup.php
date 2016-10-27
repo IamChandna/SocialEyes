@@ -8,11 +8,9 @@ if (isset ( $_SESSION ['uid'] )) {
 	header ( 'Location: ../../web/home.php' );
 	exit ( 0 );
 }
+include_once 'databaseConn.php';
 include_once 'credentials.php';
-$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-if (! $con) {
-	echo "Error : Unable to open database\n";
-}
+$con = databaseConn();
 $query = "insert into jaipal.users(uname,emailid,password) values('" . $_POST ['Username'] . "','" . $_POST ['Email'] . "','" . md5 ( $_POST ['Password'] . $salt ) . "');";
 $ret = pg_query ( $con, $query );
 if (! $ret) {
