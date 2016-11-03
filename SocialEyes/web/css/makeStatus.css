@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+#statusTextArea{
+	margin: 0px; 
+	margin-bottom: 5px;
+}
+#statusTextArea textarea {
+	resize: none;
+}
+#statusTextArea textarea:focus {
+	border-color: #f66;
+	box-shadow: none;
+}
+#buttonStyle{
+	background-color: #cc0d0d;
+	border: none;
+}
+#buttonStyle:hover{
+	background-color: #7b0000;
+}

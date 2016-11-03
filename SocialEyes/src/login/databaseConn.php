@@ -1,4 +1,4 @@
-<?php
+-<?php
 function databaseConn(){
 	include 'credentials.php';
 	$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );

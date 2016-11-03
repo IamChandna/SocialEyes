@@ -16,22 +16,14 @@ if (! isset ( $_SESSION ['uid'] )) {
 </head>
 <body>
 	<?php include "php/topNavBar.php";?>
-	
+	<div style="margin-top: 4.5em;"></div>
 	<div class="propic">
 		<img src="img/defaultPropic.png">
 	</div>
-	
-	<div class="col-md-6 col-md-offset-3" id="main-content">
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
+	<div class="col-md-5 col-md-offset-3" id="main-content">
+	<?php include "php/makeStatus.php";?>
 	</div>
-	
+
 </body>
 </html>
