@@ -16,11 +16,12 @@ if (! isset ( $_SESSION ['uid'] )) {
 </head>
 <body>
 	<?php include "php/topNavBar.php";?>
-	
+	<div class="home">
+	<div class="container-fluid">
 	<div class="propic">
 		<img src="img/defaultPropic.png">
 	</div>
-	
+
 	<div class="col-md-6 col-md-offset-3" id="main-content">
 	<br>
 	<br>
@@ -32,6 +33,8 @@ if (! isset ( $_SESSION ['uid'] )) {
 	<br>
 	<br>
 	</div>
-	
+	<?php include "php/chat.php"; ?>
+	</div>
+	</div>
 </body>
 </html>

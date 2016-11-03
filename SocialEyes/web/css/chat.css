@@ -1,4 +1,15 @@
 .chat{
+  list-style-type: none;
   position: fixed;
 
+  margin-top: 1em;
+  margin-left: 60%;
+  color: white;
+  border-color: #7b0000;
+}
+.top-buffer10{
+  margin-top: 10px;
+}
+.top-buffer20{
+  margin-top: 20px;
 }

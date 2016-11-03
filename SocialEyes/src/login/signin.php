@@ -3,6 +3,7 @@
  * @author ilaya
  * file to set session of user
  */
+ ob_start();
 session_start ();
 if (isset ( $_SESSION ['uid'] )) {
 	header ( 'Location: ../../web/home.php' );
