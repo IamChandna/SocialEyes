@@ -4,14 +4,14 @@
  * file to set session of user
  */
 session_start ();
-if (isset ( $_SESSION ['uid'] )) {
+if (isset ( $_SESSION ['user'] )) {
 	header ( 'Location: ../../web/home.php' );
 	exit ( 0 );
 }
 
 include_once 'databaseConn.php';
 include_once 'credentials.php';
-$con = databaseConn();
+$con = databaseConn ();
 $query = "select password,uid,uname from jaipal.users where emailid='" . $_POST ['Email'] . "';";
 $ret = pg_query ( $con, $query );
 pg_close ( $con );
@@ -22,8 +22,7 @@ if (! $ret) {
 if ($row = pg_fetch_row ( $ret )) {
 	if ($row [0] == md5 ( $_POST ['Password'] . $salt )) {
 		// IF LOGIN IS CORRECT THEN SESSION IS STARTED HERE
-		$_SESSION ['uid'] = md5 ( $row ['uid'] );
-		$_SESSION ['name'] = $row ['uname'];
+		$_SESSION['user']=array('uid' => md5 ( $row [1]) ,'name' => $row [2],'id' => $row [1]);
 		header ( 'Location: ../../web/home.php' );
 		exit ( 0 );
 	} else {
