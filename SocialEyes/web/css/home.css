@@ -4,14 +4,19 @@
 	position: fixed;
 	margin-top: -3em;
 	margin-left: 5%;
+	z-index: 1;
+	width:10%; 
 }
 .propic img{
-	width:10%; 
+	width:100%; 
 	border-radius:50%;
 }
 #main-content{
 	height: 100%;
 	background-color: #fff;
+	margin-bottom: 1em;
+	z-index: -1;
+	padding: .6em;
 }
 body{
 	background-color: #f3f3f3;

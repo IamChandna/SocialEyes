@@ -1,6 +1,6 @@
 <?php
 session_start ();
-if (isset ( $_SESSION ['uid'] )) {
+if (isset ( $_SESSION ['user'] )) {
 	header ( 'Location: home.php' );
 	exit ( 0 );
 }

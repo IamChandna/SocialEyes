@@ -6,6 +6,7 @@
 	background-color: #cc0d0d;
 	border-color: #7b0000;
 	border-radius: 0px;
+	z-index: 0;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus,
