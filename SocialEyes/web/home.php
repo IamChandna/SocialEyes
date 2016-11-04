@@ -18,22 +18,27 @@ if (! isset ( $_SESSION ['uid'] )) {
 	<?php include "php/topNavBar.php";?>
 	<div class="home">
 	<div class="container-fluid">
-	<div class="propic">
-		<img src="img/defaultPropic.png">
+	<div class="row">
+		<div class="col-sm-3 col-md-6 col-lg-9">
+			<div class="propic">
+				<img src="img/defaultPropic.png">
+			</div>
+			<div class="col-sm-3 col-md-6 col-lg-3"></div>
+			<div class="col-sm-3 col-md-6 col-lg-9" id="main-content">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+		</div>
+		<div class="col-sm-3 col-md-6 col-lg-3">
+		<?php include "php/chat.php"; ?>
 	</div>
-
-	<div class="col-md-6 col-md-offset-3" id="main-content">
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	</div>
-	<?php include "php/chat.php"; ?>
 	</div>
 	</div>
 </body>
