@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="css/chat.css" />
+<link rel="stylesheet" href="<?php echo $root;?>css/chat.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<div class="chat" id="chat" >
+<div class="chat" id="chat">
 	<div class="container-fluid">
 
 		<div class="row">
@@ -27,7 +27,7 @@
 					<br>
 					<div class="top-buffer20">
 						<div class="chatblock" style="background-color: #f3f3f3;">
-							<iframe src="../web/php/chatBlock.php" width="100%" id="chatframe" style="height:1000px"></iframe>
+							<iframe src="<?php echo $root;?>../web/php/chatBlock.php" width="100%" id="chatframe" style="height:1000px"></iframe>
 						</div>
 					</div>
 					<br>
@@ -39,6 +39,6 @@
 <script type="text/javascript">
 document.addEventListener("mouseover", setChatFrame);
 function setChatFrame(){
-	document.getElementById("chatframe").style.height=$(document).height()-70+"px";
+	document.getElementById("chatframe").style.height=$(document).height()700+"px";
 }
 </script>
