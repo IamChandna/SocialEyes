@@ -7,15 +7,17 @@ function load10(offset) {
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("content-area").innerHTML = document.getElementById("content-area").innerHTML+ this.responseText;
+			document.getElementById("content-area").innerHTML = document
+					.getElementById("content-area").innerHTML
+					+ this.responseText;
 		}
 	}
 	xhttp.open("POST", "../src/status/orderStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para="offset=" + offset;
+	var para = "offset=" + offset;
 	xhttp.send(para);
 }
-function like(uid,sid){
+function like(uid, sid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xhttp = new XMLHttpRequest();
@@ -24,15 +26,24 @@ function like(uid,sid){
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("like-"+sid).className="glyphicon glyphicon-heart";
+			if (document.getElementById("like-" + sid).className == "glyphicon glyphicon-heart") {
+				document.getElementById("like-" + sid).className = "glyphicon glyphicon-heart-empty";
+			}
+			else{
+				document.getElementById("like-" + sid).className = "glyphicon glyphicon-heart";
+			}
 		}
 	}
-	xhttp.open("POST", "../src/status/likeStatus.php", true);
+	if (document.getElementById("like-" + sid).className != "glyphicon glyphicon-heart") {
+		xhttp.open("POST", "../src/status/likeStatus.php", true);
+	} else {
+		xhttp.open("POST", "../src/status/unlikeStatus.php", true);
+	}
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para="uid="+uid+"&sid=" + sid;
+	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
 }
-function repost(uid,sid){
+function repost(uid, sid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xhttp = new XMLHttpRequest();
@@ -41,11 +52,12 @@ function repost(uid,sid){
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("like-"+sid).className="glyphicon glyphicon-eye-open";
+			document.getElementById("like-" + sid).className = "glyphicon glyphicon-eye-open";
 		}
 	}
+
 	xhttp.open("POST", "repostStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para="uid="+uid+"&sid=" + sid;
+	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
 }

@@ -66,10 +66,12 @@ function generateCard($row) {
 	<hr>
 	<div class="row">
 		<div class="buttons-area col-md-10 col-md-offset-1">
-			<label> <button class="glyphicon glyphicon-heart-empty" id="like-<?php echo $row[2];?>" onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <?php echo $row[4];?></label>  
+			<label> <button class="glyphicon glyphicon-heart<?php if(in_array($_SESSION['user']['id'], json_decode($row[9]))==null)
+				echo "-empty";
+				?>"
+				 id="like-<?php echo $row[2];?>" onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <?php echo $row[4];?></label>  
 			<label> <button class="glyphicon glyphicon-comment"></button>Comment  </label> 
-			<label> <button class="glyphicon glyphicon-retweet" onclick="repost(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Repost  </label> 
-			<?php print_r(in_array($_SESSION['user']['id'], json_decode($row[9])));?>
+			<label> <button class="glyphicon glyphicon-retweet" onclick="repost(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Repost  </label>
 		</div>
 	</div>
 </div>

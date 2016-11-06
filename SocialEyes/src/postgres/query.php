@@ -139,4 +139,15 @@ class query{
 		}
 	}
 	
+	public function updateNotLikeInStatus($uid,$sid){
+		$sql = "update jaipal.status set likes=array_remove(likes,'".$uid."') where statusid=".$sid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "unliked\n";
+		}
+	}
+	
 }
