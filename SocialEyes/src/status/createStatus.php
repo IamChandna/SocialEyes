@@ -1,19 +1,12 @@
 <?php
 session_start ();
 $id = "null";
-include_once '../login/databaseConn.php';
-$con = databaseConn ();
+include_once '../postgres/query.php';
+$o=new query();
 
 include 'upload.php';
 
-$sql = "insert into jaipal.status (uid,content,picid,time) values (" . $_SESSION ['user'] ['id'] . ",'" . $_POST ['statusText'] . "'," . $id . ",now());";
-
-$ret = pg_query ( $con, $sql );
-if (! $ret) {
-	echo pg_last_error ( $con );
-} else {
-	echo "Records created successfully\n";
-}
+$o->putStatusToStatus($_SESSION ['user'] ['id'], $_POST ['statusText'], $id);
 
 header ( 'Location: ../../web/home.php' );
 exit ( 0 );

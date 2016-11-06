@@ -34,15 +34,7 @@ if(isset($_FILES["image"])){
 			$id=strtotime ( "now" );
 			rename ( $target_file, $target_dir . $id . "." . $imageFileType );
 			$target_file=$target_dir . $id . "." . $imageFileType;
-			$sql="insert into jaipal.gallery values (".$id.",".$_SESSION['user']['id'].",'".$target_file."');";
-			//echo $sql;
-			//print_r( $_SESSION);
-			$ret = pg_query ( $con, $sql );
-			if (! $ret) {
-				echo pg_last_error ( $con );
-			} else {
-				echo "Records created successfully\n";
-			}
+			$o->putImageToGallery($id, $_SESSION['user']['id'],$target_file);
 		} else {
 			echo "Sorry, there was an error uploading your file.";
 		}
