@@ -1,6 +1,4 @@
-﻿--DROP TABLE jaipal.chat;
-
-CREATE TABLE jaipal.chat
+﻿CREATE TABLE jaipal.chat
 (
   chatid bigserial NOT NULL,
   convid bigserial NOT NULL,
@@ -11,9 +9,6 @@ CREATE TABLE jaipal.chat
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.chat
-  OWNER TO postgres;
---DROP TABLE jaipal.comments;
 
 CREATE TABLE jaipal.comments
 (
@@ -26,9 +21,6 @@ CREATE TABLE jaipal.comments
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.comments
-  OWNER TO postgres;
---DROP TABLE jaipal.conversation;
 
 CREATE TABLE jaipal.conversation
 (
@@ -39,9 +31,6 @@ CREATE TABLE jaipal.conversation
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.conversation
-  OWNER TO postgres;
---DROP TABLE jaipal.gallery;
 
 CREATE TABLE jaipal.gallery
 (
@@ -53,9 +42,6 @@ CREATE TABLE jaipal.gallery
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.gallery
-  OWNER TO postgres;
---DROP TABLE jaipal.status;
 
 CREATE TABLE jaipal.status
 (
@@ -72,10 +58,6 @@ CREATE TABLE jaipal.status
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.status
-  OWNER TO postgres;
-
---DROP TABLE jaipal.users;
 
 CREATE TABLE jaipal.users
 (
@@ -98,8 +80,6 @@ CREATE TABLE jaipal.users
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE jaipal.users
-  OWNER TO postgres;
 
 INSERT INTO jaipal.gallery(
             picid, uid, link)
