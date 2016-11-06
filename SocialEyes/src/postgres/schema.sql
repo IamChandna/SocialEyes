@@ -1,4 +1,4 @@
-﻿--DROP TABLE jaipal.chat;
+﻿
 
 CREATE TABLE jaipal.chat
 (
@@ -12,8 +12,8 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.chat
-  OWNER TO postgres;
---DROP TABLE jaipal.comments;
+  OWNER TO student;
+
 
 CREATE TABLE jaipal.comments
 (
@@ -27,8 +27,8 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.comments
-  OWNER TO postgres;
---DROP TABLE jaipal.conversation;
+  OWNER TO student;
+
 
 CREATE TABLE jaipal.conversation
 (
@@ -40,8 +40,8 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.conversation
-  OWNER TO postgres;
---DROP TABLE jaipal.gallery;
+  OWNER TO student;
+
 
 CREATE TABLE jaipal.gallery
 (
@@ -54,8 +54,8 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.gallery
-  OWNER TO postgres;
---DROP TABLE jaipal.status;
+  OWNER TO student;
+
 
 CREATE TABLE jaipal.status
 (
@@ -73,9 +73,9 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.status
-  OWNER TO postgres;
+  OWNER TO student;
 
---DROP TABLE jaipal.users;
+
 
 CREATE TABLE jaipal.users
 (
@@ -99,7 +99,7 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE jaipal.users
-  OWNER TO postgres;
+  OWNER TO student;
 
 INSERT INTO jaipal.gallery(
             picid, uid, link)

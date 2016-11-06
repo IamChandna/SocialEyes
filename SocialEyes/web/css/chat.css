@@ -1,14 +1,7 @@
 .chat{
 	z-index: 6;
-  list-style-type: none;
   position: fixed;
   margin-left: 5%;
   color: white;
-  border-color: #7b0000;
-}
-.top-buffer10{
-  margin-top: 10px;
-}
-.top-buffer20{
-  margin-top: 20px;
+
 }
