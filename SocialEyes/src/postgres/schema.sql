@@ -10,6 +10,7 @@ WITH (
   OIDS=FALSE
 );
 
+
 CREATE TABLE jaipal.comments
 (
   commentid bigserial NOT NULL,
