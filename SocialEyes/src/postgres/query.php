@@ -80,7 +80,7 @@ class query{
 	}
 	
 	public function getStatusLocalForUid($uid,$offset=0){
-		$sql = "select uname,profilepicid,statusid,content,likes,comments,picid,time,u.uid from jaipal.status as s,jaipal.users as u where (s.uid=u.uid)and (s.uid=".$uid." or s.uid=any(friendlist)) order by statusid desc limit ".(100+intval($offset)).";";
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u where (s.uid=u.uid)and (s.uid=".$uid." or s.uid=any(friendlist)) order by statusid desc limit ".(100+intval($offset)).";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -125,6 +125,17 @@ class query{
 			echo pg_last_error ( $this->con );
 		} else {
 			echo "Records created successfully\n";
+		}
+	}
+	
+	public function updateLikeInStatus($uid,$sid){
+		$sql = "update jaipal.status set likes=array_append(likes,'".$uid."') where statusid=".$sid.";";
+		
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "Liked\n";
 		}
 	}
 	

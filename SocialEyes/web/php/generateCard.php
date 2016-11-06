@@ -7,11 +7,12 @@
  * [1] => profilepic /
  * [2] => statusid 
  * [3] => content /
- * [4] => likes
+ * [4] => no of likes /
  * [5] => comments
  * [6] => picid /
  * [7] => time 
  * [8] => s.uid
+ * [9] => likes /
  * )
  */
 function generateCard($row) {
@@ -20,6 +21,7 @@ function generateCard($row) {
 <style>
 .profile-pic img {
 	width: 100%;
+	border-radius: 50%;
 }
 .content{
 	margin-top: 1em;
@@ -27,7 +29,15 @@ function generateCard($row) {
 }
 .image-content img {
 	width: 100%;
-	margin-bottom: 1em;
+}
+.buttons-area .glyphicon{
+	color: #cc0d0d;
+	font-size:20px;
+	background-color: inherit;
+	border: none;
+}
+.buttons-area .glyphicon:hover{
+	color: #7b0000;
 }
 </style>
 <div class="main-content">
@@ -53,7 +63,19 @@ function generateCard($row) {
 			?>
 		</div>
 	</div>
+	<hr>
+	<div class="row">
+		<div class="buttons-area col-md-10 col-md-offset-1">
+			<label> <button class="glyphicon glyphicon-heart-empty" id="like-<?php echo $row[2];?>" onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <?php echo $row[4];?></label>  
+			<label> <button class="glyphicon glyphicon-comment"></button>Comment  </label> 
+			<label> <button class="glyphicon glyphicon-retweet" onclick="repost(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Repost  </label> 
+			<?php print_r(in_array($_SESSION['user']['id'], json_decode($row[9])));?>
+		</div>
+	</div>
 </div>
+<script type="text/javascript">
+
+</script>
 <?php
 }
 ?>

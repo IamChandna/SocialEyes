@@ -14,7 +14,7 @@ $root="";
 <link rel="stylesheet" href="css/normalize.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/home.css" />
-<script type="text/javascript" src="js/loadStatus.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
 
 </head>
 <body id="body" onload="load10(0);">

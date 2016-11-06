@@ -1,4 +1,5 @@
 .chat{
+	z-index: 6;
   list-style-type: none;
   position: fixed;
   margin-left: 5%;
