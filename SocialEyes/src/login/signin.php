@@ -14,7 +14,7 @@ include_once '../postgres/query.php';
 include_once '../postgres/credentials.php';
 $o = new query ();
 
-$row = $o->getAllForEmailFromUser ( $_POST ['Password'] );
+$row = $o->getAllForEmailFromUser ( $_POST ['Email'] );
 if ($row [0] == md5 ( $_POST ['Password'] . $salt )) {
 	// IF LOGIN IS CORRECT THEN SESSION IS STARTED HERE
 	$_SESSION ['user'] = array (

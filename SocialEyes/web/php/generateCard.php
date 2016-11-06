@@ -47,12 +47,20 @@ function generateCard($row) {
 			echo "<img src=\"../src/uploads/" . $o->getPropicForUid ( $row [8] ) . "\">";
 		?>
 		</div>
-		<h3><?php echo $row[0];?></h3>
-		<h5>Posted on <?php echo date( 'jS, D G:i',strtotime($row[7]));?></h5>
+		<div class="col-md-9">
+			<div class="row">
+				<h3><?php echo $row[0];?></h3>
+			</div>
+			<div class="row">
+				<h5 style="margin-top: 0px;">Posted on <?php echo date( 'jS, D G:i',strtotime($row[7]));?></h5>
+			</div>
+		</div>
+		
+		
 	</div>
 	<div class="row">
 		<div class="content col-md-10 col-md-offset-1">
-			<p><?php echo $row[3];?></p>
+			<p style="word-wrap: break-word;"><?php echo $row[3];?></p>
 		</div>
 	</div>
 	<div class="row">

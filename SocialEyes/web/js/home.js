@@ -52,11 +52,11 @@ function repost(uid, sid) {
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("like-" + sid).className = "glyphicon glyphicon-eye-open";
+			document.getElementById("like-" + sid).style.color = "#333";
 		}
 	}
 
-	xhttp.open("POST", "repostStatus.php", true);
+	xhttp.open("POST", "../src/status/repostStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
