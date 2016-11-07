@@ -34,7 +34,7 @@ $root="";
 		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style="margin-top: 4.5em;" id="content-area">
 		 	
 		 	<div class="main-content">
-		 		<?php include "php/makeStatus.php";?>
+		 		<?php include "../src/status/makeStatus.php";?>
 		 	</div>
 	 	
 	 	</div>
