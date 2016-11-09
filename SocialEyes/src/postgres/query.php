@@ -10,13 +10,13 @@ class query {
 	}
 	public function databaseConn() {
 		include 'credentials.php';
-		// $con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-		// if (! $con) {
-		$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
+		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
 		if (! $con) {
-			die ( "failed to connect to databases" );
+			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
+			if (! $con) {
+				die ( "failed to connect to databases" );
+			}
 		}
-		// }
 		return $con;
 	}
 	public function getAllForEmailFromUser($email) {
@@ -226,3 +226,4 @@ class query {
 			echo "unliked\n";
 		}
 	}
+}

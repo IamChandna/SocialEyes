@@ -120,6 +120,6 @@ function makeComment(uid, sid) {
 
 	xhttp.open("POST", "../src/status/makeComment.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para = "uid=" + uid + "&sid=" + sid;
+	var para = "uid=" + uid + "&sid=" + sid+"&content="+document.getElementById("comment-list-text-box-"+sid).value;
 	xhttp.send(para);
 }
