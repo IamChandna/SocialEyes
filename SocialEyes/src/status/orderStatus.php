@@ -9,9 +9,10 @@ $o=new query();
 $result=array();
 $result=$o->getStatusLocalForUid($_SESSION['user']['id'],intval($_POST['offset']));
 $i=0;
-include '../../web/php/generateCard.php';
-while($row=$result[$i])
+include 'generateCard.php';
+while($i<sizeof($result))
 {
+	$row=$result[$i];
 	generateCard($row);
 	$i=$i+1;
 }

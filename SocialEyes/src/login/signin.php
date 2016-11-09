@@ -18,7 +18,6 @@ $row = $o->getAllForEmailFromUser ( $_POST ['Email'] );
 if ($row [0] == md5 ( $_POST ['Password'] . $salt )) {
 	// IF LOGIN IS CORRECT THEN SESSION IS STARTED HERE
 	$_SESSION ['user'] = array (
-			'uid' => md5 ( $row [1] ),
 			'name' => $row [2],
 			'id' => $row [1] 
 	);

@@ -18,28 +18,7 @@
 function generateCard($row) {
 	$o = new query ();
 	?>
-<style>
-.profile-pic img {
-	width: 100%;
-	border-radius: 50%;
-}
-.content{
-	margin-top: 1em;
-	margin-bottom: 1em;
-}
-.image-content img {
-	width: 100%;
-}
-.buttons-area .glyphicon{
-	color: #cc0d0d;
-	font-size:20px;
-	background-color: inherit;
-	border: none;
-}
-.buttons-area .glyphicon:hover{
-	color: #7b0000;
-}
-</style>
+
 <div class="main-content">
 	<div class="row">
 		<div class="profile-pic col-md-2">
@@ -49,7 +28,7 @@ function generateCard($row) {
 		</div>
 		<div class="col-md-9">
 			<div class="row">
-				<h3><?php echo $row[0];?></h3>
+				<h3><a class="" href="profile/<?php echo $row[0];?>"><?php echo $row[0];?></a></h3>
 			</div>
 			<div class="row">
 				<h5 style="margin-top: 0px;">Posted on <?php echo date( 'jS, D G:i',strtotime($row[7]));?></h5>
@@ -78,10 +57,18 @@ function generateCard($row) {
 				echo "-empty";
 				?>"
 				 id="like-<?php echo $row[2];?>" onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <?php echo $row[4];?></label>  
-			<label> <button class="glyphicon glyphicon-comment"></button>Comment  </label> 
-			<label> <button class="glyphicon glyphicon-retweet" onclick="repost(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Repost  </label>
+			<label> <button class="glyphicon glyphicon-comment" 
+			onclick="comment(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"
+			></button>Comment  </label> 
+			<label> <button class="glyphicon glyphicon-retweet"
+			id="repost-<?php echo $row[2];?>"
+			 onclick="repost(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Repost  </label>
 		</div>
 	</div>
+	<div class="row">
+		<div id="comment-<?php echo $row[2];?>" class="col-md-10 col-md-offset-1"></div>
+	</div>
+	
 </div>
 <script type="text/javascript">
 
