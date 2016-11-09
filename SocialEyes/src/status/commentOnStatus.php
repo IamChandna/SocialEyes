@@ -22,7 +22,9 @@ $o = new query ();
       <input type="text" class="form-control" placeholder="comment here..."
       id="comment-list-text-box-<?php echo $_POST['sid'];?>">
       <span class="input-group-btn">
-        <button class="btn btn-default glyphicon glyphicon-comment"  style="background-color: inherit;" type="button"></button>
+        <button class="btn btn-default glyphicon glyphicon-comment"  style="background-color: inherit;" type="button"
+        onclick="makeComment(<?php echo $_SESSION['user']['id'].",".$_POST['sid'];?>)"
+        ></button>
       </span>
     </div>
 </div>
