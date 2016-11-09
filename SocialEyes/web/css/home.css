@@ -1,5 +1,8 @@
 @CHARSET "ISO-8859-1";
-
+html{
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
 .propic{
 	position: fixed;
 	margin-top: -3em;
