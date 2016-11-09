@@ -105,3 +105,21 @@ function comment(uid, sid) {
 	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
 }
+function makeComment(uid, sid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			comment(uid,sid);
+		}
+	}
+
+	xhttp.open("POST", "../src/status/makeComment.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "uid=" + uid + "&sid=" + sid;
+	xhttp.send(para);
+}

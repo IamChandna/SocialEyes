@@ -18,12 +18,11 @@ $o = new query ();
 	}
 	?>
 	</ul>
-	<form class="form-inline" role="form">
-		<div class="form-group">
-			<input class="form-control" type="text" placeholder="Your comments" />
-		</div>
-		<div class="form-group">
-			<button class="btn btn-default">Add</button>
-		</div>
-	</form>
+	<div class="input-group">
+      <input type="text" class="form-control" placeholder="comment here..."
+      id="comment-list-text-box-<?php echo $_POST['sid'];?>">
+      <span class="input-group-btn">
+        <button class="btn btn-default glyphicon glyphicon-comment"  style="background-color: inherit;" type="button"></button>
+      </span>
+    </div>
 </div>
