@@ -28,7 +28,7 @@ function generateCard($row) {
 		</div>
 		<div class="col-md-9">
 			<div class="row">
-				<h3><a class="" href="profile/<?php echo $row[0];?>"><?php echo $row[0];?></a></h3>
+				<h3><a class="" href="profile/<?php echo $row[8];?>"><?php echo $row[0];?></a></h3>
 			</div>
 			<div class="row">
 				<h5 style="margin-top: 0px;">Posted on <?php echo date( 'jS, D G:i',strtotime($row[7]));?></h5>

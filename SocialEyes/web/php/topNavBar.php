@@ -41,7 +41,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="<?php echo $root;?>home.php">Home <span class="sr-only">(current)</span></a></li>
-				<li><a href="<?php echo $root."profile/".$_SESSION['user']['name']?>">Profile</a></li>
+				<li><a href="<?php echo $root."profile/".$_SESSION['user']['id']?>">Profile</a></li>
 				<li><a href="<?php echo $root;?>../src/login/logout.php">Logout</a></li>
 			</ul>
 		</div>
