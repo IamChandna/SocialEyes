@@ -17,9 +17,4 @@ function load10(offset) {
 	var para = "offset=" + offset;
 	xhttp.send(para);
 }
-$(window).scroll(function() {   
-   if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-       off=off+10||0;
-	   load10(off);
-   }
-});
+

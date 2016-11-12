@@ -104,3 +104,51 @@ function makeComment(uid, sid) {
 	var para = "uid=" + uid + "&sid=" + sid+"&content="+document.getElementById("comment-list-text-box-"+sid).value;
 	xhttp.send(para);
 }
+function periodElapsed(timeInMilli) {
+		// function to compare date to present and print period elapsed 
+        d=new Date(timeInMulli);
+		now=new Date();
+		difference=now.getTimeInMillis()-d.getTimeInMillis();
+        var result="";
+		if(difference<1)
+		{
+			result="error";
+		}
+		var divSet=[1000,60,60,24,7,4,12,1];
+		var timeSet=["millisecond","second","minute","hour","day","week","month","year"];
+		var info=0,at=0;
+		for(var i=0;i<divSet.length;i++)
+		{
+			if(difference%divSet[i]!=0)
+			{
+				info=(int) (difference%divSet[i]);
+				at=i;
+			}
+			difference/=divSet[i];
+		}
+		if(info!=1)
+		{
+			result=(info+" "+timeSet[at]+"s ago");
+		}
+		else
+		{
+			switch(at)
+			{
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+				result=("a "+timeSet[at]+" ago");
+				break;
+			case 4:
+				result=("yesterday");
+				break;
+			case 5:
+			case 6:
+			case 7:
+				result=("last "+timeSet[at]);
+				break;
+			}
+        }
+        return result;
+	}

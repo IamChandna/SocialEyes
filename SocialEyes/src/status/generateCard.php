@@ -31,7 +31,8 @@ function generateCard($row) {
 				<h3><a class="" href="profile/<?php echo $row[8];?>"><?php echo $row[0];?></a></h3>
 			</div>
 			<div class="row">
-				<h5 style="margin-top: 0px;">Posted on <?php echo date( 'jS, D G:i',strtotime($row[7]));?></h5>
+				<h5 style="margin-top: 0px;">Posted
+				<?php echo periodElapsed(strtotime($row[7]));?></h5>
 			</div>
 		</div>
 		
