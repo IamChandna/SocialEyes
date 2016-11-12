@@ -33,7 +33,7 @@ class query {
 		}
 	}
 	public function getFriendsForUid($uid) {
-		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "';";
+		$sql = "select friendlist from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
