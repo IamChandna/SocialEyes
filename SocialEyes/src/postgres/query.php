@@ -110,7 +110,7 @@ class query {
 			die ( "status does not exist" );
 		}
 	}
-	public function getStatusLocalForUid($uid, $offset = 0) {
+	public function getStatusLocalForUid($uid, $offset) {
 		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u,(select friendlist from jaipal.users where uid=" . $uid . ") as q where (s.uid=u.uid)and (s.uid=" . $uid . " or s.uid=any(q.friendlist))order by statusid desc limit " . (10 + intval ( $offset )) . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -122,6 +122,7 @@ class query {
 		while ( $row = pg_fetch_row ( $ret ) ) {
 			if ($i >= $offset)
 				$status [] = $row;
+			$i+=1;
 		}
 		return $status;
 	}
