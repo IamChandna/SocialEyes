@@ -32,6 +32,19 @@ class query {
 			die ( "either username or password incorrect" );
 		}
 	}
+	public function getFriendsForUid($uid) {
+		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "';";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return json_decode($row);
+		} else {
+			return ( "somethings wrong with us not ur friends" );
+		}
+	}
 	public function getUnameForUidFromUser($uid) {
 		$sql = "select uname from jaipal.users where uid='" . $uid . "';";
 		$ret = pg_query ( $this->con, $sql );
@@ -98,7 +111,22 @@ class query {
 		}
 	}
 	public function getStatusLocalForUid($uid, $offset = 0) {
-		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u,(select friendlist from jaipal.users where uid=" . $uid . ") as q where (s.uid=u.uid)and (s.uid=" . $uid . " or s.uid=any(q.friendlist))order by statusid desc limit " . (100 + intval ( $offset )) . ";";
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u,(select friendlist from jaipal.users where uid=" . $uid . ") as q where (s.uid=u.uid)and (s.uid=" . $uid . " or s.uid=any(q.friendlist))order by statusid desc limit " . (10 + intval ( $offset )) . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$status = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			if ($i >= $offset)
+				$status [] = $row;
+		}
+		return $status;
+	}
+	public function getStatusOfUid($uid, $offset = 0) {
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u as q where (s.uid=u.uid)and (s.uid=" . $uid . ") order by statusid desc limit " . (10 + intval ( $offset )) . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
