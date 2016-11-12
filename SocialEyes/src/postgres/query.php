@@ -33,20 +33,7 @@ class query {
 		}
 	}
 	public function getFriendsForUid($uid) {
-		$sql = "select friendlist from jaipal.users where uid='" . $uid . "' and post_content LIKE '%".$_POST['keywords']."%' AND post_status = 'publish'";";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-			exit ();
-		}
-		if ($row = pg_fetch_row ( $ret )) {
-			return json_decode($row);
-		} else {
-			return ( "somethings wrong with us not ur friends" );
-		}
-	}
-	public function getFriendsForUidKeyword($uid) {
-		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "';";
+		$sql = "select friendlist from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
