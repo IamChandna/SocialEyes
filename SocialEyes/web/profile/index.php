@@ -13,6 +13,7 @@ $id = $exploaded [$lastParamLoc - 1];
 
 ?>
 <!DOCTYPE html>
+<!--demo conflict-->
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -28,19 +29,22 @@ $id = $exploaded [$lastParamLoc - 1];
 		class="col-xs-8 col-xs-offset-1 col-sm-8  col-sm-offset-1 col-md-8  col-md-offset-1 col-lg-8 col-lg-offset-1"
 		style="margin-top: 3.5em;">
 		<div class="main-content">
-		 		<?php
-					include '../../src/postgres/query.php';
-					$o = new query ();
-					?>
-		 		<div class="coverpic">
-				<img alt="cover"
-					src="../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>" />
+		 	<?php
+				include '../../src/postgres/query.php';
+				$o = new query ();
+			?>
+			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');"></div>
+			<div class="col-md-4" style="height: 1000px; border: black solid 2px;">
+				
 			</div>
-
+			<div class="propic col-sm-3">
+				<img alt="propic" src="../../src/postgres/<?php echo $o->getPropicForUid($id);?>">
+			</div>
+			<div class="col-md-offset-1 col-md-7" style="height: 1000px; border: black solid 2px;">
+			</div>
 		</div>
 
 	</div>
-
 	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "../php/chat.php"; ?>

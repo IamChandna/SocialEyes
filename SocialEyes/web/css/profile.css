@@ -6,10 +6,26 @@ body{
 }
 
 .coverpic{
-	width: 100%;
 	height:20em;
 }
 .coverpic img {
 	width: 100%;
 	height: 100%;
+}
+.propic{
+	float: none;
+	margin: 0 auto;
+	margin-top: -8em;
+}
+.propic img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.Container{
+    margin:0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20em;
 }
