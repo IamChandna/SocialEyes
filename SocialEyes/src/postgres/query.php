@@ -33,7 +33,7 @@ class query {
 		}
 	}
 	public function getFriendsForUid($uid) {
-		$sql = "select friendlist from jaipal.users where uid='" . $uid . "' ;";
+		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -44,6 +44,19 @@ class query {
 		} else {
 			return ( "somethings wrong with us not ur friends" );
 		}
+	}
+	public function getFriendsForUidKeyword($uid,$keyword) {
+		$sql = "select uname,uid,profilepicid from (select unnest(friendlist) as fid from jaipal.users where uid='".$uid."') as f join jaipal.users as u on fid=uid where uname ~* '^".$keyword."' limit 4;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$friends = array ();
+		while ( $row = pg_fetch_row ( $ret ) ) {
+				$friends [] = $row;
+		}
+		return $friends;
 	}
 	public function getUnameForUidFromUser($uid) {
 		$sql = "select uname from jaipal.users where uid='" . $uid . "';";

@@ -128,3 +128,7 @@ body{
 	border-top: 1px dotted #bbb;
 	padding: 10px;
 }
+.form-control:focus{
+	border-color: #f66;
+	box-shadow: none;
+}

@@ -1,7 +1,26 @@
-.chat{
+.chat {
 	z-index: 6;
-  position: fixed;
-  margin-left: 5%;
-  color: white;
+	position: fixed;
+	margin-left: 5%;
+	color: white;
+}
 
+.chat-profile-pic img {
+	width: 3em;
+	border-radius: 1.5em;
+}
+
+html {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.chat-usernames label{
+	margin-top: .5em;
+}
+
+.well{
+	margin-bottom: 1px;
+	padding: 9px;
+	border: none;
 }
