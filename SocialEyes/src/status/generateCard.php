@@ -32,7 +32,7 @@ function generateCard($row) {
 			</div>
 			<div class="row">
 				<h5 style="margin-top: 0px;">Posted
-				<?php echo periodElapsed(strtotime($row[7]))." ".strtotime($row[7]);?></h5>
+				<?php echo periodElapsed(strtotime($row[7]));?></h5>
 			</div>
 		</div>
 		
