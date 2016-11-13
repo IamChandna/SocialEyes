@@ -5,6 +5,13 @@
  */
 ?>
 <link rel="stylesheet" href="<?php echo $root;?>css/topNavBar.css" />
+<script>
+         $(function() {
+            $( "#live-search-box" ).autocomplete({
+               source: "php/liveSearch.php"
+            });
+         });
+      </script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -16,8 +23,9 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?php echo $root;?>home.php"> <img alt="logo"
-				src="<?php echo $root;?>img/socialeyesLogoWhite.png" style="height: 20px; width: 30px;"></a>
+			<a class="navbar-brand" href="<?php echo $root;?>home.php"> <img
+				alt="logo" src="<?php echo $root;?>img/socialeyesLogoWhite.png"
+				style="height: 20px; width: 30px;"></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,13 +36,14 @@
 			</ul>
 			<div class="col-md-6" style="margin-top: .5em;">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search"> <span
-						class="input-group-btn">
+					<input type="text" class="form-control" placeholder="Search"
+						id="live-search-box"> <span class="input-group-btn">
 						<button class="btn btn-default" type="button">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
 				</div>
+				<div id="dropdown-search"></div>
 				<!-- /input-group -->
 			</div>
 			<!-- /.col-lg-6 -->

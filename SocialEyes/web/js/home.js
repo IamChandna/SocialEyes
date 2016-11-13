@@ -19,5 +19,6 @@ function load10(offset) {
 }
 
 function showUploaded(){
-	document.getElementById("upload-description").innerHTML+=document.getElementById("inputfile").value;
+	document.getElementById("upload-description").innerHTML=document.getElementById("inputfile").value;
 }
+
