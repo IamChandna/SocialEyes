@@ -14,6 +14,9 @@ $root = "";
 <link rel="stylesheet" href="css/normalize.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/home.css" />
+<link href="css/jquery-ui.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/home.js"></script>
 <script type="text/javascript" src="js/status.js"></script>
 <script type="text/javascript">var off=0;</script>

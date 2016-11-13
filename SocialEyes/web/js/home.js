@@ -18,3 +18,7 @@ function load10(offset) {
 	xhttp.send(para);
 }
 
+function showUploaded(){
+	document.getElementById("upload-description").innerHTML=document.getElementById("inputfile").value;
+}
+

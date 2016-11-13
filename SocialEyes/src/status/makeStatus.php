@@ -11,7 +11,8 @@
 		id="buttonStyle"> <span class="glyphicon glyphicon-picture"
 		aria-hidden="true"></span>
 	</label> <input name="image" type="file" id="inputfile"
-		style="display: none;">
+		style="display: none;" onchange="showUploaded();">
+		<label id="upload-description"></label>
 	<div class="pull-right">
 		<button type="submit" class="btn btn-primary" id="buttonStyle">Post</button>
 	</div>
