@@ -10,8 +10,17 @@ function chatLiveSearch(uid) {
       //some more code
       var frame=document.getElementsByTagName("iframe")[0];
       var fdoc=(frame.contentWindow || frame.contentDocument);
-      if (fdoc.document)fdoc = fdoc.document;
-        fdoc.getElementById("items").innerHTML = this.responseText;
+      if (fdoc.document)
+        fdoc = fdoc.document;
+      fdoc.getElementById("items").innerHTML = this.responseText;
+      if(this.responseText.match(/[a-z]/i))
+      {
+        fdoc.getElementById("chats").style.opacity = .4;
+      }
+      else
+      {
+        fdoc.getElementById("chats").style.opacity = 1;
+      }
 		}
 	}
   var keyword=document.getElementById("chat-live-search-box").value;

@@ -2,7 +2,10 @@
 include_once '../postgres/query.php';
 $o=new query();
 
+if($_POST['keyword'])
 $friends=$o->getFriendsForUidKeyword($_POST['uid'], $_POST['keyword']);
+else 
+$friends=array();
 
 foreach ($friends as $friend){
 	?>
