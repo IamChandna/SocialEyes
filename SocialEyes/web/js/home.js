@@ -21,4 +21,22 @@ function load10(offset) {
 function showUploaded(){
 	document.getElementById("upload-description").innerHTML=document.getElementById("inputfile").value;
 }
+function monkeyPatchAutocomplete() {
 
+      // don't really need this, but in case I did, I could store it and chain
+      var oldFn = $.ui.autocomplete.prototype._renderItem;
+
+      $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+          /*var re = new RegExp("^" + this.term) ;
+          var t = item.label.replace(re,"<span style='font-weight:bold;color:Blue;'>" + 
+                  this.term + 
+                  "</span>");*/
+          return $( "<li></li>" )
+              .data( "item.autocomplete", item )
+              .append( "<a>" + t + "</a>" )
+              .appendTo( ul );
+      };
+  }
+$(document).ready(function(){
+	monkeyPatchAutocomplete();
+})
