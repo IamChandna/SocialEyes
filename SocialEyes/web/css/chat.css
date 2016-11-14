@@ -24,3 +24,10 @@ html {
 	padding: 9px;
 	border: none;
 }
+
+#messaging{
+	display:none;
+}
+.toggle{
+	display:block !important;
+}
