@@ -15,11 +15,8 @@ $root = "";
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/home.css" />
 <link href="css/jquery-ui.min.css" rel="stylesheet">
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/home.js"></script>
-<script type="text/javascript" src="js/status.js"></script>
-<script type="text/javascript">var off=0;</script>
+
+
 <body id="body" onload="load10(0);off+=10;">
 		 <?php include "php/topNavBar.php";?>
 
@@ -42,7 +39,8 @@ $root = "";
 		 	</div>
 		</div>
 		<div class="row">
-			<button class="btn btn-primary col-sm-4 col-sm-offset-4" id="buttonStyle" onclick="load10(off);off+=10;">Load more...</button>
+			<button class="btn btn-primary col-sm-4 col-sm-offset-4"
+				id="buttonStyle" onclick="load10(off);off+=10;">Load more...</button>
 		</div>
 	</div>
 
@@ -52,5 +50,17 @@ $root = "";
 				<?php include "php/chat.php"; ?>
 			</div>
 	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/status.js"></script>
+	<script type="text/javascript">var root="";var off=0;</script>
+	<script>
+         $(function() {
+            $( "#live-search-box" ).autocomplete({
+               source: "<?php echo $root;?>php/liveSearch.php"
+            });
+         });
+      </script>
 </body>
 </html>

@@ -16,9 +16,9 @@ function like(uid, sid) {
 		}
 	}
 	if (document.getElementById("like-" + sid).className != "glyphicon glyphicon-heart") {
-		xhttp.open("POST", "../src/status/likeStatus.php", true);
+		xhttp.open("POST", root+"../src/status/likeStatus.php", true);
 	} else {
-		xhttp.open("POST", "../src/status/unlikeStatus.php", true);
+		xhttp.open("POST", root+"../src/status/unlikeStatus.php", true);
 	}
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&sid=" + sid;
@@ -42,9 +42,9 @@ function commentLike(uid, cid) {
 		}
 	}
 	if (document.getElementById("comment-like-" + cid).className != "glyphicon glyphicon-heart") {
-		xhttp.open("POST", "../src/status/likeComment.php", true);
+		xhttp.open("POST", root+"../src/status/likeComment.php", true);
 	} else {
-		xhttp.open("POST", "../src/status/unlikeComment.php", true);
+		xhttp.open("POST", root+"../src/status/unlikeComment.php", true);
 	}
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&cid=" + cid;
@@ -63,7 +63,7 @@ function repost(uid, sid) {
 		}
 	}
 
-	xhttp.open("POST", "../src/status/repostStatus.php", true);
+	xhttp.open("POST", root+"../src/status/repostStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
@@ -81,7 +81,7 @@ function comment(uid, sid) {
 		}
 	}
 
-	xhttp.open("POST", "../src/status/commentOnStatus.php", true);
+	xhttp.open("POST", root+"../src/status/commentOnStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&sid=" + sid;
 	xhttp.send(para);
@@ -99,7 +99,7 @@ function makeComment(uid, sid) {
 		}
 	}
 
-	xhttp.open("POST", "../src/status/makeComment.php", true);
+	xhttp.open("POST", root+"../src/status/makeComment.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&sid=" + sid+"&content="+document.getElementById("comment-list-text-box-"+sid).value;
 	xhttp.send(para);

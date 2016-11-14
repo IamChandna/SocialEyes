@@ -21,7 +21,7 @@ $id = $exploaded [$lastParamLoc - 1];
 <link rel="stylesheet" href="../css/normalize.css" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../css/profile.css" />
-
+<link href="../css/jquery-ui.min.css" rel="stylesheet">
 </head>
 <body>
 		 <?php include "../php/topNavBar.php";?>
@@ -50,6 +50,17 @@ $id = $exploaded [$lastParamLoc - 1];
 				<?php include "../php/chat.php"; ?>
 			</div>
 	</div>
-
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/status.js"></script>
+<script type="text/javascript">var root="<?php echo $root;?>";</script>
+<script>
+         $(function() {
+            $( "#live-search-box" ).autocomplete({
+               source: "<?php echo $root;?>php/liveSearch.php"
+            });
+         });
+      </script>
 </body>
 </html>

@@ -5,13 +5,6 @@
  */
 ?>
 <link rel="stylesheet" href="<?php echo $root;?>css/topNavBar.css" />
-<script>
-         $(function() {
-            $( "#live-search-box" ).autocomplete({
-               source: "php/liveSearch.php"
-            });
-         });
-      </script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -49,9 +42,17 @@
 			<!-- /.col-lg-6 -->
 
 			<ul class="nav navbar-nav navbar-right">
+				
 				<li><a href="<?php echo $root;?>home.php">Home <span class="sr-only">(current)</span></a></li>
+				
+				<li style="border-left:1px solid #a00; border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-bell"></span></a></li>
+				
+				<li style="border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-cog"></span></a></li>
+				
 				<li><a href="<?php echo $root."profile/".$_SESSION['user']['id']?>">Profile</a></li>
+				
 				<li><a href="<?php echo $root;?>../src/login/logout.php">Logout</a></li>
+	
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
