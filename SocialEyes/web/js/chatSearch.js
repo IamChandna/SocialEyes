@@ -24,7 +24,7 @@ function chatLiveSearch(uid) {
 		}
 	}
   var keyword=document.getElementById("chat-live-search-box").value;
-	xhttp.open("POST", "../src/chat/chatSearch.php", true);
+	xhttp.open("POST", root+"../src/chat/chatSearch.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "uid=" + uid + "&keyword=" + keyword;
 	xhttp.send(para);

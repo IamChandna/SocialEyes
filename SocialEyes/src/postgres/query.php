@@ -58,7 +58,7 @@ class query {
 		}
 		return $friends;
 	}
-	public function getFriendsForKeyword($keyword) {
+	public function getEncodedUsersForKeyword($keyword) {
 		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )".$keyword."' limit 4;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -67,7 +67,7 @@ class query {
 		}
 		$friends = array ();
 		while ( $row = pg_fetch_row ( $ret ) ) {
-			$friends [] = $row[0];
+			$friends [] = $row[0]."&".$row[1]."&".$row[2];
 		}
 		return $friends;
 	}

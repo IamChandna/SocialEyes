@@ -12,7 +12,7 @@ function load10(offset) {
 					+ this.responseText;
 		}
 	}
-	xhttp.open("POST", "../src/status/orderStatus.php", true);
+	xhttp.open("POST", root+"../src/status/orderStatus.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "offset=" + offset;
 	xhttp.send(para);
@@ -27,13 +27,11 @@ function monkeyPatchAutocomplete() {
       var oldFn = $.ui.autocomplete.prototype._renderItem;
 
       $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-          /*var re = new RegExp("^" + this.term) ;
-          var t = item.label.replace(re,"<span style='font-weight:bold;color:Blue;'>" + 
-                  this.term + 
-                  "</span>");*/
+		  var user=item.label.split("&");
+		  var t = "<a href='"+root+"profile/" + user[1] + "'>"+user[0]+"</a>"
           return $( "<li></li>" )
               .data( "item.autocomplete", item )
-              .append( "<a>" + t + "</a>" )
+              .append( "<a id='search-items'>" + t + "</a>" )
               .appendTo( ul );
       };
   }

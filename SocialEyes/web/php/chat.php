@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?php echo $root;?>css/chat.css" />
-<script type="text/javascript" src="js/chatSearch.js"></script>
+<script type="text/javascript" src="<?php echo $root;?>js/chatSearch.js"></script>
 <div class="chat" id="chat" style="position:fixed; bottom: 0px; top: 3.5em; padding-left:15px;">
 	<div class="container-fluid" style="height:100%;">
 
