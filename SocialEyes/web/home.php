@@ -16,6 +16,15 @@ $root = "";
 <link rel="stylesheet" href="css/home.css" />
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/toastr.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/toastr.min.js"></script>
+<script src="js/pusher.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/status.js"></script>
+<script type="text/javascript">var root="";var off=0;</script>
+
 
 <body id="body" onload="load10(0);off+=10;">
 		 <?php include "php/topNavBar.php";?>
@@ -50,11 +59,7 @@ $root = "";
 				<?php include "php/chat.php"; ?>
 			</div>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/status.js"></script>
-	<script type="text/javascript">var root="";var off=0;</script>
+
 	<script>
          $(function() {
             $( "#live-search-box" ).autocomplete({
