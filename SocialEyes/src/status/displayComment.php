@@ -33,6 +33,15 @@ function displayComment($cid){
 		</button>
 		Like  <?php echo $r[4];?>
 	</label>
+	<label style="color:#911;">
+	<?php if($r[3]==$_SESSION['user']['id']){?>
+	<button		style="background-color: inherit; border:none;"
+				onclick="deleteComment(this.parentNode.parentNode.parentNode,<?php echo $cid.",".$r[3];?>);">
+					<i class="fa fa-trash"></i>
+	</button>
+	 Delete
+	</label>
+	<?php }?>
 </div>
 <?php 
 }
