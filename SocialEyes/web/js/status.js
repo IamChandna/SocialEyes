@@ -104,6 +104,59 @@ function makeComment(uid, sid) {
 	var para = "uid=" + uid + "&sid=" + sid+"&content="+document.getElementById("comment-list-text-box-"+sid).value;
 	xhttp.send(para);
 }
+function deleteStatus(o,sid,uid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			if(this.responseText!="1"){
+				o.style.opacity=0;
+				setTimeout(function(){
+					o.style.display="none";
+				}, 2000);
+			}
+			else{
+				o.style.background="#ffc2c2";
+			}
+		}
+	}
+
+	xhttp.open("POST", root+"../src/status/deleteStatus.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "sid=" + sid+"&uid="+uid;
+	xhttp.send(para);
+}
+function deleteComment(o,cid,uid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			if(this.responseText!="1"){
+				o.style.opacity=0;
+				setTimeout(function(){
+					o.style.display="none";
+				}, 2000);
+			}
+			else{
+				o.style.background="#ffc2c2";
+			}
+		}
+	}
+
+	xhttp.open("POST", root+"../src/status/deleteComment.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "cid=" + cid + "&uid="+uid;
+	xhttp.send(para);
+}
+/*
 function periodElapsed(timeInMilli) {
 		// function to compare date to present and print period elapsed 
         d=new Date(timeInMulli);
@@ -151,4 +204,4 @@ function periodElapsed(timeInMilli) {
 			}
         }
         return result;
-	}
+	}*/

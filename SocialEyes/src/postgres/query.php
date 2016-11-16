@@ -11,7 +11,8 @@ class query {
 	public function databaseConn() {
 		include 'credentials.php';
 		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-		if (! $con) {
+		if (! $con) 
+		{
 			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
@@ -132,6 +133,19 @@ class query {
 		}
 		if ($row = pg_fetch_row ( $ret )) {
 			return $row;
+		} else {
+			die ( "status does not exist" );
+		}
+	}
+	public function getPicForSid($sid) {
+		$sql = "select picid from jaipal.status where statusid=" . $sid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row[0];
 		} else {
 			die ( "status does not exist" );
 		}
@@ -279,6 +293,33 @@ class query {
 			echo pg_last_error ( $this->con );
 		} else {
 			echo "unliked\n";
+		}
+	}
+	public function deleteStatus($sid) {
+		$sql = "delete from jaipal.status where statusid=".$sid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "status deleted\n";
+		}
+	}
+	public function deletePicFromGallery($pid) {
+		$sql = "delete from jaipal.gallery where picid=".$pid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "pic deleted\n";
+		}
+	}
+	public function deleteComment($cid) {
+		$sql = "delete from jaipal.comments where commentid=".$cid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "comment deleted\n";
 		}
 	}
 }

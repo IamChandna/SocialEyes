@@ -5,8 +5,14 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}/*
+.pen-container{
+	zoom: .8; 
+  -moz-transform: scale(.8); 
+  -moz-transform-origin: 0 0;
+  position:absolute;
+	margin:0 auto;
 }
-
 /* Pen Title */
 .pen-title {
   padding: 50px 0;

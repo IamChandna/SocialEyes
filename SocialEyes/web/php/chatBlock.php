@@ -25,7 +25,7 @@ $x=0;
 					src="../../src/uploads/defaultPropic.png">
 			</div>
 			<div class="col-xs-7 chat-usernames">
-				<label>names</label>
+				<label>Jai Pal Singh</label>
 			</div>
 		</div>
 		<div class="row" id="messaging">
@@ -51,7 +51,7 @@ $x=0;
 					src="../../src/uploads/defaultPropic.png">
 			</div>
 			<div class="col-xs-7 chat-usernames">
-				<label>names</label>
+				<label>Megha</label>
 			</div>
 		</div>
 		<div class="row" id="messaging">
@@ -77,7 +77,7 @@ $x=0;
 					src="../../src/uploads/defaultPropic.png">
 			</div>
 			<div class="col-xs-7 chat-usernames">
-				<label>names</label>
+				<label>Ilayaraja</label>
 			</div>
 		</div>
 		<div class="row" id="messaging">

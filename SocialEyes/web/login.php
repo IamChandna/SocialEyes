@@ -27,8 +27,9 @@ if (isset ( $_SESSION ['user'] )) {
 </head>
 
 <body>
-
+	<div id="particles-js" style="position: fixed; height: 100%; width: 100%;"></div>
 	<!-- Pen Title-->
+	<div class="pen-container">
 	<div class="pen-title">
 		<img alt="logo" src="img/socialeyesLogoOnlyEye.png"
 			style="height: 5%; width: 5%;" /> <br /> <br /> <br />
@@ -98,10 +99,13 @@ if (isset ( $_SESSION ['user'] )) {
 			</form>
 		</div>
 	</div>
+	</div>
 	<script
-		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		src='js/jquery.min.js'></script>
 
 	<script src="js/login.js"></script>
+	<script type="text/javascript" src="js/particles.min.js"></script>
+	<script src="js/app.js"></script>
 	<!--raja is great-->
 </body>
 </html>
