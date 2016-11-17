@@ -1,35 +1,32 @@
-<html>
-<head>
-<script>
-function showResult(str) {
-  if (str.length==0) {
-    document.getElementById("chatSearch").innerHTML="";
-    document.getElementById("chatSearch").style.border="0px";
-    return;
-  }
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      document.getElementById("chatSearch").innerHTML=this.responseText;
-      document.getElementById("chatSearch").style.border="1px solid #A5ACB2";
-    }
-  }
-  xmlhttp.open("GET","chatSearch.php?q="+str,true);
-  xmlhttp.send();
+function chatLiveSearch(uid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+      //some more code
+      var frame=document.getElementsByTagName("iframe")[0];
+      var fdoc=(frame.contentWindow || frame.contentDocument);
+      if (fdoc.document)
+        fdoc = fdoc.document;
+      fdoc.getElementById("items").innerHTML = this.responseText;
+      if(this.responseText.match(/[a-z]/i))
+      {
+        fdoc.getElementById("chats").style.opacity = .4;
+      }
+      else
+      {
+        fdoc.getElementById("chats").style.opacity = 1;
+      }
+		}
+	}
+  var keyword=document.getElementById("chat-live-search-box").value;
+	xhttp.open("POST", root+"../src/chat/chatSearch.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "uid=" + uid + "&keyword=" + keyword;
+	xhttp.send(para);
 }
-</script>
-</head>
-<body>
 
-<form>
-<input type="text" size="30" onkeyup="showResult(this.value)">
-<div id="chatSearch"></div>
-</form>
-
-</body>
-</html>

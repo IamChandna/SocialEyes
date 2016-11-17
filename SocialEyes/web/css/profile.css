@@ -29,3 +29,10 @@ body{
     background-size: cover;
     height: 20em;
 }
+#buttonStyle{
+	background-color: #cc0d0d;
+	border: none;
+}
+#buttonStyle:hover{
+	background-color: #7b0000;
+}

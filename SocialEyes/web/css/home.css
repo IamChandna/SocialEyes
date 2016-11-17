@@ -19,6 +19,7 @@ html{
 	background-color: #fff;
 	margin: 0em 0em 1em 0em;
 	padding: .6em;
+	transition: opacity 2s;
 }
 body{
 	background-color: #f3f3f3;
@@ -96,6 +97,7 @@ body{
 .commentList li {
 	margin: 0;
 	margin-top: 10px;
+	transition: opacity 2s;
 }
 
 .commentList li>div {
@@ -127,4 +129,8 @@ body{
 .actionBox {
 	border-top: 1px dotted #bbb;
 	padding: 10px;
+}
+.form-control:focus{
+	border-color: #f66;
+	box-shadow: none;
 }

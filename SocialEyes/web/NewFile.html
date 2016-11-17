@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
+	<head>
+		<meta charset="ISO-8859-1">
+		<style>
+			body {
+				font-size: 20px;
+				color: white;
+				text-shadow: 0 1px 0 black, 0 0 5px black;
+			}
+			
+			p {
+				padding: 0 0.5em;
+				margin: 0;
+			}
+			
+			.content {
+				background-attachment: fixed;
+				height: 400px;
+			}
+			
+			#content1 {
+				background:black;
+			}
+			
+			#content2 {
+				background-image: url("http://ocdn.eu/images/pulscms/ZjU7MDQsMCwzMiwzODQsMWZhOzA2LDMyMCwxYzI_/1eb29a70dabd0994cdefaad01ca3c884.jpg");
+			}
+			
+			#content3 {
+				background-image: url("http://www.zeus.aegee.org/magazine/wp-content/uploads/napoli-golfo-vesuvio.jpg");
+			}
+			
+			#content4 {
+				background-image: url("http://www.tamperlock.com/blog/wp-content/uploads/2014/08/london-england.jpg");
+			}
+			
+			#content5 {
+				background-image: url("http://ocdn.eu/images/pulscms/ZjU7MDQsMCwzMiwzODQsMWZhOzA2LDMyMCwxYzI_/1eb29a70dabd0994cdefaad01ca3c884.jpg");
+			}
+			
+			#content6 {
+				background-image: url("http://www.zeus.aegee.org/magazine/wp-content/uploads/napoli-golfo-vesuvio.jpg");
+			}
+		</style>
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css"/>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/stellar.min.js"></script>
+	</head>
+
+	<body>
+		<div id="someElement">
+			<div class="content" id="content1">
+				TEXT HERE<i class="fa fa-github"></i>
+			</div>
+			<div class="content" id="content2">
+				<p>TEXT HERE</p>
+			</div>
+			<div class="content" id="content3" data-stellar-background-ratio="0.5">
+				<p>TEXT HERE</p>
+			</div>
+			<div class="content" id="content4" data-stellar-background-ratio="0.6">
+				<p>TEXT HERE</p>
+			</div>
+			<div class="content" id="content5" data-stellar-background-ratio="0.5">
+				<p>TEXT HERE</p>
+			</div>
+			<div class="content" id="content6" data-stellar-background-ratio="0.5">
+				<p>TEXT HERE</p>
+			</div>
+		</div>
+		<script>
+        $('#someElement').stellar({
+            horizontalScrolling: false,
+            responsive: true
+        });
+     </script>
+	</body>
+
 </html>

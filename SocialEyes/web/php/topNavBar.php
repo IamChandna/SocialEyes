@@ -16,8 +16,9 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?php echo $root;?>home.php"> <img alt="logo"
-				src="<?php echo $root;?>img/socialeyesLogoWhite.png" style="height: 20px; width: 30px;"></a>
+			<a class="navbar-brand" href="<?php echo $root;?>home.php"> <img
+				alt="logo" src="<?php echo $root;?>img/socialeyesLogoWhite.png"
+				style="height: 20px; width: 30px;"></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,21 +29,30 @@
 			</ul>
 			<div class="col-md-6" style="margin-top: .5em;">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search"> <span
-						class="input-group-btn">
+					<input type="text" class="form-control" placeholder="Search"
+						id="live-search-box"> <span class="input-group-btn">
 						<button class="btn btn-default" type="button">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
 				</div>
+				<div id="dropdown-search"></div>
 				<!-- /input-group -->
 			</div>
 			<!-- /.col-lg-6 -->
 
 			<ul class="nav navbar-nav navbar-right">
+				
 				<li><a href="<?php echo $root;?>home.php">Home <span class="sr-only">(current)</span></a></li>
+				
+				<li style="border-left:1px solid #a00; border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-bell"></span></a></li>
+				
+				<li style="border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-cog"></span></a></li>
+				
 				<li><a href="<?php echo $root."profile/".$_SESSION['user']['id']?>">Profile</a></li>
+				
 				<li><a href="<?php echo $root;?>../src/login/logout.php">Logout</a></li>
+	
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

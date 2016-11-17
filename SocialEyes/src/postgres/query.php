@@ -11,7 +11,8 @@ class query {
 	public function databaseConn() {
 		include 'credentials.php';
 		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-		if (! $con) {
+		if (! $con) 
+		{
 			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
@@ -33,7 +34,7 @@ class query {
 		}
 	}
 	public function getFriendsForUid($uid) {
-		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "';";
+		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -44,6 +45,32 @@ class query {
 		} else {
 			return ( "somethings wrong with us not ur friends" );
 		}
+	}
+	public function getFriendsForUidKeyword($uid,$keyword) {
+		$sql = "select uname,uid,profilepicid from (select unnest(friendlist) as fid from jaipal.users where uid='".$uid."') as f join jaipal.users as u on fid=uid where uname ~* '(^| )".$keyword."' limit 4;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$friends = array ();
+		while ( $row = pg_fetch_row ( $ret ) ) {
+				$friends [] = $row;
+		}
+		return $friends;
+	}
+	public function getEncodedUsersForKeyword($keyword) {
+		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )".$keyword."' limit 4;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$friends = array ();
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$friends [] = $row[0]."&".$row[1]."&".$row[2];
+		}
+		return $friends;
 	}
 	public function getUnameForUidFromUser($uid) {
 		$sql = "select uname from jaipal.users where uid='" . $uid . "';";
@@ -110,7 +137,20 @@ class query {
 			die ( "status does not exist" );
 		}
 	}
-	public function getStatusLocalForUid($uid, $offset = 0) {
+	public function getPicForSid($sid) {
+		$sql = "select picid from jaipal.status where statusid=" . $sid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row[0];
+		} else {
+			die ( "status does not exist" );
+		}
+	}
+	public function getStatusLocalForUid($uid, $offset) {
 		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u,(select friendlist from jaipal.users where uid=" . $uid . ") as q where (s.uid=u.uid)and (s.uid=" . $uid . " or s.uid=any(q.friendlist))order by statusid desc limit " . (10 + intval ( $offset )) . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -122,6 +162,7 @@ class query {
 		while ( $row = pg_fetch_row ( $ret ) ) {
 			if ($i >= $offset)
 				$status [] = $row;
+			$i+=1;
 		}
 		return $status;
 	}
@@ -252,6 +293,33 @@ class query {
 			echo pg_last_error ( $this->con );
 		} else {
 			echo "unliked\n";
+		}
+	}
+	public function deleteStatus($sid) {
+		$sql = "delete from jaipal.status where statusid=".$sid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "status deleted\n";
+		}
+	}
+	public function deletePicFromGallery($pid) {
+		$sql = "delete from jaipal.gallery where picid=".$pid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "pic deleted\n";
+		}
+	}
+	public function deleteComment($cid) {
+		$sql = "delete from jaipal.comments where commentid=".$cid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "comment deleted\n";
 		}
 	}
 }

@@ -2,7 +2,8 @@
 
 .navbar {
 	padding-left: 20%;
-	padding-right: 20%; border-radius : 0px;
+	padding-right: 17.9%;
+	border-radius: 0px;
 	background-color: #cc0d0d;
 	border-color: #7b0000;
 	border-radius: 0px;
@@ -17,9 +18,20 @@
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 	border-color: #7b0000;
 }
-.navbar-inverse .navbar-nav > li > a {
-	color:white;	
+
+.navbar-inverse .navbar-nav>li>a {
+	color: white;
 }
-.navbar-inverse .navbar-nav > li > a:hover{
+
+.navbar-inverse .navbar-nav>li>a:hover {
 	background-color: #7b0000;
+}
+
+.ui-menu-item{
+	-webkit-transition: background 1s; /* For Safari 3.1 to 6.0 */
+    transition: background 1s;
+}
+
+.ui-menu-item:hover{
+	background-color: #aaa;
 }
