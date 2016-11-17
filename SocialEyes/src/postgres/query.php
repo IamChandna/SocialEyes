@@ -13,7 +13,7 @@ class query {
 		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
 		if (! $con) 
 		{
-			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbNameAlt . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
+			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
 			}
