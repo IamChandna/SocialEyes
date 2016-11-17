@@ -233,16 +233,38 @@ class query {
 		}
 		return $notif;
 	}
-
-	public function putBasicToUser($uname, $email, $pass) {
-		$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-		} else {
-			echo "Records created successfully\n";
+	public function getConvidForChat($u1, $u2) {
+		if($u1>$u2)
+		{
+			$t=$u2;
+			$u2=$u1;
+			$u1=$t;
+		}
+		$sql="select convid from jaipal.conversation where u1='" . $u1 . "' AND u2='" . $u2 . "';";
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row[0];
+		} 
+		else{
+			$sql = "insert into jaipal.conversation (u1,u2) values('" . $u1 . "','" . $u2 . "') returning convid;";
+			$ret = pg_query ( $this->con, $sql );
+			if (! $ret) {
+				echo pg_last_error ( $this->con );
+				exit ();
+			}
+			if ($row = pg_fetch_row ( $ret )) {
+				return $row[0];
+			}
 		}
 	}
+	public function putBasicToUser($uname, $email, $pass) {
+	$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
+	$ret = pg_query ( $this->con, $sql );
+	if (! $ret) {
+		echo pg_last_error ( $this->con );
+	} else {
+		echo "Records created successfully\n";
+	}
+}
 	public function putImageToGallery($pid, $uid, $file) {
 		$sql = "insert into jaipal.gallery values (" . $pid . "," . $uid . ",'" . $file . "');";
 		// echo $sql;
