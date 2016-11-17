@@ -16,9 +16,10 @@ class notification{
 		($this->pusher)->trigger('notification-'.$to, 'comment', $data);
 		$o->putNotification($to, $data['message']);
 	}
-	public function messaged($from,$to){
+	public function messaged($from,$to,$message){
 		$o=new query();
-		$data['message']=$o->getUnameForUidFromUser($from)[0];
+		$data['name']=$o->getUnameForUidFromUser($from)[0];
+		$data['message']=$message;
 		($this->pusher)->trigger('notification-'.$to, 'message', $data);
 	}
 	public function followed($from,$to){

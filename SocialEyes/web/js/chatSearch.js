@@ -39,8 +39,7 @@ function openChatWindow(from,to){
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-      //some more code
-			
+      showMessageHistory();
 		}
 	}
 	xhttp.open("POST", root+"../src/chat/makeChatConnection.php", true);

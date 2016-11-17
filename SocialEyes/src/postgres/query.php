@@ -207,7 +207,7 @@ class query {
 		}
 	}
 	public function getNotificationCount($uid) {
-		$sql = "select count(message) from jaipal.notifications where uid=" . $uid . ";";
+		$sql = "select count(message) from jaipal.notifications where uid=" . $uid . " and seen=false;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -220,7 +220,7 @@ class query {
 		}
 	}
 	public function getNotifications($uid) {
-		$sql = "select message from jaipal.notifications where uid=" . $uid . ";";
+		$sql = "select message from jaipal.notifications where uid=" . $uid . " and seen=false;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -313,6 +313,15 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
+	public function putMessage($uid, $content) {
+		$sql = "insert into jaipal.chat (uid,msg) values (" . $uid . ",'" . $content . "')";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "Chat sent!\n";
+		}
+	}
 	public function updateLikeInStatus($uid, $sid) {
 		$sql = "update jaipal.status set likes=array_append(likes,'" . $uid . "') where statusid=" . $sid . ";";
 		
@@ -352,6 +361,20 @@ class query {
 		} else {
 			echo "unliked\n";
 		}
+	}
+	public function udateSeenInNotifications($uid) {
+		$sql = "update jaipal.notifications set seen=true where uid=" . $uid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$notif = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$notif [] = $row [0];
+		}
+		return $notif;
 	}
 	public function deleteStatus($sid) {
 		$sql = "delete from jaipal.status where statusid=".$sid.";";

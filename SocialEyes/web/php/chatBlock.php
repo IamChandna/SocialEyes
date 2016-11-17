@@ -5,19 +5,21 @@ if (! isset ( $_SESSION ['user'] )) {
 	exit ( 0 );
 }
 $x=0;
+$root="../";
 ?>
 <html>
 <head>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/chat.css">
 <link rel="stylesheet" href="../css/emojionearea.min.css">
-<link rel="stylesheet" href="css/toastr.min.css">
-<script src="js/jquery.min.js"></script>
-<script src="js/toastr.min.js"></script>
-<script src="js/pusher.min.js"></script>
+<link rel="stylesheet" href="../css/toastr.min.css">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/toastr.min.js"></script>
+<script src="../js/pusher.min.js"></script>
 <script type="text/javascript" src="../js/emojionearea.min.js"></script>
 <script type="text/javascript" src="../js/chatBlock.js"></script>
-<script src="../js/jquery.min.js"></script>
+<script src="../js/chatSearch.js"></script>
+<script type="text/javascript">var root="<?php echo $root;?>";</script>
 </head>
 <body>
 
