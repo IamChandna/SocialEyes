@@ -13,7 +13,7 @@ class query {
 		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
 		if (! $con) 
 		{
-			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
+			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbNameAlt . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
 			}
@@ -205,6 +205,34 @@ class query {
 			return json_decode ( $row [0] );
 		} else {
 			die ( "comment does not exist" );
+		}
+	}
+	public function getConvidForChat($u1, $u2) {
+		if($u1>$u2)
+		{
+			$t=$u2;
+			$u2=$u1;
+			$u1=$t;
+		}
+		$sql="select convid from jaipal.conversation where u1='" . $u1 . "' AND u2='" . $u2 . "';";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row[0];
+		} 
+		else{
+			$sql = "insert into jaipal.conversation (u1,u2) values('" . $u1 . "','" . $u2 . "') returning convid;";
+			$ret = pg_query ( $this->con, $sql );
+			if (! $ret) {
+				echo pg_last_error ( $this->con );
+				exit ();
+			}
+			if ($row = pg_fetch_row ( $ret )) {
+				return $row[0];
+			}
 		}
 	}
 	public function putBasicToUser($uname, $email, $pass) {
