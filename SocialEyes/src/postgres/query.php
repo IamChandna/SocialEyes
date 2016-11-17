@@ -11,8 +11,7 @@ class query {
 	public function databaseConn() {
 		include 'credentials.php';
 		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-		if (! $con) 
-		{
+		if (! $con) {
 			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
@@ -41,13 +40,13 @@ class query {
 			exit ();
 		}
 		if ($row = pg_fetch_row ( $ret )) {
-			return json_decode($row);
+			return json_decode ( $row );
 		} else {
-			return ( "somethings wrong with us not ur friends" );
+			return ("somethings wrong with us not ur friends");
 		}
 	}
-	public function getFriendsForUidKeyword($uid,$keyword) {
-		$sql = "select uname,uid,profilepicid from (select unnest(friendlist) as fid from jaipal.users where uid='".$uid."') as f join jaipal.users as u on fid=uid where uname ~* '(^| )".$keyword."' limit 4;";
+	public function getFriendsForUidKeyword($uid, $keyword) {
+		$sql = "select uname,uid,profilepicid from (select unnest(friendlist) as fid from jaipal.users where uid='" . $uid . "') as f join jaipal.users as u on fid=uid where uname ~* '(^| )" . $keyword . "' limit 4;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -55,12 +54,12 @@ class query {
 		}
 		$friends = array ();
 		while ( $row = pg_fetch_row ( $ret ) ) {
-				$friends [] = $row;
+			$friends [] = $row;
 		}
 		return $friends;
 	}
 	public function getEncodedUsersForKeyword($keyword) {
-		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )".$keyword."' limit 4;";
+		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 4;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -68,7 +67,7 @@ class query {
 		}
 		$friends = array ();
 		while ( $row = pg_fetch_row ( $ret ) ) {
-			$friends [] = $row[0]."&".$row[1]."&".$row[2];
+			$friends [] = $row [0] . "&" . $row [1] . "&" . $row [2];
 		}
 		return $friends;
 	}
@@ -145,7 +144,7 @@ class query {
 			exit ();
 		}
 		if ($row = pg_fetch_row ( $ret )) {
-			return $row[0];
+			return $row [0];
 		} else {
 			die ( "status does not exist" );
 		}
@@ -162,7 +161,7 @@ class query {
 		while ( $row = pg_fetch_row ( $ret ) ) {
 			if ($i >= $offset)
 				$status [] = $row;
-			$i+=1;
+			$i += 1;
 		}
 		return $status;
 	}
@@ -207,6 +206,34 @@ class query {
 			die ( "comment does not exist" );
 		}
 	}
+	public function getNotificationCount($uid) {
+		$sql = "select count(message) from jaipal.notifications where uid=" . $uid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row [0];
+		} else {
+			return 0;
+		}
+	}
+	public function getNotifications($uid) {
+		$sql = "select message from jaipal.notifications where uid=" . $uid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$notif = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$notif [] = $row [0];
+		}
+		return $notif;
+	}
+
 	public function putBasicToUser($uname, $email, $pass) {
 		$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
 		$ret = pg_query ( $this->con, $sql );
@@ -253,6 +280,15 @@ class query {
 			} else {
 				echo "Records created successfully\n";
 			}
+		}
+	}
+	public function putNotification($uid, $content) {
+		$sql = "insert into jaipal.notifications (uid,message) values (" . $uid . ",'" . $content . "')";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "Records created successfully\n";
 		}
 	}
 	public function updateLikeInStatus($uid, $sid) {
@@ -319,7 +355,13 @@ class query {
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
 		} else {
-			echo "comment deleted\n";
+			$sql = "update jaipal.status set comments=array_remove(comments,'".$cid."');";
+			$ret = pg_query ( $this->con, $sql );
+			if (! $ret) {
+				echo pg_last_error ( $this->con );
+			} else {
+					echo "comment deleted";
+			}
 		}
 	}
 }
