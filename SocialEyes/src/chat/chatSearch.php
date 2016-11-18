@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../postgres/query.php';
 $o=new query();
 
@@ -9,7 +10,7 @@ $friends=array();
 
 foreach ($friends as $friend){
 	?>
-	<div class="row well">
+	<div class="row well"onclick="openChatWindow(<?php echo $_SESSION['user']['id'].",".$friend[1] ?>)">
 		<div class="col-xs-3 col-xs-offset-1 chat-profile-pic">
 			<img alt=":P" src="../../src/postgres/<?php echo $o->getPiclinkForPidFromGallery($friend[2]);?>">
 		</div>
