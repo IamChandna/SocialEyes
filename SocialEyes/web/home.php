@@ -55,8 +55,8 @@ $_SESSION['user']['root']=$root;
 		</div>
 	</div>
 
-	<div
-		class="col-xs-2 col-xs-offset-2 col-sm-2  col-sm-offset-2 col-md-2  col-md-offset-2 col-lg-2 col-lg-offset-2">
+	<div style="padding-left: 0px;"
+		class="col-xs-2 col-xs-offset-2 col-sm-2  col-sm-offset-2 col-md-2  col-md-offset-2 col-lg-2 col-lg-offset-2" >
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "php/chat.php"; ?>
 			</div>
