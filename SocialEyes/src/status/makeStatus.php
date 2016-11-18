@@ -1,6 +1,6 @@
-<link href="css/makeStatus.css" rel="stylesheet">
+<link href="<?php echo $root;?>css/makeStatus.css" rel="stylesheet">
 <form class="form-horizontal" role="form"
-	action="../src/status/createStatus.php" enctype="multipart/form-data"
+	action="<?php echo $root;?>../src/status/createStatus.php" enctype="multipart/form-data"
 	method="post" id="textstatus">
 
 	<div class="form-group" id="statusTextArea">
