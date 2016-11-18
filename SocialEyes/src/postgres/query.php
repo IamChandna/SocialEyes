@@ -1,4 +1,4 @@
-<?php
+<?php {
 class query {
 	var $con;
 	public function __construct() {
@@ -270,6 +270,19 @@ class query {
 			}
 		}
 	}
+	public function getAllConvidMsgidForUid($uid) {
+		$sql = "select a.convid, mid, u1, u2 from (select convid , max(msgid) as mid from jaipal.chat where convid in (select convid from jaipal.conversation where u1 = ".$uid." OR u2 = ".$uid.")group by convid)as a join jaipal.conversation as c on a.convid = c.convid order by a.mid DESC;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} 
+		$conv = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$conv [] = $row ;
+		}
+		return $conv;
+	}
 	public function putBasicToUser($uname, $email, $pass) {
 	$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
 	$ret = pg_query ( $this->con, $sql );
@@ -483,14 +496,5 @@ class query {
 			}
 		}
 	}
-	public function getAllConvidMsgidForUid($uid) {
-		$sql = "select a.convid, mid, u1, u2 from (select convid , max(msgid) as mid from jaipal.chat where convid in (select convid from jaipal.conversation where u1 = ".$uid." OR u2 = ".$uid.")group by convid)as a join jaipal.conversation as c on a.convid = c.convid order by a.mid DESC;";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-		} 
-		else {
-			echo "coversationid and messageid sent\n";
-		}
-	}
+}
 }
