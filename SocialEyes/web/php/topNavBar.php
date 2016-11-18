@@ -42,17 +42,29 @@
 			<!-- /.col-lg-6 -->
 
 			<ul class="nav navbar-nav navbar-right">
-				
+
 				<li><a href="<?php echo $root;?>home.php">Home <span class="sr-only">(current)</span></a></li>
-				
-				<li style="border-left:1px solid #a00; border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-bell"></span></a></li>
-				
-				<li style="border-right:1px solid #a00;"><a href="<?php echo $root;?>settings.php"><span class="glyphicon glyphicon-cog"></span></a></li>
-				
+
+				<li
+					style="border-left: 1px solid #a00; border-right: 1px solid #a00;"
+					class="dropdown"><a href="#" class="dropdown-toggle" id="drop4"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" onclick="showNotifications(<?php echo $_SESSION['user']['id'];?>);"> <span class="glyphicon glyphicon-bell"></span>
+						<span class="badge" id="notification-bell"><?php echo $o->getNotificationCount($_SESSION['user']['id']);?></span>
+				</a>
+					<ul class="dropdown-menu" id="menu1" aria-labelledby="drop4" style="left: 0; right: auto;">
+						
+					</ul>
+				</li>
+
+				<li style="border-right: 1px solid #a00;"><a
+					href="<?php echo $root;?>settings.php"><span
+						class="glyphicon glyphicon-cog"></span></a></li>
+
 				<li><a href="<?php echo $root."profile/".$_SESSION['user']['id']?>">Profile</a></li>
-				
+
 				<li><a href="<?php echo $root;?>../src/login/logout.php">Logout</a></li>
-	
+
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

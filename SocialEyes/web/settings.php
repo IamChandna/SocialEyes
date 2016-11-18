@@ -5,6 +5,8 @@ if (! isset ( $_SESSION ['user'] )) {
 	exit ( 0 );
 }
 $root = "";
+include '../src/postgres/query.php';
+$o = new query ();
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +20,7 @@ $root = "";
 <link rel="stylesheet" href="css/toastr.min.css">
 <script src="js/jquery.min.js"></script>
 <script src="js/toastr.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/pusher.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
@@ -49,6 +52,37 @@ $root = "";
                source: "<?php echo $root;?>php/liveSearch.php"
             });
          });
+         $(document).ready(function() {
+             toastr.options = {
+             "closeButton": true,
+             "debug": false,
+             "newestOnTop": false,
+             "progressBar": false,
+             "positionClass": "toast-bottom-left",
+             "preventDuplicates": true,
+             "onclick": null,
+             "showDuration": "300",
+             "hideDuration": "1000",
+             "timeOut": "5000",
+             "extendedTimeOut": "1000",
+             "showEasing": "swing",
+             "hideEasing": "linear",
+             "showMethod": "fadeIn",
+             "hideMethod": "fadeOut"
+         }
+     });
+     var pusher = new Pusher('39709b3d935be0f19bb0');
+
+     var notificationsChannel = pusher.subscribe('notification-<?php echo $_SESSION['user']['id'];?>');
+
+     notificationsChannel.bind('comment', function(comment) {
+         var message = comment.message;
+         toastr.info(message);
+         var v=document.getElementById("notification-bell");
+         var number=Number(v.innerHTML);
+         v.innerHTML=String(++number);
+     });
+     
       </script>
 </body>
 </html>

@@ -38,3 +38,20 @@ function monkeyPatchAutocomplete() {
 $(document).ready(function(){
 	monkeyPatchAutocomplete();
 })
+function showNotifications(uid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("menu1").innerHTML = this.responseText;
+		}
+	}
+	xhttp.open("POST", root+"../src/notifications/showNotifications.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "uid=" + uid;
+	xhttp.send(para);
+}

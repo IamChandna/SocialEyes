@@ -5,19 +5,22 @@ if (! isset ( $_SESSION ['user'] )) {
 	exit ( 0 );
 }
 $root = "";
+include '../src/postgres/query.php';
+$o = new query ();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>SocialEyes</title>
+<script src="js/jquery.min.js"></script>
 <link rel="stylesheet" href="css/normalize.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/home.css" />
 <link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/toastr.min.css">
-<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/toastr.min.js"></script>
 <script src="js/pusher.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
@@ -33,8 +36,6 @@ $root = "";
 		<div style="margin-top: 4.5em;"></div>
 		<div class="propic">
 		 	 	<?php
-						include '../src/postgres/query.php';
-						$o = new query ();
 						echo "<img src=\"../src/uploads/" . $o->getPropicForUid ( $_SESSION ['user'] ['id'] ) . "\">";
 						?>
 		 	 </div>
@@ -65,6 +66,36 @@ $root = "";
             $( "#live-search-box" ).autocomplete({
                source: "<?php echo $root;?>php/liveSearch.php"
             });
+         });
+         $(document).ready(function() {
+                 toastr.options = {
+                 "closeButton": true,
+                 "debug": false,
+                 "newestOnTop": false,
+                 "progressBar": false,
+                 "positionClass": "toast-bottom-left",
+                 "preventDuplicates": true,
+                 "onclick": null,
+                 "showDuration": "300",
+                 "hideDuration": "1000",
+                 "timeOut": "5000",
+                 "extendedTimeOut": "1000",
+                 "showEasing": "swing",
+                 "hideEasing": "linear",
+                 "showMethod": "fadeIn",
+                 "hideMethod": "fadeOut"
+             }
+         });
+         var pusher = new Pusher('39709b3d935be0f19bb0');
+
+         var notificationsChannel = pusher.subscribe('notification-<?php echo $_SESSION['user']['id'];?>');
+
+         notificationsChannel.bind('comment', function(comment) {
+             var message = comment.message;
+             toastr.info(message);
+             var v=document.getElementById("notification-bell");
+             var number=Number(v.innerHTML);
+             v.innerHTML=String(++number);
          });
       </script>
 </body>
