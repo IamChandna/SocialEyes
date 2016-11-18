@@ -23,7 +23,7 @@ $x=0;
 
 	<div id="items"></div>
 	<div id="chats">
-		<div id="conversation">
+		<div id="conversation-">
 		<div class="row well"  onclick="chat_expand_collapse(this.nextElementSibling);">
 			<div class="col-xs-3 col-xs-offset-1 chat-profile-pic">
 				<img alt=":P"
