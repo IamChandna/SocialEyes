@@ -7,3 +7,4 @@ $o->putMessage($_POST['from'], "Hi!");
 
 $n=new notification();
 $n->messaged($_POST['from'], $_POST['to']);
+
