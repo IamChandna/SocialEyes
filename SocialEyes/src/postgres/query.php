@@ -165,8 +165,8 @@ class query {
 		}
 		return $status;
 	}
-	public function getStatusOfUid($uid, $offset = 0) {
-		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u as q where (s.uid=u.uid)and (s.uid=" . $uid . ") order by statusid desc limit " . (10 + intval ( $offset )) . ";";
+	public function getStatusOfUid($uid, $offset) {
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u where (s.uid=u.uid)and (s.uid=" . $uid . ") order by statusid desc limit " . (10 + intval ( $offset )) . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -177,6 +177,7 @@ class query {
 		while ( $row = pg_fetch_row ( $ret ) ) {
 			if ($i >= $offset)
 				$status [] = $row;
+			$i += 1;
 		}
 		return $status;
 	}
@@ -243,7 +244,7 @@ class query {
 		$sql="select convid from jaipal.conversation where u1='" . $u1 . "' AND u2='" . $u2 . "';";
 		if ($row = pg_fetch_row ( $ret )) {
 			return $row[0];
-		} 
+		}
 		else{
 			$sql = "insert into jaipal.conversation (u1,u2) values('" . $u1 . "','" . $u2 . "') returning convid;";
 			$ret = pg_query ( $this->con, $sql );
@@ -324,7 +325,7 @@ class query {
 	}
 	public function updateLikeInStatus($uid, $sid) {
 		$sql = "update jaipal.status set likes=array_append(likes,'" . $uid . "') where statusid=" . $sid . ";";
-		
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -334,7 +335,7 @@ class query {
 	}
 	public function updateNotLikeInStatus($uid, $sid) {
 		$sql = "update jaipal.status set likes=array_remove(likes,'" . $uid . "') where statusid=" . $sid . ";";
-		
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -344,7 +345,7 @@ class query {
 	}
 	public function updateLikeInComment($uid, $cid) {
 		$sql = "update jaipal.comments set likes=array_append(likes,'" . $uid . "') where commentid=" . $cid . ";";
-		
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -354,7 +355,7 @@ class query {
 	}
 	public function updateNotLikeInComment($uid, $cid) {
 		$sql = "update jaipal.comments set likes=array_remove(likes,'" . $uid . "') where commentid=" . $cid . ";";
-		
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );

@@ -7,8 +7,7 @@ session_start();
 include_once '../postgres/query.php';
 $o=new query();
 $result=array();
-$result=$o->getStatusLocalForUid($_SESSION['user']['id'],intval($_POST['offset']));
-
+$result=$o->getStatusOfUid($_POST['uid'],intval($_POST['offset']));
 $i=0;
 include_once 'periodElapsed.php';
 include_once 'generateCard.php';
