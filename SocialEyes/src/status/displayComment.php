@@ -1,6 +1,6 @@
 <?php
 
-function displayComment($cid){
+function displayComment($cid,$root){
 	$o=new query();
 	$r=$o->getCommentFromComments($cid);
 	/*
@@ -14,7 +14,7 @@ function displayComment($cid){
 	 */
 ?>
 <div class="commenterImage">
-	<img src="../src/status/<?php echo $o->getPropicForUid($r[3]);?>" /> 
+	<img src="<?php echo $root;?>../src/status/<?php echo $o->getPropicForUid($r[3]);?>" />
 </div>
 <a class="" style="color:#000; text-decoration: none; font-weight: bold;"
 		href="profile/<?php echo $r[2];?>">
@@ -43,6 +43,6 @@ function displayComment($cid){
 	</label>
 	<?php }?>
 </div>
-<?php 
+<?php
 }
 ?>

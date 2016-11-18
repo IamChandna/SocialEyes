@@ -7,6 +7,7 @@ if (! isset ( $_SESSION ['user'] )) {
 $root = "";
 include '../src/postgres/query.php';
 $o = new query ();
+$_SESSION['user']['root']=$root;
 ?>
 <!DOCTYPE html>
 <html>

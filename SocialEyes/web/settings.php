@@ -7,6 +7,7 @@ if (! isset ( $_SESSION ['user'] )) {
 $root = "";
 include '../src/postgres/query.php';
 $o = new query ();
+$_SESSION['user']['root']=$root;
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,7 @@ $o = new query ();
 	<div id="particles-js"
 		style="position: fixed; height: 100%; width: 100%;"></div>
 	<?php include "php/topNavBar.php";?>
-	
+
 	<div
 		class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"
 		id="particles-js" style="height: 1000px;"></div>
@@ -82,7 +83,7 @@ $o = new query ();
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
      });
-     
+
       </script>
 </body>
 </html>
