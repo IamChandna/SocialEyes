@@ -6,13 +6,13 @@ $o = new query ();
 
 <div class="actionBox">
 	<ul class="commentList">
-	<?php 
+	<?php
 	$row=$o->getCommentidsFromStatus($_POST['sid']);
 	$i=sizeof($row)-1;
 	include 'displayComment.php';
 	while ($i>=0){
 		echo "<li>";
-		displayComment($row[$i]);
+		displayComment($row[$i],$_SESSION['user']['root']);
 		echo "</li>";
 		$i=$i-1;
 	}
