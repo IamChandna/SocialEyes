@@ -1,7 +1,7 @@
 <?php
 session_start ();
 if (! isset ( $_SESSION ['user'] )) {
-	header ( 'Location: login.php' );
+	header ( 'Location: ../login.php' );
 	exit ( 0 );
 }
 $root = "../";
@@ -48,6 +48,16 @@ $_SESSION['user']['root']=$root;
 			</div>
 			<div class="col-md-4"
 				style="height: 1000px; border: black solid 2px; margin-top:10px;">
+				<ul class = "nav nav-tabs">
+					<li role = "presentation">
+						<a href="#" id="button1Style" onclick="open(1)">About</a>
+					</li>
+					<li role = "presentation">
+						<a href="#" class="active"  id="button2Style" onclick="open(2)">Friends</a>
+					</li>
+				<!-- <button type="button" class="btn btn-primary btn-lg active" id="button1Style" onclick="open(1)">About</button>
+				<button type="button" class="btn btn-primary btn-lg active" id="button2Style" onclick="open(2)">Friends</button> -->
+
       </div>
 			<div class="propic col-sm-3">
 				<img alt="propic"
