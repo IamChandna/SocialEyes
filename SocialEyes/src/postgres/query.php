@@ -149,6 +149,19 @@ class query {
 			die ( "status does not exist" );
 		}
 	}
+	public function getUidForSid($sid) {
+		$sql = "select uid from jaipal.status where statusid=" . $sid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row [0];
+		} else {
+			die ( "status does not exist" );
+		}
+	}
 	public function getStatusLocalForUid($uid, $offset) {
 		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u,(select friendlist from jaipal.users where uid=" . $uid . ") as q where (s.uid=u.uid)and (s.uid=" . $uid . " or s.uid=any(q.friendlist))order by statusid desc limit " . (10 + intval ( $offset )) . ";";
 		$ret = pg_query ( $this->con, $sql );
@@ -363,6 +376,66 @@ class query {
 			echo "unliked\n";
 		}
 	}
+	public function updatePropic($uid, $pid) {
+		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated propic\n";
+		}
+	}
+	public function updateCoverpic($uid, $pid) {
+		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated cover pic\n";
+		}
+	}
+	public function updateUsername($uid, $uname) {
+		$sql = "update jaipal.users set uname=".$uname." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated username\n";
+		}
+	}
+	public function updatePassword($uid, $pass) {
+		$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated password\n";
+		}
+	}
+	public function updateEmailid($uid, $email) {
+		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated emailid\n";
+		}
+	}
+	public function updateDOB($uid, $dob) {
+		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated emailid\n";
+		}
+	}
 	public function udateSeenInNotifications($uid) {
 		$sql = "update jaipal.notifications set seen=true where uid=" . $uid . ";";
 		$ret = pg_query ( $this->con, $sql );
@@ -408,6 +481,16 @@ class query {
 			} else {
 					echo "comment deleted";
 			}
+		}
+	}
+	public function getAllConvidMsgidForUid($uid) {
+		$sql = "select a.convid, mid, u1, u2 from (select convid , max(msgid) as mid from jaipal.chat where convid in (select convid from jaipal.conversation where u1 = ".$uid." OR u2 = ".$uid.")group by convid)as a join jaipal.conversation as c on a.convid = c.convid order by a.mid DESC;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} 
+		else {
+			echo "coversationid and messageid sent\n";
 		}
 	}
 }

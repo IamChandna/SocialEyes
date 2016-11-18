@@ -40,7 +40,7 @@ $_SESSION['user']['root']=$root;
 		 <?php include "../php/topNavBar.php";?>
 		 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"
 		style="margin-top: 3.5em;">
-		<div class="main-content">
+		<div class="cover-pic-container">
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
 				<div class="btn btn-primary" id="buttonStyle">
 					Follow <i class="fa fa-user-plus"></i>
