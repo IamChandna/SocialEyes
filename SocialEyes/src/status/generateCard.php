@@ -15,7 +15,7 @@
  * [9] => likes /
  * )
  */
-function generateCard($row) {
+function generateCard($row,$root) {
 	$o = new query ();
 	?>
 
@@ -23,20 +23,20 @@ function generateCard($row) {
 	<div class="row">
 		<div class="profile-pic col-md-2">
 	 	<?php
-	echo "<img src=\"../src/uploads/" . $o->getPropicForUid ( $row [8] ) . "\">";
+	echo "<img src=\"".$root."../src/uploads/" . $o->getPropicForUid ( $row [8] ) . "\">";
 	?>
 		</div>
 		<div class="col-md-9">
 			<div class="row">
 			<?php if($row[8]==$_SESSION['user']['id']){?>
-				<button class="pull-right" 
+				<button class="pull-right"
 				style="background-color: inherit; border:none;"
 				onclick="deleteStatus(this.parentNode.parentNode.parentNode.parentNode,<?php echo $row[2].",".$row[8];?>);">
 					<i class="fa fa-trash fa-2x"></i>
 				</button>
 				<?php }?>
 				<h3>
-					<a class="" href="profile/<?php echo $row[8];?>"><?php echo $row[0];?></a>
+					<a class="" href="".$root."profile/<?php echo $row[8];?>"><?php echo $row[0];?></a>
 				</h3>
 			</div>
 			<div class="row">
@@ -56,7 +56,7 @@ function generateCard($row) {
 		<div class="image-content col-md-10 col-md-offset-1">
 			<?php
 	if (isset ( $row [6] ))
-		echo "<img src=\"../src/uploads/" . $o->getPiclinkForPidFromGallery ( $row [6] ) . "\">";
+		echo "<img src=\"".$root."../src/uploads/" . $o->getPiclinkForPidFromGallery ( $row [6] ) . "\">";
 	?>
 		</div>
 	</div>
@@ -66,7 +66,7 @@ function generateCard($row) {
 			<label>
 				<button
 					class="glyphicon glyphicon-heart<?php
-	
+
 if (in_array ( $_SESSION ['user'] ['id'], json_decode ( $row [9] ) ) == null)
 		echo "-empty";
 	?>"
