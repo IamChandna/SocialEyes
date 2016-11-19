@@ -8,18 +8,14 @@ function chatLiveSearch(uid) {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
       //some more code
-      var frame=document.getElementsByTagName("iframe")[0];
-      var fdoc=(frame.contentWindow || frame.contentDocument);
-      if (fdoc.document)
-        fdoc = fdoc.document;
-      fdoc.getElementById("items").innerHTML = this.responseText;
+      document.getElementById("items").innerHTML = this.responseText;
       if(this.responseText.match(/[a-z]/i))
       {
-        fdoc.getElementById("chats").style.opacity = .4;
+        document.getElementById("chats").style.opacity = .4;
       }
       else
       {
-        fdoc.getElementById("chats").style.opacity = 1;
+        document.getElementById("chats").style.opacity = 1;
       }
 		}
 	}
@@ -39,7 +35,9 @@ function openChatWindow(from,to){
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-      showMessageHistory();
+			document.getElementById("chat-live-search-box").value="";
+			chatLiveSearch();
+			generateChatHistory();
 		}
 	}
 	xhttp.open("POST", root+"../src/chat/makeChatConnection.php", true);
