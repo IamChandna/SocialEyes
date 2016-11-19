@@ -39,7 +39,7 @@ $_SESSION['user']['root']=$root;
 		class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"
 		id="particles-js" style="height: 1000px;"></div>
 
-	<div
+	<div style="padding-left: 0px;"
 		class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1">
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "php/chat.php"; ?>
