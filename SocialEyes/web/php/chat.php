@@ -25,7 +25,7 @@
 							<div class="row well"
 								onclick="chat_expand_collapse(this.nextElementSibling);">
 								<div class="col-xs-3 col-xs-offset-1 chat-profile-pic">
-									<img alt=":P" src="../src/uploads/defaultPropic.png">
+									<img alt=":P" src="<?php echo $root;?>../src/uploads/defaultPropic.png">
 								</div>
 								<div class="col-xs-7 chat-usernames">
 									<label>Jai Pal Singh</label>
