@@ -342,7 +342,7 @@ class query {
 		}
 	}
 	public function putMessage($uid, $content,$cid) {
-		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now())";
+		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now());";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -441,13 +441,53 @@ class query {
 		}
 	}
 	public function updateDOB($uid, $dob) {
-		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
+		$sql = "update jaipal.users set dob=".$dob." where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
 		} else {
-			echo "updated emailid\n";
+			echo "updated dob\n";
+		}
+	}
+	public function updateSex($uid, $sex) {
+		$sql = "update jaipal.users set sex=".$sex." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated gender\n";
+		}
+	}
+	public function updatePhone($uid, $phone) {
+		$sql = "update jaipal.users set phone=".$phone." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated phone no\n";
+		}
+	}
+	public function updateNation($uid, $n) {
+		$sql = "update jaipal.users set nation=".$n." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated country\n";
+		}
+	}
+	public function updateHobbies($uid, $h) {
+		$sql = "update jaipal.users set hobbies=".$h." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated hobbies\n";
 		}
 	}
 	public function udateSeenInNotifications($uid) {
