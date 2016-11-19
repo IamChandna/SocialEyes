@@ -284,6 +284,25 @@ class query {
 		}
 		return $conv;
 	}
+	public function getMsgUidTimeForConvid($convid) {
+		$sql = "select uid, msg, time from jaipal.chat where convid=" . $convid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "Data retrived\n";
+		}
+	}
+	public function getU1U2ForConvid($convid) {
+		$sql = "select u1, u2 from jaipal.conversation where convid=" . $convid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+				return $row;
+			}
+	}
 	public function putBasicToUser($uname, $email, $pass) {
 	$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
 	$ret = pg_query ( $this->con, $sql );
@@ -341,13 +360,11 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
-	public function putMessage($uid, $content,$cid) {
-		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now())";
+	public function putMessage($uid, $content,$convid) {
+		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $convid . ",'" . $content . "',now());";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} else {
-			echo "Chat sent!\n";
 		}
 	}
 	public function updateLikeInStatus($uid, $sid) {

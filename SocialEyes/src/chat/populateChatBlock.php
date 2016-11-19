@@ -28,26 +28,29 @@ foreach ( $friends as $f ) {
 	?>
 <div id="conversation-<?php echo $f[0];?>">
 	<div class="row well"
-		onclick="chat_expand_collapse(this.nextElementSibling);">
+		onclick="chat_expand_collapse(this.nextElementSibling,<?php echo $f[0];?>);">
 		<div class="col-xs-3 col-xs-offset-1 chat-profile-pic">
 			<img alt=":P"
 				src="<?php echo $root;?>../src/uploads/<?php echo $o->getPropicForUid($other); ?>">
 		</div>
 		<div class="col-xs-7 chat-usernames">
-			<label><?php echo $o->getUnameForUidFromUser($other); ?></label>
+			<label><?php echo $o->getUnameForUidFromUser($other); ?>
+			<span class="badge" id="conversation-badge-<?php echo $f[0];?>"></span>
+			</label>
 		</div>
 	</div>
-	<div class="row" id="messaging">
+	<div class="row messaging" id="messaging-<?php echo $f[0];?>">
 		<div class="well"
 			style="margin: 0px 7px 5px 2px; padding-bottom: 3px;">
-			<div id="previouschats" style="height: 13em;"></div>
+			<div id="previouschats<?php echo $f[0];?>" style="height: 13em; overflow-y:scroll;">
+			
+			</div>
 			<div class="input-group" style="margin-left: -5px">
-				<input type="text" class="form-control message-box"
-					placeholder="Write a message..."> <span class="input-group-btn">
-					<button class="btn btn-default btn-md" type="button">
-						<span class="glyphicon glyphicon-send" aria-hidden="true"
-							style="padding: 3px;"></span>
-					</button>
+				<input type="text" id="message-box-<?php echo $f[0];?>"class="form-control message-box" placeholder="Write a message...">
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-md" onclick="sendMessage(document.getElementById('message-box-<?php echo $f[0];?>'),<?php echo $f[0];?>);" type="button">
+							<span class="glyphicon glyphicon-send" aria-hidden="true" style="padding: 3px;"></span>
+						</button>
 				</span>
 				<div id="emoji-container"></div>
 			</div>
