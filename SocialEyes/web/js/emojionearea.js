@@ -842,7 +842,7 @@
 
             var sel = saveSelection(editor[0]),
                 editorScrollTop = editor.scrollTop(),
-                clipboard = $("<div/>", {contenteditable: true})
+                clipboard = $("<div/>", {contenteditable: false})
                     .css({position: "fixed", left: "-999px", width: "1px", height: "1px", top: "20px", overflow: "hidden"})
                     .appendTo($("BODY"))
                     .focus();

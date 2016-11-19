@@ -32,6 +32,20 @@ class query {
 			die ( "either username or password incorrect" );
 		}
 	}
+	function getBiodataForUidFromUsers($uid)
+ {
+	 $sql = "select uname,emailid,dob,sex,phone,nation,hobbies from jaipal.users where uid=" . $uid . ";";
+	 $ret = pg_query ( $this->con, $sql );
+	 if (! $ret) {
+		 echo pg_last_error ( $this->con );
+		 exit ();
+	 }
+	 if ($row = pg_fetch_row ( $ret )) {
+		 return $row;
+	 } else {
+		 die ( "user does not exist" );
+	 }
+ }
 	public function getFriendsForUid($uid) {
 		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
@@ -276,13 +290,32 @@ class query {
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} 
+		}
 		$conv = array ();
 		$i = 0;
 		while ( $row = pg_fetch_row ( $ret ) ) {
 			$conv [] = $row ;
 		}
 		return $conv;
+	}
+	public function getMsgUidTimeForConvid($convid) {
+		$sql = "select uid, msg, time from jaipal.chat where convid=" . $convid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "Data retrived\n";
+		}
+	}
+	public function getU1U2ForConvid($convid) {
+		$sql = "select u1, u2 from jaipal.conversation where convid=" . $convid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+				return $row;
+			}
 	}
 	public function putBasicToUser($uname, $email, $pass) {
 	$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
@@ -341,13 +374,11 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
-	public function putMessage($uid, $content,$cid) {
-		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now());";
+	public function putMessage($uid, $content,$convid) {
+		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $convid . ",'" . $content . "',now());";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} else {
-			echo "Chat sent!\n";
 		}
 	}
 	public function updateLikeInStatus($uid, $sid) {
@@ -392,7 +423,7 @@ class query {
 	}
 	public function updatePropic($uid, $pid) {
 		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -402,7 +433,7 @@ class query {
 	}
 	public function updateCoverpic($uid, $pid) {
 		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -412,7 +443,7 @@ class query {
 	}
 	public function updateUsername($uid, $uname) {
 		$sql = "update jaipal.users set uname=".$uname." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -422,7 +453,6 @@ class query {
 	}
 	public function updatePassword($uid, $pass, $opass) {
 		$sql = "select uid jaipal.users where password='".$opass."' and uid=".$uid.";";
-		
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -440,7 +470,7 @@ class query {
 	}
 	public function updateEmailid($uid, $email) {
 		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -450,7 +480,6 @@ class query {
 	}
 	public function updateDOB($uid, $dob) {
 		$sql = "update jaipal.users set dob=".$dob." where uid=".$uid.";";
-	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );

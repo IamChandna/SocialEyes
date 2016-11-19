@@ -143,18 +143,25 @@ sub-text {
 	box-shadow: none;
 }
 #button1Style{
-	background-color: #cc0d0d;
+	background-color:#cc0d0d;
   width:100px;
+	margin-top: 10px;
 	border: none;
+	color:#fff;
 }
 #button2Style{
 	background-color: #cc0d0d;
   width:100px;
+	margin-top: 10px;
 	border: none;
+	color:#fff;
 }
 #button2Style:hover{
 	background-color: #7b0000;
 }
 #button1Style:hover{
 	background-color: #7b0000;
+}
+#buttonStyle{
+	margin-top:2px;
 }
