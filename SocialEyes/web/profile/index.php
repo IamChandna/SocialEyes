@@ -35,6 +35,7 @@ $_SESSION['user']['root']=$root;
 <script type="text/javascript" src="../js/status.js"></script>
 <script type="text/javascript">var root="../";var off=0;</script>
 
+
 </head>
 <body  onload="loadLocal10(0,<?php echo $id;?>);off+=10;">
 		 <?php include "../php/topNavBar.php";?>
@@ -46,24 +47,62 @@ $_SESSION['user']['root']=$root;
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
 			</div>
-			<div class="col-md-4"
-				style="height: 1000px; border: black solid 2px; margin-top:10px;">
-				<ul class = "nav nav-tabs">
-					<li role = "presentation">
-						<a href="#" id="button1Style" onclick="open(1)">About</a>
-					</li>
-					<li role = "presentation">
-						<a href="#" class="active"  id="button2Style" onclick="open(2)">Friends</a>
-					</li>
-				<!-- <button type="button" class="btn btn-primary btn-lg active" id="button1Style" onclick="open(1)">About</button>
-				<button type="button" class="btn btn-primary btn-lg active" id="button2Style" onclick="open(2)">Friends</button> -->
 
-      </div>
+			<div class="col-md-4" style="height: 1000px; margin-top:10px;">
+
+		       <div class="jumbotron jumbotron-fluid" style="background-color: #fff; margin-top:0px;">
+						 <div class="container">
+								<ul class = "nav nav-tabs">
+									<li role = "presentation">
+										<a href="#" id="button1Style" onclick="open(1)">Info  <i class="fa fa-address-book-o"></i></a>
+									</li>
+									<li role = "presentation">
+										<a href="#" class="active"  id="button2Style" onclick="open(2)">Friends <i class="fa fa-users"></i></a>
+									</li>
+									<br>
+								</ul><br><br>
+								<?php
+								$bio=$o->getBiodataForUidFromUsers($id);
+								 /*
+								  * [0] => uname
+									* [1] => emailid
+									* [2] => dob
+									* [3] => sex
+									* [4] => phone
+									* [5] => nation
+									* [6] => hobbies
+								  */
+									?>
+										<div class="row">
+								    	<h4 style="color:#000000;">&nbsp &nbsp	<i class="fa fa-street-view" style="color:#999999;"></i> &nbsp   I am <em style="color:#cc0d0d"> <?php echo $bio[0];?> </em></h4>
+										</div>
+										<div class="row">
+											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-birthday-cake" style="color:#999999;"></i>  &nbsp  Born on <em style="color:#cc0d0d"><?php echo $bio[2];?> </em></h4>
+										</div>
+										<div class="row">
+											 <h4 style="color:#000000;"> &nbsp &nbsp<i class="fa fa-venus-mars" style="color:#999999;"></i>&nbsp <em style="color:#cc0d0d"><?php echo $bio[3];?> </em></h4>
+										</div>
+										<div class="row">
+											 <h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-home" style="color:#999999;"></i> &nbsp  Lives in <em style="color:#cc0d0d"> <?php echo $bio[5];?> </em></h4>
+										</div>
+										<div class="row">
+											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-child" style="color:#999999;"></i>&nbsp &nbsp Love to do <em style="color:#cc0d0d"><?php echo $bio[6];?> </em></h4>
+										</div>
+										<div class="row">
+											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-envelope-open" style="color:#999999;"></i>&nbsp   Mail me on <em style="color:#cc0d0d"><?php echo $bio[1];?> </em></h4>
+										</div>
+										<div class="row">
+											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-phone" style="color:#999999;"></i> &nbsp  Call me on <em style="color:#cc0d0d"><?php echo $bio[4];?> </em></h4>
+										</div>
+							</div>
+						</div>
+
+				</div>
 			<div class="propic col-sm-3">
 				<img alt="propic"
 					src="../../src/postgres/<?php echo $o->getPropicForUid($id);?>">
 			</div>
-			<div class="col-md-offset-1 col-md-7">
+			<div class="col-md-offset-1 col-md-7" margin-top:10px;>
         <div id="content-area">
         <div class="main-content">
 							<?php include "../../src/status/makeStatus.php";?>
@@ -121,6 +160,21 @@ $_SESSION['user']['root']=$root;
          v.innerHTML=String(++number);
      });
 
+		 function open(a)
+		 {
+		       if(a==1) {
+		           document.getElementById("about").style.display="block";
+		       }
+		       if(a==2) {
+		           document.getElementById("friends").style.display="block";
+		       }
+		       else{
+		         document.getElementById("about").style.display="block";
+		       }
+		 }
+
+
       </script>
+
 </body>
 </html>
