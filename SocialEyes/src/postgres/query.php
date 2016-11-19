@@ -32,6 +32,20 @@ class query {
 			die ( "either username or password incorrect" );
 		}
 	}
+	function getBiodataForUidFromUsers($uid)
+ {
+	 $sql = "select uname,emailid,dob,sex,phone,nation,hobbies from jaipal.users where uid=" . $uid . ";";
+	 $ret = pg_query ( $this->con, $sql );
+	 if (! $ret) {
+		 echo pg_last_error ( $this->con );
+		 exit ();
+	 }
+	 if ($row = pg_fetch_row ( $ret )) {
+		 return $row;
+	 } else {
+		 die ( "user does not exist" );
+	 }
+ }
 	public function getFriendsForUid($uid) {
 		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
@@ -276,7 +290,7 @@ class query {
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} 
+		}
 		$conv = array ();
 		$i = 0;
 		while ( $row = pg_fetch_row ( $ret ) ) {
@@ -409,7 +423,7 @@ class query {
 	}
 	public function updatePropic($uid, $pid) {
 		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -419,7 +433,7 @@ class query {
 	}
 	public function updateCoverpic($uid, $pid) {
 		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -429,7 +443,7 @@ class query {
 	}
 	public function updateUsername($uid, $uname) {
 		$sql = "update jaipal.users set uname=".$uname." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -439,7 +453,7 @@ class query {
 	}
 	public function updatePassword($uid, $pass) {
 		$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -449,7 +463,7 @@ class query {
 	}
 	public function updateEmailid($uid, $email) {
 		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -459,7 +473,7 @@ class query {
 	}
 	public function updateDOB($uid, $dob) {
 		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -514,5 +528,4 @@ class query {
 			}
 		}
 	}
-}
 }
