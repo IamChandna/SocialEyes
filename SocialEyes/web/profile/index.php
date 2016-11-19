@@ -37,7 +37,7 @@ $_SESSION['user']['root']=$root;
 
 
 </head>
-<body  onload="loadLocal10(0,<?php echo $id;?>);off+=10;">
+<body>
 		 <?php include "../php/topNavBar.php";?>
 		 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"
 		style="margin-top: 3.5em;">
@@ -116,7 +116,7 @@ $_SESSION['user']['root']=$root;
 		</div>
 
 	</div>
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left: 0px;">
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "../php/chat.php"; ?>
 			</div>
@@ -130,6 +130,10 @@ $_SESSION['user']['root']=$root;
             });
          });
          $(document).ready(function() {
+        	 loadLocal10(0,<?php echo $id;?>);
+        	 off+=10;
+        	 generateChatHistory();
+        	 $(".message-box").emojioneArea();
              toastr.options = {
              "closeButton": true,
              "debug": false,

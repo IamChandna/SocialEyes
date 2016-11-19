@@ -1,4 +1,4 @@
-<?php
+<?php {
 class query {
 	var $con;
 	public function __construct() {
@@ -93,7 +93,7 @@ class query {
 			exit ();
 		}
 		if ($row = pg_fetch_row ( $ret )) {
-			return $row;
+			return $row[0];
 		} else {
 			die ( "either username or password incorrect" );
 		}
@@ -269,6 +269,7 @@ class query {
 			$u1=$t;
 		}
 		$sql="select convid from jaipal.conversation where u1='" . $u1 . "' AND u2='" . $u2 . "';";
+		$ret = pg_query ( $this->con, $sql );
 		if ($row = pg_fetch_row ( $ret )) {
 			return $row[0];
 		}
@@ -283,6 +284,19 @@ class query {
 				return $row[0];
 			}
 		}
+	}
+	public function getAllConvidMsgidForUid($uid) {
+		$sql = "select a.convid, mid, u1, u2 from (select convid , max(msgid) as mid from jaipal.chat where convid in (select convid from jaipal.conversation where u1 = ".$uid." OR u2 = ".$uid.")group by convid)as a join jaipal.conversation as c on a.convid = c.convid order by a.mid DESC;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		}
+		$conv = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$conv [] = $row ;
+		}
+		return $conv;
 	}
 	public function putBasicToUser($uname, $email, $pass) {
 	$sql = "insert into jaipal.users(uname,emailid,password) values('" . $uname . "','" . $email . "','" . $pass . "');";
@@ -341,8 +355,8 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
-	public function putMessage($uid, $content) {
-		$sql = "insert into jaipal.chat (uid,msg) values (" . $uid . ",'" . $content . "')";
+	public function putMessage($uid, $content,$cid) {
+		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now())";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -495,16 +509,6 @@ class query {
 			} else {
 					echo "comment deleted";
 			}
-		}
-	}
-	public function getAllConvidMsgidForUid($uid) {
-		$sql = "select a.convid, mid, u1, u2 from (select convid , max(msgid) as mid from jaipal.chat where convid in (select convid from jaipal.conversation where u1 = ".$uid." OR u2 = ".$uid.")group by convid)as a join jaipal.conversation as c on a.convid = c.convid order by a.mid DESC;";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-		}
-		else {
-			echo "coversationid and messageid sent\n";
 		}
 	}
 }

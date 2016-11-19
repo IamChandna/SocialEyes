@@ -7,7 +7,7 @@ if (! isset ( $_SESSION ['user'] )) {
 $root = "";
 include '../src/postgres/query.php';
 $o = new query ();
-$_SESSION['user']['root']=$root;
+$_SESSION ['user'] ['root'] = $root;
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@ $_SESSION['user']['root']=$root;
 <script src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/status.js"></script>
-<script type="text/javascript">var root="";var off=0;</script>
+<script type="text/javascript">var root="";</script>
 <script type="text/javascript" src="js/particles.min.js"></script>
 <script src="js/app.js"></script>
 </head>
@@ -39,7 +39,7 @@ $_SESSION['user']['root']=$root;
 		class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"
 		id="particles-js" style="height: 1000px;"></div>
 
-	<div
+	<div style="padding-left: 0px;"
 		class="col-xs-2 col-xs-offset-1 col-sm-2 col-sm-offset-1 col-md-2 col-md-offset-1 col-lg-2 col-lg-offset-1">
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "php/chat.php"; ?>
@@ -53,7 +53,9 @@ $_SESSION['user']['root']=$root;
                source: "<?php echo $root;?>php/liveSearch.php"
             });
          });
-         $(document).ready(function() {
+
+        	 $(document).ready(function() {
+            	 generateChatHistory();
              toastr.options = {
              "closeButton": true,
              "debug": false,
@@ -83,7 +85,6 @@ $_SESSION['user']['root']=$root;
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
      });
-
       </script>
 </body>
 </html>

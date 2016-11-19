@@ -36,7 +36,7 @@ function generateCard($row,$root) {
 				</button>
 				<?php }?>
 				<h3>
-					<a class="" href="".$root."profile/<?php echo $row[8];?>"><?php echo $row[0];?></a>
+					<a class="" href="<?php echo $root;?>profile/<?php echo $row[8];?>"><?php echo $row[0];?></a>
 				</h3>
 			</div>
 			<div class="row">
