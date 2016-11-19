@@ -70,26 +70,26 @@ $_SESSION ['user'] ['root'] = $root;
 			</form>
 			<hr />
 			<h3>Change Account Info</h3>
-			<form action="../src/settings/updateBasic.php">
+			<form action="../src/settings/updateBasic.php" method="POST">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Username"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="uname">
 				</div>
 				<div class="form-group">
 					<input type="email" class="form-control" placeholder="Email"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="email">
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control"
-						placeholder="Current Password" aria-describedby="basic-addon1">
+						placeholder="Current Password" aria-describedby="basic-addon1" name="opass">
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control"
-						placeholder="New Password" aria-describedby="basic-addon1">
+						placeholder="New Password" aria-describedby="basic-addon1" name="pass">
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control"
-						placeholder="Retype New Password" aria-describedby="basic-addon1">
+						placeholder="Retype New Password" aria-describedby="basic-addon1" name="rpass">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="form-control btn btn-primary">Update
@@ -98,31 +98,24 @@ $_SESSION ['user'] ['root'] = $root;
 			</form>
 			<hr />
 			<h3>Change Info</h3>
-			<form action="../src/settings/updateInfo.php">
+			<form action="../src/settings/updateInfo.php" method="POST">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="DD/MM/YYYY"
-						aria-describedby="basic-addon1">
-				</div>
-				<div class="form-group">
-					<select class="form-control">
-						<option>Male</option>
-						<option>Female</option>
-						<option>Prefer not to say</option>
-					</select>
+						aria-describedby="basic-addon1" name="dob">
 				</div>
 				<div class="form-group">
 					<input type="number" class="form-control"
-						placeholder="Phone number" aria-describedby="basic-addon1">
+						placeholder="Phone number" aria-describedby="basic-addon1" name="phone">
 				</div>
 				<div class="form-group">
-					<select class="form-control">
+					<select class="form-control" name="sex">
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 						<option value="Prefer not to say">Prefer not to say</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<select class="form-control">
+					<select class="form-control" name="nation">
 						<option value="Afghanistan">Afghanistan</option>
 						<option value="Albania">Albania</option>
 						<option value="Algeria">Algeria</option>
@@ -374,7 +367,7 @@ $_SESSION ['user'] ['root'] = $root;
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Hobbies"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" name="hobbies">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="form-control btn btn-primary">Update

@@ -420,15 +420,23 @@ class query {
 			echo "updated username\n";
 		}
 	}
-	public function updatePassword($uid, $pass) {
-		$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
-	
+	public function updatePassword($uid, $pass, $opass) {
+		$sql = "select uid jaipal.users where password='".$opass."' and uid=".$uid.";";
+		
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} else {
-			echo "updated password\n";
+		} 
+		if (pg_affected_rows ( $ret )==1) {
+			$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
+			$ret = pg_query ( $this->con, $sql );
+			if (! $ret) {
+				echo pg_last_error ( $this->con );
+			} else {
+				echo "updated password\n";
+			}
 		}
+		
 	}
 	public function updateEmailid($uid, $email) {
 		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
@@ -490,7 +498,7 @@ class query {
 			echo "updated hobbies\n";
 		}
 	}
-	public function udateSeenInNotifications($uid) {
+	public function updateSeenInNotifications($uid) {
 		$sql = "update jaipal.notifications set seen=true where uid=" . $uid . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
