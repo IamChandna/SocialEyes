@@ -79,7 +79,7 @@ class query {
 			exit ();
 		}
 		if ($row = pg_fetch_row ( $ret )) {
-			return $row;
+			return $row[0];
 		} else {
 			die ( "either username or password incorrect" );
 		}
@@ -255,6 +255,7 @@ class query {
 			$u1=$t;
 		}
 		$sql="select convid from jaipal.conversation where u1='" . $u1 . "' AND u2='" . $u2 . "';";
+		$ret = pg_query ( $this->con, $sql );
 		if ($row = pg_fetch_row ( $ret )) {
 			return $row[0];
 		}
@@ -340,8 +341,8 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
-	public function putMessage($uid, $content) {
-		$sql = "insert into jaipal.chat (uid,msg) values (" . $uid . ",'" . $content . "')";
+	public function putMessage($uid, $content,$cid) {
+		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $cid . ",'" . $content . "',now())";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
