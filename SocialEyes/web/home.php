@@ -30,7 +30,7 @@ $_SESSION ['user'] ['root'] = $root;
 <script type="text/javascript">var root="";var off=0;</script>
 
 
-<body id="body" onload="load10(0);off+=10;">
+<body id="body">
 		 <?php include "php/topNavBar.php";?>
 
 		 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
@@ -66,6 +66,10 @@ $_SESSION ['user'] ['root'] = $root;
             });
          });
          $(document).ready(function() {
+        	 load10(0);
+        	 off+=10;
+        	 generateChatHistory();
+        	 $(".message-box").emojioneArea();
                  toastr.options = {
                  "closeButton": true,
                  "debug": false,

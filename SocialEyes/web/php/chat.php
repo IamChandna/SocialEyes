@@ -55,15 +55,10 @@
 					<input type="text" class="form-control" style="width: 146%;"
 						id="chat-live-search-box"
 						oninput="chatLiveSearch(<?php echo $_SESSION['user']['id']?>);"
-						placeholder="Chat">
+						placeholder="Begin a new chat...">
 				</form>
 
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#message-box").emojioneArea();
-  });
-  </script>

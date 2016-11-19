@@ -16,10 +16,11 @@ function generateChatHistory() {
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("chat").innerHTML = this.responseText;
+			document.getElementById("chats").innerHTML = this.responseText;
+			$(".message-box").emojioneArea();
 		}
 	}
-	xhttp.open("POST", root+"../src/status/orderStatus.php", true);
+	xhttp.open("POST", root+"../src/chat/populateChatBlock.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "";
 	xhttp.send(para);
