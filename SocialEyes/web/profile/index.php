@@ -26,9 +26,7 @@ $_SESSION ['user'] ['root'] = $root;
 <link rel="stylesheet" href="../css/font-awesome.min.css">
 <link href="../css/jquery-ui.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/toastr.min.css">
-<link rel="stylesheet" href="../css/jquery.nailthumb.1.1.min.css">
 <script src="../js/jquery.min.js"></script>
-<script src="../js/jquery.nailthumb.1.1.min.js"></script>
 <script src="../js/toastr.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/pusher.min.js"></script>
@@ -47,8 +45,7 @@ $_SESSION ['user'] ['root'] = $root;
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
 
 
-				<div class="btn btn-primary" id="buttonStyle"
-					style="margin-top: 15px;">
+				<div class="btn btn-primary" id="buttonStyle" onclick="toggleFollow(this);">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
 			</div>
@@ -59,12 +56,16 @@ $_SESSION ['user'] ['root'] = $root;
 					style="background-color: #fff; margin-top: 0px;">
 					<div class="container">
 						<ul class="nav nav-tabs">
-							<li role="presentation"><a href="#" id="button1Style"
-								onclick="$('.bio-sect').removeClass('toggle');">Info <i
-									class="fa fa-address-book-o"></i></a></li>
-							<li role="presentation"><a href="#" id="button2Style"
-								onclick="$('.bio-sect').addClass('toggle');">Friends <i
-									class="fa fa-users"></i></a></li>
+							<li role="presentation"><button id="button1Style"
+									class="btn btn-primary"
+									onclick="$('.bio-sect').removeClass('toggle');">
+									Info <i class="fa fa-address-book-o"></i>
+								</button></li>
+							<li role="presentation"><button id="button2Style"
+									class="btn btn-primary"
+									onclick="$('.bio-sect').addClass('toggle');">
+									Friends <i class="fa fa-users"></i>
+								</button></li>
 						</ul>
 								<?php
 								$bio = $o->getBiodataForUidFromUsers ( $id );
@@ -134,17 +135,16 @@ $_SESSION ['user'] ['root'] = $root;
 										
 										foreach ( $friends as $uid ) {
 											?>
-										     <div class="col-sm-6 col-md-4">
-										<div class="thumbnail">
-											<a class="" href="<?php echo $uid;?>"><img
-												src="../../src/uploads/<?php echo $o->getPropicForUid($uid); ?>"
-												alt="missing image" style="border-radius: 50%;"></a>
-											<div class="caption"
-												style="padding-bottom: 0px; padding-top: 0px;">
-												<h5 style="color: #cc0d0d;"><?php echo $o->getUnameForUidFromUser($uid); ?></h5>
+										     <div class="col-sm-6 col-md-4 friends-cards" style="float: left; height:150px;">
+												<div class="thumbnail" style="height: 100%;">
+													<a class="friend" href="../profile/<?php echo $uid;?>">
+														<img src="../../src/uploads/<?php echo $o->getPropicForUid($uid); ?>"
+														alt="missing image" style="border-radius: 50%;"></a>
+														<div class="caption" style="padding-bottom: 0px; padding-top: 0px;">
+															<h5 style="color: #cc0d0d;"><?php echo $o->getUnameForUidFromUser($uid); ?></h5>
+														</div>
+												</div>
 											</div>
-										</div>
-									</div>
 										 <?php }?>
 									 </div>
 
@@ -189,12 +189,6 @@ $_SESSION ['user'] ['root'] = $root;
             });
          });
          $(document).ready(function() {
-        	 jQuery('.propic').nailthumb({
-			 	"method":"crop",
-			 	"fitDirection":"center",
-			 	"width":100%,
-			 	"height":100%
-             });
         	 loadLocal10(0,<?php echo $id;?>);
         	 off+=10;
         	 generateChatHistory();
@@ -227,20 +221,9 @@ $_SESSION ['user'] ['root'] = $root;
          var v=document.getElementById("notification-bell");
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
-	 )};
+	 });
 	 
-		 function open(a)
-		 {
-		       if(a==1) {
-		           document.getElementById("about").style.display="block";
-		       }
-		       if(a==2) {
-		           document.getElementById("friends").style.display="block";
-		       }
-		       else{
-		         document.getElementById("about").style.display="block";
-		       }
-		 }
+	
 		 notificationsChannel.bind('message', function(message) {
              var msg = emojione.unicodeToImage(message.msg);
              var convid = message.convid;

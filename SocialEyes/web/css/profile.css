@@ -1,61 +1,71 @@
 @CHARSET "ISO-8859-1";
 
-
-body{
+body {
 	background-color: #f3f3f3;
 }
 
-.coverpic{
-	height:20em;
+.coverpic {
+	height: 20em;
 }
+
 .coverpic img {
 	width: 100%;
 	height: 100%;
 }
-.propic{
+
+.propic {
 	float: none;
 	margin: 0 auto;
 	margin-top: -8em;
 }
+
 .propic img {
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
 }
-.Container{
-    margin:0px;
-    padding: 0px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 20em;
+
+.Container {
+	margin: 0px;
+	padding: 0px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 20em;
 }
-.main-content{
+
+.main-content {
 	height: 100%;
 	background-color: #fff;
 	margin: 0em 0em 1em 0em;
 	padding: .6em;
 	transition: opacity 2s;
 }
+
 .profile-pic img {
 	width: 100%;
 	border-radius: 50%;
 }
-.content{
+
+.content {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
+
 .image-content img {
 	width: 100%;
 }
-.buttons-area .glyphicon{
+
+.buttons-area .glyphicon {
 	color: #cc0d0d;
-	font-size:20px;
+	font-size: 20px;
 	background-color: inherit;
 	border: none;
 }
-.buttons-area .glyphicon:hover{
+
+.buttons-area .glyphicon:hover {
 	color: #7b0000;
 }
+
 .detailBox {
 	width: 320px;
 	border: 1px solid #bbb;
@@ -128,6 +138,7 @@ body{
 .commentText p {
 	margin: 0;
 }
+
 sub-text {
 	color: #aaa;
 	font-family: verdana;
@@ -138,51 +149,81 @@ sub-text {
 	border-top: 1px dotted #bbb;
 	padding: 10px;
 }
-.form-control:focus{
+
+.form-control:focus {
 	border-color: #f66;
 	box-shadow: none;
 }
-#button1Style{
-	background-color:#cc0d0d;
-  width:100px;
-	margin-top: 10px;
-	border: none;
-	color:#fff;
-}
-#button2Style{
+
+#button1Style {
 	background-color: #cc0d0d;
-  width:100px;
+	width: 100px;
 	margin-top: 10px;
 	border: none;
-	color:#fff;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
 }
-#button2Style:hover{
+
+#button2Style {
+	background-color: #cc0d0d;
+	width: 100px;
+	margin-top: 10px;
+	margin-left: 2px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#button2Style:hover {
 	background-color: #7b0000;
 }
-#button1Style:hover{
+
+#button1Style:hover {
 	background-color: #7b0000;
 }
-#buttonStyle{
-	margin-top:2px;
+
+#buttonStyle {
+	margin-top: 2px;
 }
-.toggle .about{
+
+.toggle .about {
 	display: none;
 }
-.friends{
+
+.friends {
 	display: none;
+	padding: 10px;
 }
-.toggle .friends{
+
+.toggle .friends {
 	display: block;
 }
-.thumbnail{
-	border-radius:5%;
+
+.thumbnail {
+	border-radius: 5%;
 }
-.thumbnail:hover{
-	border-color:#ff3333;
-	opacity:0.6;
+
+.thumbnail:hover {
+	border-color: #ff3333;
+	opacity: 0.6;
 }
-.about .row h4{
-	color:#000000;
-	 font-size:15px;
-	 padding-left:15px;
+
+.about .row h4 {
+	color: #000000;
+	font-size: 15px;
+	padding-left: 15px;
+}
+
+.about {
+	padding-top: 1em;
+}
+.friends-cards{
+	margin-top: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.friend {
+	padding-bottom: 100%;
+	overflow: hidden;
+	position: relative
 }
