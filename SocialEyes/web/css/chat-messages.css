@@ -53,8 +53,8 @@ z-index: 1;
 left: -0px;
 top: 12px;
 }
-
-.chat-messages img{
+.chat-messages .emojione{
 	width: 1.5em;
 	height: 1.5em;
+	background-image: none;
 }
