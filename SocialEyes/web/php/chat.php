@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<?php echo $root;?>js/chatSearch.js"></script>
 <script type="text/javascript"
 	src="<?php echo $root;?>js/emojione.min.js"></script>
-<link rel="stylesheet" href="css/chat-messages.css" />
+<link rel="stylesheet" href="<?php echo $root;?>css/chat-messages.css" />
 <div class="chat col-md-2" style="height: 100%; padding:0px;">
 <!-- 	id="chat" style="position: fixed; bottom: 0px; top: 3.5em;"> -->
 	<div class="container-fluid" style="height: 100%;">
