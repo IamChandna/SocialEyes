@@ -7,7 +7,6 @@ function chat_expand_collapse(x, convid) {
 		document.getElementById("conversation-badge-" + convid).innerHTML = "";
 	}
 }
-
 function generateChatHistory() {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari

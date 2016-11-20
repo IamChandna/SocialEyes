@@ -171,8 +171,8 @@ $_SESSION['user']['root']=$root;
          var v=document.getElementById("notification-bell");
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
-     });
-
+	 )};
+	 
 		 function open(a)
 		 {
 		       if(a==1) {
@@ -202,8 +202,6 @@ $_SESSION['user']['root']=$root;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
          });
-
-      </script>
-
-</body>
+		 	 </script>
+	</body>
 </html>
