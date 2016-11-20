@@ -32,6 +32,20 @@ class query {
 			die ( "either username or password incorrect" );
 		}
 	}
+	function getBiodataForUidFromUsers($uid)
+ {
+	 $sql = "select uname,emailid,dob,sex,phone,nation,hobbies from jaipal.users where uid=" . $uid . ";";
+	 $ret = pg_query ( $this->con, $sql );
+	 if (! $ret) {
+		 echo pg_last_error ( $this->con );
+		 exit ();
+	 }
+	 if ($row = pg_fetch_row ( $ret )) {
+		 return $row;
+	 } else {
+		 die ( "user does not exist" );
+	 }
+ }
 	public function getFriendsForUid($uid) {
 		$sql = "select array_to_json(friendlist) from jaipal.users where uid='" . $uid . "' ;";
 		$ret = pg_query ( $this->con, $sql );
@@ -276,7 +290,7 @@ class query {
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} 
+		}
 		$conv = array ();
 		$i = 0;
 		while ( $row = pg_fetch_row ( $ret ) ) {
@@ -409,7 +423,7 @@ class query {
 	}
 	public function updatePropic($uid, $pid) {
 		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -419,7 +433,7 @@ class query {
 	}
 	public function updateCoverpic($uid, $pid) {
 		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -429,7 +443,7 @@ class query {
 	}
 	public function updateUsername($uid, $uname) {
 		$sql = "update jaipal.users set uname=".$uname." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -437,19 +451,26 @@ class query {
 			echo "updated username\n";
 		}
 	}
-	public function updatePassword($uid, $pass) {
-		$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
-	
+	public function updatePassword($uid, $pass, $opass) {
+		$sql = "select uid jaipal.users where password='".$opass."' and uid=".$uid.";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} else {
-			echo "updated password\n";
+		} 
+		if (pg_affected_rows ( $ret )==1) {
+			$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
+			$ret = pg_query ( $this->con, $sql );
+			if (! $ret) {
+				echo pg_last_error ( $this->con );
+			} else {
+				echo "updated password\n";
+			}
 		}
+		
 	}
 	public function updateEmailid($uid, $email) {
 		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
-	
+
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -458,16 +479,55 @@ class query {
 		}
 	}
 	public function updateDOB($uid, $dob) {
-		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
+		$sql = "update jaipal.users set dob=".$dob." where uid=".$uid.";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated dob\n";
+		}
+	}
+	public function updateSex($uid, $sex) {
+		$sql = "update jaipal.users set sex=".$sex." where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
 		} else {
-			echo "updated emailid\n";
+			echo "updated gender\n";
 		}
 	}
-	public function udateSeenInNotifications($uid) {
+	public function updatePhone($uid, $phone) {
+		$sql = "update jaipal.users set phone=".$phone." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated phone no\n";
+		}
+	}
+	public function updateNation($uid, $n) {
+		$sql = "update jaipal.users set nation=".$n." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated country\n";
+		}
+	}
+	public function updateHobbies($uid, $h) {
+		$sql = "update jaipal.users set hobbies=".$h." where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "updated hobbies\n";
+		}
+	}
+	public function updateSeenInNotifications($uid) {
 		$sql = "update jaipal.notifications set seen=true where uid=" . $uid . ";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
