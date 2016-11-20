@@ -206,7 +206,7 @@ class query {
 		return $status;
 	}
 	public function getStatusForKeyword($key) {
-		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u where (s.uid=u.uid)and s.content ~* '(^| )" . $keyword ." order by statusid desc limit 30;";
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u where (s.uid=u.uid) and s.content ~* '(^| )" . $keyword ."' order by statusid desc limit 30;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -215,7 +215,6 @@ class query {
 		$status = array ();
 		$i = 0;
 		while ( $row = pg_fetch_row ( $ret ) ) {
-			if ($i >= $offset)
 				$status [] = $row;
 				$i += 1;
 		}
