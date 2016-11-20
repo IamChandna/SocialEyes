@@ -27,7 +27,6 @@ function generateChatHistory() {
 	var para = "";
 	xhttp.send(para);
 }
-
 function sendMessage(msgobj, convid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -42,8 +41,10 @@ function sendMessage(msgobj, convid) {
 			scrollToBottom(convid);
 		}
 	}
-
 	var msg = msgobj.value;
+	$(".emojionearea-editor").each(function(i){
+		this.innerHTML="";
+	})
 	msgobj.value = "";
 	xhttp.open("POST", root + "../src/chat/sendMessage.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

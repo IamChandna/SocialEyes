@@ -88,9 +88,7 @@ if (in_array ( $_SESSION ['user'] ['id'], json_decode ( $row [9] ) ) == null)
 	</div>
 
 </div>
-<script type="text/javascript">
 
-</script>
 <?php
 }
 ?>
