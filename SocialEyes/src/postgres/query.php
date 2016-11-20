@@ -303,9 +303,13 @@ class query {
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		} else {
-			echo "Data retrived\n";
 		}
+		$msgs = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$msgs [] = $row ;
+		}
+		return $msgs;
 	}
 	public function getU1U2ForConvid($convid) {
 		$sql = "select u1, u2 from jaipal.conversation where convid=" . $convid . ";";

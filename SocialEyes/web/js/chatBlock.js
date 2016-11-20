@@ -5,6 +5,7 @@ function chat_expand_collapse(x, convid) {
 	} else {
 		x.className += " toggle";
 		document.getElementById("conversation-badge-" + convid).innerHTML = "";
+		getMessages(convid);
 	}
 }
 function generateChatHistory() {
@@ -61,3 +62,22 @@ function scrollToBottom (convid){
 		scrollTop: height
 	});
 }
+function getMessages(convid) {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var resp = emojione.unicodeToImage(this.responseText);
+			document.getElementById("previouschats" + convid).innerHTML += resp;
+			scrollToBottom(convid);
+		}
+	}
+	xhttp.open("POST", root + "../src/chat/getMessage.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para ="convid=" + convid;
+	xhttp.send(para);
+	}
