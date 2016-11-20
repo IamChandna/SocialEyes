@@ -6,6 +6,7 @@ function chat_expand_collapse(x,convid) {
 	else{
 		x.className+=" toggle";
 		document.getElementById("conversation-badge-"+convid).innerHTML="";
+		//code here for fn
 	}
 } 
 function generateChatHistory() {
