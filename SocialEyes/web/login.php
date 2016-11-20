@@ -43,8 +43,10 @@ if (isset ( $_SESSION ['user'] )) {
 			</h1>
 		</div>
 		<div class="container">
+		
 			<div class="card"></div>
 			<div class="card">
+			
 				<h1 class="title">Login</h1>
 				<form method="post" action="../src/login/signin.php">
 					<div class="input-container">
@@ -68,10 +70,10 @@ if (isset ( $_SESSION ['user'] )) {
 				</form>
 			</div>
 			<div class="card alt">
-				<div class="toggle"></div>
+				<div class="toggle" onclick="$('.container').stop().addClass('active');"></div>
 				<h1 class="title">
 					Register
-					<div class="close"></div>
+					<div class="close" onclick="$('.container').stop().removeClass('active');"></div>
 				</h1>
 				<form method="post" action="../src/login/signup.php">
 					<div class="input-container">

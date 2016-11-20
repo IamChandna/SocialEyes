@@ -1,14 +1,12 @@
-function chat_expand_collapse(x,convid) {
-	
-	if(x.className.includes("toggle")){
-		x.className="row messaging";
+function chat_expand_collapse(x, convid) {
+
+	if (x.className.includes("toggle")) {
+		x.className = "row messaging";
+	} else {
+		x.className += " toggle";
+		document.getElementById("conversation-badge-" + convid).innerHTML = "";
 	}
-	else{
-		x.className+=" toggle";
-		document.getElementById("conversation-badge-"+convid).innerHTML="";
-		//code here for fn
-	}
-} 
+}
 function generateChatHistory() {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -22,12 +20,13 @@ function generateChatHistory() {
 			$(".message-box").emojioneArea();
 		}
 	}
-	xhttp.open("POST", root+"../src/chat/populateChatBlock.php", true);
+	xhttp.open("POST", root + "../src/chat/populateChatBlock.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	var para = "";
 	xhttp.send(para);
 }
-function sendMessage(msgobj,convid) {
+
+function sendMessage(msgobj, convid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
 		xhttp = new XMLHttpRequest();
@@ -36,16 +35,29 @@ function sendMessage(msgobj,convid) {
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("previouschats"+convid).innerHTML += this.responseText
-			$(".one").emojioneArea();
-			$(".one").removeClass("one");
+			var resp = emojione.unicodeToImage(this.responseText);
+			document.getElementById("previouschats" + convid).innerHTML += resp;
+			scrollToBottom(convid);
 		}
 	}
-	
-	var msg=msgobj.value;
-	msgobj.value="";
-	xhttp.open("POST", root+"../src/chat/sendMessage.php", true);
+
+	var msg = msgobj.value;
+	msgobj.value = "";
+	xhttp.open("POST", root + "../src/chat/sendMessage.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para = "msg="+msg+"&convid="+convid;
+	var para = "msg=" + msg + "&convid=" + convid;
 	xhttp.send(para);
+}
+
+function scrollToBottom (convid){
+	var height = 0;
+	$('#previouschats'+convid+' div').each(function(i, value) {
+		height += parseInt($(this).height());
+	});
+
+	height += '';
+
+	$('#previouschats'+convid).animate({
+		scrollTop: height
+	});
 }

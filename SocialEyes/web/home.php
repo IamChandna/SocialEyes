@@ -88,6 +88,7 @@ $_SESSION ['user'] ['root'] = $root;
                  "hideMethod": "fadeOut"
              }
          });
+         
          var pusher = new Pusher('39709b3d935be0f19bb0');
 
          var notificationsChannel = pusher.subscribe('notification-<?php echo $_SESSION['user']['id'];?>');
@@ -100,15 +101,14 @@ $_SESSION ['user'] ['root'] = $root;
              v.innerHTML=String(++number);
          });
 		 notificationsChannel.bind('message', function(message) {
-             var msg = message.msg;
+             var msg = emojione.unicodeToImage(message.msg);
              var convid = message.convid;
 			 var from = message.from;
 			 if(document.getElementById("messaging-"+convid).className.includes("toggle")){
 				//chat window open do somthing
 				var resp="<div class='chat-messages receivermsg one'>"+msg+"</div>";
 				document.getElementById("previouschats"+convid).innerHTML += resp;
-			    $(".one").emojioneArea();
-			   $(".one").removeClass("one");
+				scrollToBottom(convid);
 			 }
 			 else{
 				 //chat window closed
