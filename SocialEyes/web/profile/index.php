@@ -193,7 +193,6 @@ $_SESSION['user']['root']=$root;
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
      });
-		 </script>
-
+	 </script>
 </body>
 </html>
