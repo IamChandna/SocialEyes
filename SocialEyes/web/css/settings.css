@@ -6,3 +6,70 @@
 	opacity: .9;
 	border-radius: 5px;
 }
+#button1Style {
+	background-color: #cc0d0d;
+	width: 100%;
+	margin-top: 10px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#button2Style {
+	background-color: #cc0d0d;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 5px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#button3Style {
+	background-color: #cc0d0d;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#button3Style:hover {
+	background-color: #7b0000;
+}
+
+#button2Style:hover {
+	background-color: #7b0000;
+}
+
+#button1Style:hover {
+	background-color: #7b0000;
+}
+
+#buttonStyleicon {
+	background-color: #cc0d0d;
+	margin-top: 2px;
+	margin-left: 10px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#buttonStyleicon:hover {
+	background-color: #7b0000;
+}
+
+#buttonStyle {
+	background-color: #cc0d0d;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: none;
+	color: #fff;
+	border-radius: 5px 5px 0px 0px;
+}
+
+#buttonStyle:hover {
+	background-color: #7b0000;
+}
