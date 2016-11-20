@@ -12,6 +12,7 @@ $exploaded = explode ( "/", $uri );
 $lastParamLoc = sizeof ( $exploaded );
 $id = $exploaded [$lastParamLoc - 1];
 $_SESSION ['user'] ['root'] = $root;
+$friends = $o->getFriendsForUid ( $_SESSION['user']['id'] );
 ?>
 <!DOCTYPE html>
 <!--demo conflict-->
@@ -44,10 +45,18 @@ $_SESSION ['user'] ['root'] = $root;
 		<div class="cover-pic-container">
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
 
-
+				<?php if($id!=$_SESSION['user']['id'])
+				{?>
 				<div class="btn btn-primary" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
+				<?php }else if(in_array($id, $friends))
+				{?>	
+				<div class="btn btn-primary toggle" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
+					Unfollow <i class="fa fa-user-cross"></i>
+				</div>
+				<?php }?>
+				
 			</div>
 
 			<div class="col-md-4" style="height: 1000px; margin-top: 10px;">
@@ -130,9 +139,7 @@ $_SESSION ['user'] ['root'] = $root;
 
 								<div class="row">
 										<?php
-										$friends = array ();
-										$friends = $o->getFriendsForUid ( $id );
-										
+										$friends = $o->getFriendsForUid ( $id);
 										foreach ( $friends as $uid ) {
 											?>
 										     <div class="col-sm-6 col-md-4 friends-cards" style="float: left; height:150px;">
