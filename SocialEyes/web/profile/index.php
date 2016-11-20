@@ -193,8 +193,7 @@ $_SESSION['user']['root']=$root;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
          });
-
-      </script>
+		 	 </script>
 
 </body>
 </html>
