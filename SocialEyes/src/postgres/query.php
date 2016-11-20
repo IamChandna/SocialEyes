@@ -86,7 +86,7 @@ class query {
 		return $friends;
 	}
 	public function getPersonForKeyword($keyword) {
-		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 4;";
+		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' order by array_length(friendlist) limit 10;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -163,6 +163,19 @@ class query {
 			die ( "status does not exist" );
 		}
 	}
+	/*public function getStatusForKeyword($key) {
+		$sql = "select * from jaipal.status where statusid=" . $sid . ";";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		if ($row = pg_fetch_row ( $ret )) {
+			return $row;
+		} else {
+			die ( "status does not exist" );
+		}
+	}*/
 	public function getPicForSid($sid) {
 		$sql = "select picid from jaipal.status where statusid=" . $sid . ";";
 		$ret = pg_query ( $this->con, $sql );
