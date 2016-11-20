@@ -54,7 +54,7 @@ function sendMessage(msgobj, convid) {
 function scrollToBottom(convid) {
 	var height = 0;
 	$('#previouschats' + convid + ' div').each(function(i, value) {
-		height += parseInt($(this).height());
+		height += parseInt($(this).height())+13;
 	});
 
 	height += '';
