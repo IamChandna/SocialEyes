@@ -40,12 +40,11 @@ foreach ( $friends as $f ) {
 		</div>
 	</div>
 	<div class="row messaging" id="messaging-<?php echo $f[0];?>">
-		<div class="well"
-			style="margin: 0px 7px 5px 2px; padding-bottom: 3px;">
-			<div id="previouschats<?php echo $f[0];?>" style="height: 13em; overflow-y:scroll;">
+		<div class="well" style="margin: 0px 7px 5px 2px; padding-bottom: 3px;padding-left:2px;">
+			<div id="previouschats<?php echo $f[0];?>" style="height: 15em; overflow-y:scroll;">
 			
 			</div>
-			<div class="input-group" style="margin-left: -5px">
+			<div class="input-group" style="margin-left: -3.5px">
 				<input type="text" id="message-box-<?php echo $f[0];?>"class="form-control message-box" placeholder="Write a message...">
 					<span class="input-group-btn">
 						<button class="btn btn-default btn-md" onclick="sendMessage(document.getElementById('message-box-<?php echo $f[0];?>'),<?php echo $f[0];?>);" type="button">
