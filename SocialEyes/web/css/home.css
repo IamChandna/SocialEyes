@@ -100,10 +100,6 @@ body{
 	transition: opacity 2s;
 }
 
-.commentList li>div {
-	display: table-cell;
-}
-
 .commenterImage {
 	width: 30px;
 	margin-right: 5px;
@@ -118,6 +114,7 @@ body{
 
 .commentText p {
 	margin: 0;
+	word-wrap: break-word;
 }
 
 .sub-text {

@@ -11,7 +11,7 @@ $uri = ($_SERVER ['REQUEST_URI']);
 $exploaded = explode ( "/", $uri );
 $lastParamLoc = sizeof ( $exploaded );
 $id = $exploaded [$lastParamLoc - 1];
-$_SESSION['user']['root']=$root;
+$_SESSION ['user'] ['root'] = $root;
 ?>
 <!DOCTYPE html>
 <!--demo conflict-->
@@ -26,7 +26,9 @@ $_SESSION['user']['root']=$root;
 <link rel="stylesheet" href="../css/font-awesome.min.css">
 <link href="../css/jquery-ui.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/toastr.min.css">
+<link rel="stylesheet" href="../css/jquery.nailthumb.1.1.min.css">
 <script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.nailthumb.1.1.min.js"></script>
 <script src="../js/toastr.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/pusher.min.js"></script>
@@ -43,80 +45,137 @@ $_SESSION['user']['root']=$root;
 		style="margin-top: 3.5em;">
 		<div class="cover-pic-container">
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
-				<div class="btn btn-primary" id="buttonStyle">
+
+
+				<div class="btn btn-primary" id="buttonStyle"
+					style="margin-top: 15px;">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
 			</div>
 
-			<div class="col-md-4" style="height: 1000px; margin-top:10px;">
+			<div class="col-md-4" style="height: 1000px; margin-top: 10px;">
 
-		       <div class="jumbotron jumbotron-fluid" style="background-color: #fff; margin-top:0px;">
-						 <div class="container">
-								<ul class = "nav nav-tabs">
-									<li role = "presentation">
-										<a href="#" id="button1Style" onclick="open(1)">Info  <i class="fa fa-address-book-o"></i></a>
-									</li>
-									<li role = "presentation">
-										<a href="#" class="active"  id="button2Style" onclick="open(2)">Friends <i class="fa fa-users"></i></a>
-									</li>
-									<br>
-								</ul><br><br>
+				<div class="jumbotron jumbotron-fluid"
+					style="background-color: #fff; margin-top: 0px;">
+					<div class="container">
+						<ul class="nav nav-tabs">
+							<li role="presentation"><a href="#" id="button1Style"
+								onclick="$('.bio-sect').removeClass('toggle');">Info <i
+									class="fa fa-address-book-o"></i></a></li>
+							<li role="presentation"><a href="#" id="button2Style"
+								onclick="$('.bio-sect').addClass('toggle');">Friends <i
+									class="fa fa-users"></i></a></li>
+						</ul>
 								<?php
-								$bio=$o->getBiodataForUidFromUsers($id);
-								 /*
-								  * [0] => uname
-									* [1] => emailid
-									* [2] => dob
-									* [3] => sex
-									* [4] => phone
-									* [5] => nation
-									* [6] => hobbies
-								  */
-									?>
-										<div class="row">
-								    	<h4 style="color:#000000;">&nbsp &nbsp	<i class="fa fa-street-view" style="color:#999999;"></i> &nbsp   I am <em style="color:#cc0d0d"> <?php echo $bio[0];?> </em></h4>
+								$bio = $o->getBiodataForUidFromUsers ( $id );
+								/*
+								 * [0] => uname
+								 * [1] => emailid
+								 * [2] => dob
+								 * [3] => sex
+								 * [4] => phone
+								 * [5] => nation
+								 * [6] => hobbies
+								 */
+								?>
+									<div class="bio-sect">
+							<div class="about">
+								<div class="row">
+									<h4>
+										<i class="fa fa-street-view" style="color: #999999;"></i>
+										&nbsp; I am <em style="color: #cc0d0d"> <?php echo $bio[0];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-birthday-cake" style="color: #999999;"></i>
+										&nbsp; Born on <em style="color: #cc0d0d"><?php echo $bio[2];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-venus-mars" style="color: #999999;"></i>&nbsp;
+										<em style="color: #cc0d0d"><?php echo $bio[3];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-home" style="color: #999999;"></i> &nbsp;
+										Lives in <em style="color: #cc0d0d"> <?php echo $bio[5];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-child" style="color: #999999;"></i>&nbsp;
+										&nbsp; Love to do <em style="color: #cc0d0d"><?php echo $bio[6];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-envelope-open" style="color: #999999;"></i>&nbsp;
+										Mail me on <em style="color: #cc0d0d"><?php echo $bio[1];?> </em>
+									</h4>
+								</div>
+								<div class="row">
+									<h4>
+										<i class="fa fa-phone" style="color: #999999;"></i> &nbsp;
+										Call me on <em style="color: #cc0d0d"><?php echo $bio[4];?> </em>
+									</h4>
+								</div>
+							</div>
+
+
+							<div class="friends">
+
+								<div class="row">
+										<?php
+										$friends = array ();
+										$friends = $o->getFriendsForUid ( $id );
+										
+										foreach ( $friends as $uid ) {
+											?>
+										     <div class="col-sm-6 col-md-4">
+										<div class="thumbnail">
+											<a class="" href="<?php echo $uid;?>"><img
+												src="../../src/uploads/<?php echo $o->getPropicForUid($uid); ?>"
+												alt="missing image" style="border-radius: 50%;"></a>
+											<div class="caption"
+												style="padding-bottom: 0px; padding-top: 0px;">
+												<h5 style="color: #cc0d0d;"><?php echo $o->getUnameForUidFromUser($uid); ?></h5>
+											</div>
 										</div>
-										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-birthday-cake" style="color:#999999;"></i>  &nbsp  Born on <em style="color:#cc0d0d"><?php echo $bio[2];?> </em></h4>
-										</div>
-										<div class="row">
-											 <h4 style="color:#000000;"> &nbsp &nbsp<i class="fa fa-venus-mars" style="color:#999999;"></i>&nbsp <em style="color:#cc0d0d"><?php echo $bio[3];?> </em></h4>
-										</div>
-										<div class="row">
-											 <h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-home" style="color:#999999;"></i> &nbsp  Lives in <em style="color:#cc0d0d"> <?php echo $bio[5];?> </em></h4>
-										</div>
-										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-child" style="color:#999999;"></i>&nbsp &nbsp Love to do <em style="color:#cc0d0d"><?php echo $bio[6];?> </em></h4>
-										</div>
-										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-envelope-open" style="color:#999999;"></i>&nbsp   Mail me on <em style="color:#cc0d0d"><?php echo $bio[1];?> </em></h4>
-										</div>
-										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-phone" style="color:#999999;"></i> &nbsp  Call me on <em style="color:#cc0d0d"><?php echo $bio[4];?> </em></h4>
-										</div>
+									</div>
+										 <?php }?>
+									 </div>
+
+
 							</div>
 						</div>
-
+					</div>
 				</div>
-			<div class="propic col-sm-3">
-				<img alt="propic"
-					src="../../src/postgres/<?php echo $o->getPropicForUid($id);?>">
 			</div>
-			<div class="col-md-offset-1 col-md-7" margin-top:10px;>
-        <div id="content-area">
-        <div class="main-content">
-							<?php include "../../src/status/makeStatus.php";?>
-				</div>
-      </div>
-      <div class="row">
-  			<button class="btn btn-primary col-sm-4 col-sm-offset-4"
-  				id="buttonStyle" onclick="loadLocal10(off,<?php echo $id;?>);off+=10;">Load more...</button>
-  		</div>
-      </div>
 		</div>
 
+		<div class="propic col-sm-3">
+			<img alt="propic"
+				src="../../src/postgres/<?php echo $o->getPropicForUid($id);?>">
+		</div>
+		<div class="col-md-offset-1 col-md-7" style="margin-top: 10px;">
+			<div id="content-area">
+				<div class="main-content">
+							<?php include "../../src/status/makeStatus.php";?>
+				</div>
+			</div>
+			<div class="row">
+				<button class="btn btn-primary col-sm-4 col-sm-offset-4"
+					id="buttonStyle"
+					onclick="loadLocal10(off,<?php echo $id;?>);off+=10;">Load more...</button>
+			</div>
+		</div>
 	</div>
-	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="padding-left: 0px;">
+
+	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"
+		style="padding-left: 0px;">
 		<div class="sidebar-nav-fixed pull-right affix">
 				<?php include "../php/chat.php"; ?>
 			</div>
@@ -130,6 +189,12 @@ $_SESSION['user']['root']=$root;
             });
          });
          $(document).ready(function() {
+        	 jQuery('.propic').nailthumb({
+			 	"method":"crop",
+			 	"fitDirection":"center",
+			 	"width":100%,
+			 	"height":100%
+             });
         	 loadLocal10(0,<?php echo $id;?>);
         	 off+=10;
         	 generateChatHistory();
@@ -162,8 +227,8 @@ $_SESSION['user']['root']=$root;
          var v=document.getElementById("notification-bell");
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
-     });
-
+	 )};
+	 
 		 function open(a)
 		 {
 		       if(a==1) {
@@ -193,8 +258,8 @@ $_SESSION['user']['root']=$root;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
          });
-
-      </script>
+		 	 </script>
 
 </body>
 </html>
+

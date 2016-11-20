@@ -16,7 +16,7 @@ class query {
 			if (! $con) {
 				die ( "failed to connect to databases" );
 			}
-		}
+	  }
 		return $con;
 	}
 	public function getAllForEmailFromUser($email) {
@@ -53,11 +53,11 @@ class query {
 			echo pg_last_error ( $this->con );
 			exit ();
 		}
-		if ($row = pg_fetch_row ( $ret )) {
-			return json_decode ( $row );
-		} else {
-			return ("somethings wrong with us not ur friends");
+		$friends = array ();
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$friends = json_decode($row[0]);
 		}
+		return $friends;
 	}
 	public function getFriendsForUidKeyword($uid, $keyword) {
 		$sql = "select uname,uid,profilepicid from (select unnest(friendlist) as fid from jaipal.users where uid='" . $uid . "') as f join jaipal.users as u on fid=uid where uname ~* '(^| )" . $keyword . "' limit 4;";
@@ -248,7 +248,7 @@ class query {
 		}
 	}
 	public function getNotifications($uid) {
-		$sql = "select message from jaipal.notifications where uid=" . $uid . " and seen=false;";
+		$sql = "select message from jaipal.notifications where uid=" . $uid . " order by notifid desc limit 10;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -385,6 +385,15 @@ class query {
 			echo pg_last_error ( $this->con );
 		}
 	}
+	public function putFriendIntoFriendlist($uid) {
+		$sql = "insert into jaipal.users (friendlist) values (" . $uid . ")";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "friend added successfully\n";
+		}
+	}
 	public function updateLikeInStatus($uid, $sid) {
 		$sql = "update jaipal.status set likes=array_append(likes,'" . $uid . "') where statusid=" . $sid . ";";
 
@@ -426,7 +435,7 @@ class query {
 		}
 	}
 	public function updatePropic($uid, $pid) {
-		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
+		$sql = "update jaipal.users set profilepicid=".$pid." where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -436,7 +445,7 @@ class query {
 		}
 	}
 	public function updateCoverpic($uid, $pid) {
-		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
+		$sql = "update jaipal.users set coverpicid=".$pid." where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
