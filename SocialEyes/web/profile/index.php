@@ -43,7 +43,9 @@ $_SESSION['user']['root']=$root;
 		style="margin-top: 3.5em;">
 		<div class="cover-pic-container">
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
-				<div class="btn btn-primary" id="buttonStyle">
+
+
+				<div class="btn btn-primary" id="buttonStyle"  style="margin-top:15px;">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
 			</div>
@@ -54,10 +56,10 @@ $_SESSION['user']['root']=$root;
 						 <div class="container">
 								<ul class = "nav nav-tabs">
 									<li role = "presentation">
-										<a href="#" id="button1Style" onclick="open(1)">Info  <i class="fa fa-address-book-o"></i></a>
+										<a href="#" id="button1Style" onclick="$('.bio-sect').removeClass('toggle');">Info  <i class="fa fa-address-book-o"></i></a>
 									</li>
 									<li role = "presentation">
-										<a href="#" class="active"  id="button2Style" onclick="open(2)">Friends <i class="fa fa-users"></i></a>
+										<a href="#"  id="button2Style" onclick="$('.bio-sect').addClass('toggle');">Friends <i class="fa fa-users"></i></a>
 									</li>
 									<br>
 								</ul><br><br>
@@ -73,30 +75,58 @@ $_SESSION['user']['root']=$root;
 									* [6] => hobbies
 								  */
 									?>
+									<div class="bio-sect">
+									<div class="about">
 										<div class="row">
-								    	<h4 style="color:#000000;">&nbsp &nbsp	<i class="fa fa-street-view" style="color:#999999;"></i> &nbsp   I am <em style="color:#cc0d0d"> <?php echo $bio[0];?> </em></h4>
+								    	<h4>	<i class="fa fa-street-view" style="color:#999999;"></i> &nbsp;   I am <em style="color:#cc0d0d"> <?php echo $bio[0];?> </em></h4>
 										</div>
 										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-birthday-cake" style="color:#999999;"></i>  &nbsp  Born on <em style="color:#cc0d0d"><?php echo $bio[2];?> </em></h4>
+											<h4 ><i class="fa fa-birthday-cake" style="color:#999999;"></i>  &nbsp;  Born on <em style="color:#cc0d0d"><?php echo $bio[2];?> </em></h4>
 										</div>
 										<div class="row">
-											 <h4 style="color:#000000;"> &nbsp &nbsp<i class="fa fa-venus-mars" style="color:#999999;"></i>&nbsp <em style="color:#cc0d0d"><?php echo $bio[3];?> </em></h4>
+											 <h4><i class="fa fa-venus-mars" style="color:#999999;"></i>&nbsp; <em style="color:#cc0d0d"><?php echo $bio[3];?> </em></h4>
 										</div>
 										<div class="row">
-											 <h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-home" style="color:#999999;"></i> &nbsp  Lives in <em style="color:#cc0d0d"> <?php echo $bio[5];?> </em></h4>
+											 <h4><i class="fa fa-home" style="color:#999999;"></i> &nbsp;  Lives in <em style="color:#cc0d0d"> <?php echo $bio[5];?> </em></h4>
 										</div>
 										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-child" style="color:#999999;"></i>&nbsp &nbsp Love to do <em style="color:#cc0d0d"><?php echo $bio[6];?> </em></h4>
+											<h4><i class="fa fa-child" style="color:#999999;"></i>&nbsp; &nbsp; Love to do <em style="color:#cc0d0d"><?php echo $bio[6];?> </em></h4>
 										</div>
 										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-envelope-open" style="color:#999999;"></i>&nbsp   Mail me on <em style="color:#cc0d0d"><?php echo $bio[1];?> </em></h4>
+											<h4><i class="fa fa-envelope-open" style="color:#999999;"></i>&nbsp;   Mail me on <em style="color:#cc0d0d"><?php echo $bio[1];?> </em></h4>
 										</div>
 										<div class="row">
-											<h4 style="color:#000000;">&nbsp &nbsp<i class="fa fa-phone" style="color:#999999;"></i> &nbsp  Call me on <em style="color:#cc0d0d"><?php echo $bio[4];?> </em></h4>
+											<h4><i class="fa fa-phone" style="color:#999999;"></i> &nbsp;  Call me on <em style="color:#cc0d0d"><?php echo $bio[4];?> </em></h4>
 										</div>
+									</div>
+
+
+									<div class="friends">
+
+										<div class="row">
+										<?php
+										$friends=array();
+										$friends=$o->getFriendsForUid($id);
+
+										 foreach ($friends as $uid)
+										 {?>
+										     <div class="col-sm-6 col-md-4">
+										       <div class="thumbnail">
+										         	<a class="" href="<?php echo $uid;?>"><img src="../../src/uploads/<?php echo $o->getPropicForUid($uid); ?>" alt="missing image" style="border-radius:50%;"></a>
+										         <div class="caption" style="padding-bottom:0px;padding-top:0px;">
+										           <h5 style="color:#cc0d0d;"><?php echo $o->getUnameForUidFromUser($uid); ?></h5>
+										         </div>
+										       </div>
+										     </div>
+										 <?php }?>
+									 </div>
+
+
+									</div>
+								</div>
 							</div>
 						</div>
-
+					</div>
 				</div>
 			<div class="propic col-sm-3">
 				<img alt="propic"
@@ -163,22 +193,7 @@ $_SESSION['user']['root']=$root;
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
      });
-
-		 function open(a)
-		 {
-		       if(a==1) {
-		           document.getElementById("about").style.display="block";
-		       }
-		       if(a==2) {
-		           document.getElementById("friends").style.display="block";
-		       }
-		       else{
-		         document.getElementById("about").style.display="block";
-		       }
-		 }
-
-
-      </script>
+		 </script>
 
 </body>
 </html>
