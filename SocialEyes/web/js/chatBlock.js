@@ -35,9 +35,8 @@ function sendMessage(msgobj,convid) {
 	}
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("previouschats"+convid).innerHTML += this.responseText
-			$(".one").emojioneArea();
-			$(".one").removeClass("one");
+			var resp=emojione.unicodeToImage(this.responseText);
+			document.getElementById("previouschats"+convid).innerHTML += resp;
 		}
 	}
 	
