@@ -108,6 +108,7 @@ $_SESSION ['user'] ['root'] = $root;
 				//chat window open do somthing
 				var resp="<div class='chat-messages receivermsg one'>"+msg+"</div>";
 				document.getElementById("previouschats"+convid).innerHTML += resp;
+				scrollToBottom(convid);
 			 }
 			 else{
 				 //chat window closed

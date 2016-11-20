@@ -176,7 +176,23 @@ $_SESSION['user']['root']=$root;
 		         document.getElementById("about").style.display="block";
 		       }
 		 }
-
+		 notificationsChannel.bind('message', function(message) {
+             var msg = emojione.unicodeToImage(message.msg);
+             var convid = message.convid;
+			 var from = message.from;
+			 if(document.getElementById("messaging-"+convid).className.includes("toggle")){
+				//chat window open do somthing
+				var resp="<div class='chat-messages receivermsg one'>"+msg+"</div>";
+				document.getElementById("previouschats"+convid).innerHTML += resp;
+				scrollToBottom(convid);
+			 }
+			 else{
+				 //chat window closed
+				 var i=document.getElementById("conversation-badge-"+convid).innerHTML||0;
+				 i++;
+				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
+			 }
+         });
 
       </script>
 
