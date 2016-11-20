@@ -86,7 +86,7 @@ class query {
 		return $friends;
 	}
 	public function getPersonForKeyword($keyword) {
-		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' order by array_length(friendlist) limit 10;";
+		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 10;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -163,19 +163,6 @@ class query {
 			die ( "status does not exist" );
 		}
 	}
-	/*public function getStatusForKeyword($key) {
-		$sql = "select * from jaipal.status where statusid=" . $sid . ";";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-			exit ();
-		}
-		if ($row = pg_fetch_row ( $ret )) {
-			return $row;
-		} else {
-			die ( "status does not exist" );
-		}
-	}*/
 	public function getPicForSid($sid) {
 		$sql = "select picid from jaipal.status where statusid=" . $sid . ";";
 		$ret = pg_query ( $this->con, $sql );
@@ -215,6 +202,22 @@ class query {
 			if ($i >= $offset)
 				$status [] = $row;
 			$i += 1;
+		}
+		return $status;
+	}
+	public function getStatusForKeyword($key) {
+		$sql = "select uname,profilepicid,statusid,content,array_length(likes,1),comments,picid,time,u.uid,array_to_json(likes) from jaipal.status as s,jaipal.users as u where (s.uid=u.uid)and s.content ~* '(^| )" . $keyword ." order by statusid desc limit 30;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$status = array ();
+		$i = 0;
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			if ($i >= $offset)
+				$status [] = $row;
+				$i += 1;
 		}
 		return $status;
 	}
