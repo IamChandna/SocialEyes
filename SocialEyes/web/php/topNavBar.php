@@ -28,15 +28,16 @@
 
 			</ul>
 			<div class="col-md-6" style="margin-top: .5em;">
+			<form action="<?php echo $root;?>search.php" method="get">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search"
-						id="live-search-box"> <span class="input-group-btn">
-						<button class="btn btn-default" type="button">
+						id="live-search-box" name="key"> <span class="input-group-btn">
+						<button class="btn btn-default" type="submit">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</span>
 				</div>
-				<div id="dropdown-search"></div>
+				</form>
 				<!-- /input-group -->
 			</div>
 			<!-- /.col-lg-6 -->

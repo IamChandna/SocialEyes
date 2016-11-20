@@ -39,23 +39,23 @@ function loadLocal10(offset,uid) {
 function showUploaded(target,loc){
 	document.getElementById(target).innerHTML=document.getElementById(loc).value;
 }
-function monkeyPatchAutocomplete() {
+// function monkeyPatchAutocomplete() {
 
-      // don't really need this, but in case I did, I could store it and chain
-      var oldFn = $.ui.autocomplete.prototype._renderItem;
+//       // don't really need this, but in case I did, I could store it and chain
+//       var oldFn = $.ui.autocomplete.prototype._renderItem;
 
-      $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-		  var user=item.label.split("&");
-		  var t = "<a href='"+root+"profile/" + user[1] + "'>"+user[0]+"</a>"
-          return $( "<li></li>" )
-              .data( "item.autocomplete", item )
-              .append( "<a id='search-items'>" + t + "</a>" )
-              .appendTo( ul );
-      };
-  }
-$(document).ready(function(){
-	monkeyPatchAutocomplete();
-})
+//       $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+// 		  var user=item.label.split("&");
+// 		  var t = "<a href='"+root+"profile/" + user[1] + "'>"+user[0]+"</a>"
+//           return $( "<li></li>" )
+//               .data( "item.autocomplete", item )
+//               .append( "<a id='search-items'>" + t + "</a>" )
+//               .appendTo( ul );
+//       };
+//   }
+// $(document).ready(function(){
+// 	monkeyPatchAutocomplete();
+// })
 function showNotifications(uid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari

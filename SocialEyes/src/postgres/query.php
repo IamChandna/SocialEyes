@@ -72,7 +72,20 @@ class query {
 		}
 		return $friends;
 	}
-	public function getEncodedUsersForKeyword($keyword) {
+	public function getUsersForKeyword($keyword) {
+		$sql = "select uname from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 4;";
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+			exit ();
+		}
+		$friends = array ();
+		while ( $row = pg_fetch_row ( $ret ) ) {
+			$friends [] = $row [0];
+		}
+		return $friends;
+	}
+	public function getPersonForKeyword($keyword) {
 		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 4;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -81,7 +94,7 @@ class query {
 		}
 		$friends = array ();
 		while ( $row = pg_fetch_row ( $ret ) ) {
-			$friends [] = $row [0] . "&" . $row [1] . "&" . $row [2];
+			$friends [] = $row;
 		}
 		return $friends;
 	}

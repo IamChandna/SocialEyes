@@ -89,6 +89,7 @@ $_SESSION ['user'] ['root'] = $root;
              }
          });
          
+         //pusher configuration
          var pusher = new Pusher('39709b3d935be0f19bb0');
 
          var notificationsChannel = pusher.subscribe('notification-<?php echo $_SESSION['user']['id'];?>');
