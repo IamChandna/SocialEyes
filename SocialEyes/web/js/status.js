@@ -9,9 +9,13 @@ function like(uid, sid) {
 		if (this.readyState == 4 && this.status == 200) {
 			if (document.getElementById("like-" + sid).className == "glyphicon glyphicon-heart") {
 				document.getElementById("like-" + sid).className = "glyphicon glyphicon-heart-empty";
+				var n=document.getElementById("like-no-" + sid).innerHTML;
+				document.getElementById("like-no-" + sid).innerHTML=--n==0?"":n;
 			}
 			else{
 				document.getElementById("like-" + sid).className = "glyphicon glyphicon-heart";
+				var n=document.getElementById("like-no-" + sid).innerHTML||0;
+				document.getElementById("like-no-" + sid).innerHTML=++n;
 			}
 		}
 	}

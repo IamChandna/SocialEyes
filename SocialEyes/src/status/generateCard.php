@@ -71,7 +71,7 @@ if (in_array ( $_SESSION ['user'] ['id'], json_decode ( $row [9] ) ) == null)
 		echo "-empty";
 	?>"
 					id="like-<?php echo $row[2];?>"
-					onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <?php echo $row[4];?></label>
+					onclick="like(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Like  <span id="like-no-<?php echo $row[2];?>"><?php echo $row[4];?></span></label>
 			<label>
 				<button class="glyphicon glyphicon-comment"
 					onclick="comment(<?php echo $_SESSION['user']['id'];?>,<?php echo $row[2];?>);"></button>Comment
