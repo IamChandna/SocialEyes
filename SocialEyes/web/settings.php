@@ -448,7 +448,6 @@ $_SESSION ['user'] ['root'] = $root;
 			 }
 		 });
 		 
-		</script>
      notificationsChannel.bind('comment', function(comment) {
          var message = comment.message;
          toastr.info(message);

@@ -36,7 +36,6 @@ $_SESSION ['user'] ['root'] = $root;
 	<?php include "php/topNavBar.php";?>
 	<?php 
 		$people=$o->getPersonForKeyword($_GET['key']);
-		$statuses=$o->get
 	?>
 	<div
 		class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"
