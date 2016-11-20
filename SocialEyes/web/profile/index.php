@@ -45,7 +45,7 @@ $_SESSION ['user'] ['root'] = $root;
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
 
 
-				<div class="btn btn-primary" id="buttonStyle" onclick="toggleFollow(this);">
+				<div class="btn btn-primary" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
 			</div>
@@ -64,7 +64,7 @@ $_SESSION ['user'] ['root'] = $root;
 							<li role="presentation"><button id="button2Style"
 									class="btn btn-primary"
 									onclick="$('.bio-sect').addClass('toggle');">
-									Friends <i class="fa fa-users"></i>
+									Following <i class="fa fa-users"></i>
 								</button></li>
 						</ul>
 								<?php
@@ -240,6 +240,13 @@ $_SESSION ['user'] ['root'] = $root;
 				 i++;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
+         });
+		 notificationsChannel.bind('follow', function(follow) {
+             var message = follow.message;
+             toastr.info(message);
+             var v=document.getElementById("notification-bell");
+             var number=Number(v.innerHTML);
+             v.innerHTML=String(++number);
          });
 		 	 </script>
 

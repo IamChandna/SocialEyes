@@ -89,6 +89,7 @@ $_SESSION ['user'] ['root'] = $root;
              }
          });
          
+         //pusher configuration
          var pusher = new Pusher('39709b3d935be0f19bb0');
 
          var notificationsChannel = pusher.subscribe('notification-<?php echo $_SESSION['user']['id'];?>');
@@ -116,6 +117,13 @@ $_SESSION ['user'] ['root'] = $root;
 				 i++;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
+         });
+		 notificationsChannel.bind('follow', function(follow) {
+             var message = follow.message;
+             toastr.info(message);
+             var v=document.getElementById("notification-bell");
+             var number=Number(v.innerHTML);
+             v.innerHTML=String(++number);
          });
       </script>
 </body>

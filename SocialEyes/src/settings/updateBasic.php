@@ -2,6 +2,7 @@
 session_start();
 include_once '../postgres/query.php';
 $o=new query();
+print_r($_POST);
 if(isset($_POST['uname'])){
 	$o->updateUsername($_SESSION['user']['id'], $_POST['uname']);
 }

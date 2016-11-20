@@ -43,8 +43,6 @@ $_SESSION ['user'] ['root'] = $root;
 		<div class="jumbotron">
 			<h1>Settings</h1>
 				<hr>
-			
-			
 				<div class="container">
 							<ul class="nav nav-tabs">
 								<li role="presentation"><button id="button1Style" class="btn btn-primary" onclick="$('.bio-sect').removeClass('toggle');">
@@ -451,7 +449,37 @@ $_SESSION ['user'] ['root'] = $root;
 		 });
 		 
 		</script>
-
-
+     notificationsChannel.bind('comment', function(comment) {
+         var message = comment.message;
+         toastr.info(message);
+         var v=document.getElementById("notification-bell");
+         var number=Number(v.innerHTML);
+         v.innerHTML=String(++number);
+     });
+     notificationsChannel.bind('message', function(message) {
+         var msg = emojione.unicodeToImage(message.msg);
+         var convid = message.convid;
+		 var from = message.from;
+		 if(document.getElementById("messaging-"+convid).className.includes("toggle")){
+			//chat window open do somthing
+			var resp="<div class='chat-messages receivermsg one'>"+msg+"</div>";
+			document.getElementById("previouschats"+convid).innerHTML += resp;
+			scrollToBottom(convid);
+		 }
+		 else{
+			 //chat window closed
+			 var i=document.getElementById("conversation-badge-"+convid).innerHTML||0;
+			 i++;
+			 document.getElementById("conversation-badge-"+convid).innerHTML=i;
+		 }
+     });
+     notificationsChannel.bind('follow', function(follow) {
+         var message = follow.message;
+         toastr.info(message);
+         var v=document.getElementById("notification-bell");
+         var number=Number(v.innerHTML);
+         v.innerHTML=String(++number);
+     });
+      </script>
 </body>
 </html>
