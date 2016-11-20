@@ -192,6 +192,7 @@ $_SESSION['user']['root']=$root;
          var v=document.getElementById("notification-bell");
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
+		 
      });
 	 </script>
 </body>
