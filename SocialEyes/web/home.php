@@ -117,6 +117,13 @@ $_SESSION ['user'] ['root'] = $root;
 				 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 			 }
          });
+		 notificationsChannel.bind('follow', function(follow) {
+             var message = follow.message;
+             toastr.info(message);
+             var v=document.getElementById("notification-bell");
+             var number=Number(v.innerHTML);
+             v.innerHTML=String(++number);
+         });
       </script>
 </body>
 </html>

@@ -353,6 +353,17 @@ class query {
 			echo "Records created successfully\n";
 		}
 	}
+	public function putFriendInFriendlistOfUsers($uid,$fid) {
+		$this->deleteFriendInFriendlistOfUsers($uid, $fid);
+		$sql = "update jaipal.users set friendlist=array_append(friendlist,'".$fid."') where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "followed\n";
+		}
+	}
 	public function putCommentToStatus($uid, $content, $sid) {
 		$sql = "insert into jaipal.comments (uid,content) values (" . $uid . ",'" . $content . "') returning commentid";
 		$ret = pg_query ( $this->con, $sql );
@@ -383,15 +394,6 @@ class query {
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
-		}
-	}
-	public function putFriendIntoFriendlist($uid) {
-		$sql = "insert into jaipal.users (friendlist) values (" . $uid . ")";
-		$ret = pg_query ( $this->con, $sql );
-		if (! $ret) {
-			echo pg_last_error ( $this->con );
-		} else {
-			echo "friend added successfully\n";
 		}
 	}
 	public function updateLikeInStatus($uid, $sid) {
@@ -455,7 +457,7 @@ class query {
 		}
 	}
 	public function updateUsername($uid, $uname) {
-		$sql = "update jaipal.users set uname=".$uname." where uid=".$uid.";";
+		$sql = "update jaipal.users set uname='".$uname."' where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -471,7 +473,7 @@ class query {
 			echo pg_last_error ( $this->con );
 		} 
 		if (pg_affected_rows ( $ret )==1) {
-			$sql = "update jaipal.users set password=".$pass." where uid=".$uid.";";
+			$sql = "update jaipal.users set password='".$pass."' where uid=".$uid.";";
 			$ret = pg_query ( $this->con, $sql );
 			if (! $ret) {
 				echo pg_last_error ( $this->con );
@@ -482,7 +484,7 @@ class query {
 		
 	}
 	public function updateEmailid($uid, $email) {
-		$sql = "update jaipal.users set emailid=".$pass." where uid=".$uid.";";
+		$sql = "update jaipal.users set emailid='".$email."' where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -492,7 +494,7 @@ class query {
 		}
 	}
 	public function updateDOB($uid, $dob) {
-		$sql = "update jaipal.users set dob=".$dob." where uid=".$uid.";";
+		$sql = "update jaipal.users set dob='".$dob."' where uid=".$uid.";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -501,7 +503,7 @@ class query {
 		}
 	}
 	public function updateSex($uid, $sex) {
-		$sql = "update jaipal.users set sex=".$sex." where uid=".$uid.";";
+		$sql = "update jaipal.users set sex='".$sex."' where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -511,7 +513,7 @@ class query {
 		}
 	}
 	public function updatePhone($uid, $phone) {
-		$sql = "update jaipal.users set phone=".$phone." where uid=".$uid.";";
+		$sql = "update jaipal.users set phone='".$phone."' where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -521,7 +523,7 @@ class query {
 		}
 	}
 	public function updateNation($uid, $n) {
-		$sql = "update jaipal.users set nation=".$n." where uid=".$uid.";";
+		$sql = "update jaipal.users set nation='".$n."' where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -531,7 +533,7 @@ class query {
 		}
 	}
 	public function updateHobbies($uid, $h) {
-		$sql = "update jaipal.users set hobbies=".$h." where uid=".$uid.";";
+		$sql = "update jaipal.users set hobbies='".$h."' where uid=".$uid.";";
 	
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -585,6 +587,16 @@ class query {
 			} else {
 					echo "comment deleted";
 			}
+		}
+	}
+	public function deleteFriendInFriendlistOfUsers($uid,$fid) {
+		$sql = "update jaipal.users set friendlist=array_remove(friendlist,'".$fid."') where uid=".$uid.";";
+	
+		$ret = pg_query ( $this->con, $sql );
+		if (! $ret) {
+			echo pg_last_error ( $this->con );
+		} else {
+			echo "unfollowed\n";
 		}
 	}
 }

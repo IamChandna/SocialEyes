@@ -8,6 +8,7 @@ function chat_expand_collapse(x, convid) {
 		getMessages(convid);
 	}
 }
+
 function generateChatHistory() {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -50,18 +51,19 @@ function sendMessage(msgobj, convid) {
 	xhttp.send(para);
 }
 
-function scrollToBottom (convid){
+function scrollToBottom(convid) {
 	var height = 0;
-	$('#previouschats'+convid+' div').each(function(i, value) {
+	$('#previouschats' + convid + ' div').each(function(i, value) {
 		height += parseInt($(this).height());
 	});
 
 	height += '';
 
-	$('#previouschats'+convid).animate({
+	$('#previouschats' + convid).animate({
 		scrollTop: height
 	});
 }
+
 function getMessages(convid) {
 	if (window.XMLHttpRequest) {
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -72,12 +74,12 @@ function getMessages(convid) {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var resp = emojione.unicodeToImage(this.responseText);
-			document.getElementById("previouschats" + convid).innerHTML += resp;
+			document.getElementById("previouschats" + convid).innerHTML = resp;
 			scrollToBottom(convid);
 		}
 	}
 	xhttp.open("POST", root + "../src/chat/getMessage.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var para ="convid=" + convid;
+	var para = "convid=" + convid;
 	xhttp.send(para);
-	}
+}

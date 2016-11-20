@@ -73,3 +73,32 @@ function showNotifications(uid) {
 	var para = "uid=" + uid;
 	xhttp.send(para);
 }
+function toggleFollow(from,to,o)
+{
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xhttp = new XMLHttpRequest();
+	} else { // code for IE6, IE5
+		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			if (o.className.includes("toggl")) {
+				o.className="btn btn-primary";
+				o.innerHTML="Follow <i class='fa fa-user-plus'></i>";
+			}
+			else{
+				o.className+=(" toggl");
+				o.innerHTML="Unfollow <i class='fa fa-user-times'></i>";
+			}
+		}
+	}
+	if (o.className.includes("toggl")) {
+		xhttp.open("POST", root+"../src/settings/unFollow.php", true);
+	} else {
+		xhttp.open("POST", root+"../src/settings/follow.php", true);
+	}
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var para = "from=" + from + "&to=" + to;
+	xhttp.send(para);
+}

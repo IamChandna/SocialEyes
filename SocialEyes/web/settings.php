@@ -100,7 +100,7 @@ $_SESSION ['user'] ['root'] = $root;
 			<h3>Change Info</h3>
 			<form action="../src/settings/updateInfo.php" method="POST">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="DD/MM/YYYY"
+					<input type="date" class="form-control" placeholder="DD/MM/YYYY"
 						aria-describedby="basic-addon1" name="dob">
 				</div>
 				<div class="form-group">
@@ -441,7 +441,13 @@ $_SESSION ['user'] ['root'] = $root;
 			 document.getElementById("conversation-badge-"+convid).innerHTML=i;
 		 }
      });
-     
+     notificationsChannel.bind('follow', function(follow) {
+         var message = follow.message;
+         toastr.info(message);
+         var v=document.getElementById("notification-bell");
+         var number=Number(v.innerHTML);
+         v.innerHTML=String(++number);
+     });
       </script>
 
 </body>

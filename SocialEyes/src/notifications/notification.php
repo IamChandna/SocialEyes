@@ -12,7 +12,8 @@ class notification{
 	}
 	public function commented($from,$to){
 		$o=new query();
-		$data['message']=$o->getUnameForUidFromUser($from)." commented on your post.";
+		$f=$o->getUnameForUidFromUser($from);
+		$data['message']=$f." commented on your post.";
 		print_r($data);
 		($this->pusher)->trigger('notification-'.$to, 'comment', $data);
 		$o->putNotification($to, $data['message']);
@@ -26,8 +27,14 @@ class notification{
 	}
 	public function followed($from,$to){
 		$o=new query();
-		$data['message']=$o->getUnameForUidFromUser($from)[0]." followed you.";
+		$f=$o->getUnameForUidFromUser($from);
+		$data['message']=$f." followed you.";
 		($this->pusher)->trigger('notification-'.$to, 'follow', $data);
 		$o->putNotification($to, $data['message']);
+		
+		$f=$o->getUnameForUidFromUser($to);
+		$data['message']="You followed ".$f.", start talking now.";
+		($this->pusher)->trigger('notification-'.$from, 'follow', $data);
+		$o->putNotification($from, $data['message']);
 	}
 }
