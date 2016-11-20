@@ -248,7 +248,7 @@ class query {
 		}
 	}
 	public function getNotifications($uid) {
-		$sql = "select message from jaipal.notifications where uid=" . $uid . " and seen=false;";
+		$sql = "select message from jaipal.notifications where uid=" . $uid . " order by notifid desc limit 10;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
@@ -422,7 +422,7 @@ class query {
 		}
 	}
 	public function updatePropic($uid, $pid) {
-		$sql = "update jaipal.users set propicid=".$pid." where uid=".$uid.";";
+		$sql = "update jaipal.users set profilepicid=".$pid." where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -432,7 +432,7 @@ class query {
 		}
 	}
 	public function updateCoverpic($uid, $pid) {
-		$sql = "update jaipal.users set coverid=".$pid." where uid=".$uid.";";
+		$sql = "update jaipal.users set coverpicid=".$pid." where uid=".$uid.";";
 
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {

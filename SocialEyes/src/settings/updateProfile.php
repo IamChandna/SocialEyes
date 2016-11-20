@@ -2,12 +2,14 @@
 session_start();
 include_once '../postgres/query.php';
 $o=new query();
+echo print_r($_FILES);
 if(isset($_FILES["image"])){
 	$target_dir = "../uploads/";
 	$target_file = $target_dir . basename ( $_FILES ["image"] ["name"] );
 	$uploadOk = 1;
 	$imageFileType = pathinfo ( $target_file, PATHINFO_EXTENSION );
 	// Check if image file is a actual image or fake image
+	echo "tar ".$target_file;
 	if (isset ( $_POST ["submit"] )) {
 		$check = getimagesize ( $_FILES ["image"] ["tmp_name"] );
 		if ($check !== false) {

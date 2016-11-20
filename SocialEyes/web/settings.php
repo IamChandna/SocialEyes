@@ -44,26 +44,26 @@ $_SESSION ['user'] ['root'] = $root;
 			<h3>
 				Change Profile Picture <small>ensure your picture is a square</small>
 			</h3>
-			<form method="POST" action="../src/settings/updateProfile.php">
-				<label for="inputfile" class="btn btn-primary btn-sm" role="button"
+			<form method="POST" action="../src/settings/updateProfile.php" enctype="multipart/form-data">
+				<label for="inputfile1" class="btn btn-primary btn-sm" role="button"
 					id="buttonStyle"> <span class="glyphicon glyphicon-picture"
 					aria-hidden="true"></span>
-				</label> <input name="image" type="file" id="inputfile"
-					style="display: none;" onchange="showUploaded();"> <label
-					id="upload-description"></label>
+				</label> <input name="image" type="file" id="inputfile1"
+					style="display: none;" onchange="showUploaded('upload-description1','inputfile1');"> <label
+					id="upload-description1"></label>
 				<div class="pull-right">
 					<button type="submit" class="btn btn-primary" id="buttonStyle">Update</button>
 				</div>
 			</form>
 			<hr />
 			<h3>Change Cover Picture</h3>
-			<form method="POST" action="../src/settings/updateCover.php">
-				<label for="inputfile" class="btn btn-primary btn-sm" role="button"
+			<form method="POST" action="../src/settings/updateCover.php" enctype="multipart/form-data">
+				<label for="inputfile2" class="btn btn-primary btn-sm" role="button"
 					id="buttonStyle"> <span class="glyphicon glyphicon-picture"
 					aria-hidden="true"></span>
-				</label> <input name="image" type="file" id="inputfile"
-					style="display: none;" onchange="showUploaded();"> <label
-					id="upload-description"></label>
+				</label> <input name="image" type="file" id="inputfile2"
+					style="display: none;" onchange="showUploaded('upload-description2','inputfile2');"> <label
+					id="upload-description2"></label>
 				<div class="pull-right">
 					<button type="submit" class="btn btn-primary" id="buttonStyle">Update</button>
 				</div>

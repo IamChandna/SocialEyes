@@ -36,8 +36,8 @@ function loadLocal10(offset,uid) {
 	var para = "offset=" + offset+"&uid="+uid;
 	xhttp.send(para);
 }
-function showUploaded(){
-	document.getElementById("upload-description").innerHTML=document.getElementById("inputfile").value;
+function showUploaded(target,loc){
+	document.getElementById(target).innerHTML=document.getElementById(loc).value;
 }
 function monkeyPatchAutocomplete() {
 

@@ -26,7 +26,9 @@ $_SESSION['user']['root']=$root;
 <link rel="stylesheet" href="../css/font-awesome.min.css">
 <link href="../css/jquery-ui.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/toastr.min.css">
+<link rel="stylesheet" href="../css/jquery.nailthumb.1.1.min.css">
 <script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.nailthumb.1.1.min.js"></script>
 <script src="../js/toastr.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/pusher.min.js"></script>
@@ -98,6 +100,7 @@ $_SESSION['user']['root']=$root;
 						</div>
 
 				</div>
+			
 			<div class="propic col-sm-3">
 				<img alt="propic"
 					src="../../src/postgres/<?php echo $o->getPropicForUid($id);?>">
@@ -130,6 +133,12 @@ $_SESSION['user']['root']=$root;
             });
          });
          $(document).ready(function() {
+        	 jQuery('.propic').nailthumb({
+			 	"method":"crop",
+			 	"fitDirection":"center",
+			 	"width":100%,
+			 	"height":100%
+             });
         	 loadLocal10(0,<?php echo $id;?>);
         	 off+=10;
         	 generateChatHistory();

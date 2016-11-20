@@ -12,7 +12,8 @@ class notification{
 	}
 	public function commented($from,$to){
 		$o=new query();
-		$data['message']=$o->getUnameForUidFromUser($from)[0]." commented on your post.";
+		$data['message']=$o->getUnameForUidFromUser($from)." commented on your post.";
+		print_r($data);
 		($this->pusher)->trigger('notification-'.$to, 'comment', $data);
 		$o->putNotification($to, $data['message']);
 	}
