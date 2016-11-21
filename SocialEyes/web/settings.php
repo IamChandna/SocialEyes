@@ -24,6 +24,7 @@ $_SESSION ['user'] ['root'] = $root;
 <script src="js/toastr.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/pusher.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/status.js"></script>
@@ -63,19 +64,19 @@ $_SESSION ['user'] ['root'] = $root;
 							<h3>Change Security Info</h3>
 							<form action="../src/settings/updateBasic.php" method="POST">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uname">
+										<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uname" data-validation="alphanumeric" data-validation-optional="true">
 									</div>
 							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email">
+								<input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email" data-validation="email" data-validation-optional="true">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Current Password" aria-describedby="basic-addon1" name="opass">
+								<input type="password" class="form-control" placeholder="Current Password" aria-describedby="basic-addon1" name="opass" data-validation-optional="true">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="New Password" aria-describedby="basic-addon1" name="pass">
+								<input type="password" class="form-control" placeholder="New Password" aria-describedby="basic-addon1" name="pass" data-validation-optional="true">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Retype New Password" aria-describedby="basic-addon1" name="rpass">
+								<input type="password" class="form-control" placeholder="Retype New Password" aria-describedby="basic-addon1" name="rpass" data-validation-optional="true" data-validation-confirm="pass">
 							</div>
 							<div class="form-group">
 								<button type="submit" id="buttonStyle" class="form-control btn btn-primary">Update Info</button>
@@ -112,14 +113,14 @@ $_SESSION ['user'] ['root'] = $root;
 						</div>
 						
 						<div class="info">
-							<h3>Change Security Info</h3>
+							<h3>Change Account Info</h3>
 							<form action="../src/settings/updateInfo.php" method="POST">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="DD/MM/YYYY"
-										aria-describedby="basic-addon1" name="dob">
+									<input type="date" class="form-control" placeholder="YYYY/MM/DD"
+										aria-describedby="basic-addon1" name="dob" data-validation="birthdate" data-validation-format="yyyy/mm/dd" data-validation-optional="true">
 								</div>
 								<div class="form-group">
-									<input type="number" class="form-control" placeholder="Phone number" aria-describedby="basic-addon1" name="phone">
+									<input type="text" class="form-control" placeholder="Phone number" aria-describedby="basic-addon1" name="phone" data-validation="number" data-validation-optional="true" data-validation-ignore="+">
 								</div>
 								<div class="form-group">
 									<select class="form-control" name="sex">
@@ -371,7 +372,7 @@ $_SESSION ['user'] ['root'] = $root;
 										<option value="Zimbabwe">Zimbabwe</option>
 									</select>
 								</div>
-								<div class="form-group">
+								<div class="form-group" data-validation-optional="true">
 									<input type="text" class="form-control" placeholder="Hobbies" aria-describedby="basic-addon1" name="hobbies">
 								</div>
 								<div class="form-group">
@@ -400,6 +401,10 @@ $_SESSION ['user'] ['root'] = $root;
 			 });
 
 				 $(document).ready(function() {
+					 $.validate({
+						    lang:'en',
+						    modules:'security,html5,date'
+						  });
 					 generateChatHistory();
 				 toastr.options = {
 				 "closeButton": true,
@@ -478,6 +483,10 @@ $_SESSION ['user'] ['root'] = $root;
          var v=document.getElementById("notification-bell");
          var number=Number(v.innerHTML);
          v.innerHTML=String(++number);
+     });
+     notificationsChannel.bind('alert', function(al) {
+         var message = al.message;
+         toastr.info(message);
      });
       </script>
 </body>

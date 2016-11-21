@@ -37,4 +37,8 @@ class notification{
 		($this->pusher)->trigger('notification-'.$from, 'follow', $data);
 		$o->putNotification($from, $data['message']);
 	}
+	public function alerts($uid,$message){
+		$data['message']=$message;
+		($this->pusher)->trigger('notification-'.$uid, 'alert', $data);
+	}
 }

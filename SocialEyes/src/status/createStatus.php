@@ -6,7 +6,7 @@ $o=new query();
 
 include 'upload.php';
 
-$o->putStatusToStatus($_SESSION ['user'] ['id'], $_POST ['statusText'], $id);
+$o->putStatusToStatus($_SESSION ['user'] ['id'], htmlspecialchars($_POST ['statusText'], $id));
 
 header ( 'Location: ../../web/home.php' );
 exit ( 0 );

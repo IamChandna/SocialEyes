@@ -4,7 +4,7 @@ include_once '../postgres/query.php';
 include_once '../notifications/notification.php';
 $o = new query ();
 $msg=trim(htmlspecialchars($_POST['msg']),";");
-$o->putMessage($_SESSION["user"]["id"], $msg,$_POST['convid']);
+$o->putMessage($_SESSION["user"]["id"], htmlspecialchars($msg),$_POST['convid']);
 
 $c=$o->getU1U2ForConvid($_POST['convid']);
 $to=0;

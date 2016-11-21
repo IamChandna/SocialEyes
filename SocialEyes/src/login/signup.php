@@ -11,7 +11,7 @@ if (isset ( $_SESSION ['user'] )) {
 include_once '../postgres/query.php';
 include_once '../postgres/credentials.php';
 $o = new query ();
-
+if($_POST['RepeatPassword']==$_POST['Password'])
 $o->putBasicToUser($_POST ['Username'],$_POST ['Email'],md5 ( $_POST ['Password'] . $salt ));
 
 header ( 'Location: ../../web/login.php' );

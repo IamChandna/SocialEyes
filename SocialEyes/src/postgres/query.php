@@ -370,6 +370,7 @@ class query {
 		}
 	}
 	public function putStatusToStatus($uid, $content, $pid) {
+		str_replace(";", ":", $content);
 		if (isset ( $pid ))
 			$sql = "insert into jaipal.status (uid,content,picid,time) values (" . $uid . ",'" . $content . "'," . $pid . ",now());";
 		else
@@ -393,6 +394,7 @@ class query {
 		}
 	}
 	public function putCommentToStatus($uid, $content, $sid) {
+		str_replace(";", ":", $content);
 		$sql = "insert into jaipal.comments (uid,content) values (" . $uid . ",'" . $content . "') returning commentid";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -409,6 +411,7 @@ class query {
 		}
 	}
 	public function putNotification($uid, $content) {
+		str_replace(";", ":", $content);
 		$sql = "insert into jaipal.notifications (uid,message) values (" . $uid . ",'" . $content . "')";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -418,6 +421,7 @@ class query {
 		}
 	}
 	public function putMessage($uid, $content,$convid) {
+		str_replace(";", ":", $content);
 		$sql = "insert into jaipal.chat (uid,convid,msg,time) values (" . $uid . "," . $convid . ",'" . $content . "',now());";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
@@ -507,9 +511,10 @@ class query {
 			if (! $ret) {
 				echo pg_last_error ( $this->con );
 			} else {
-				echo "updated password\n";
+				return true;
 			}
 		}
+		else return false;
 		
 	}
 	public function updateEmailid($uid, $email) {
