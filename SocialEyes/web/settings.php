@@ -45,22 +45,22 @@ $_SESSION ['user'] ['root'] = $root;
 				<hr>
 				<div class="container">
 							<ul class="nav nav-tabs">
-								<li role="presentation"><button id="button1Style" class="btn btn-primary" onclick="$('.bio-sect').removeClass('toggle');">
+								<li role="presentation"><button id="button1Style" class="btn btn-primary" onclick="document.getElementById('bio-sect').className='bio-sect mode0';">
 									<i class="fa fa-cogs"></i>  Change Info 
 									</button>
 								</li>
-								<li role="presentation"><button id="button2Style" class="btn btn-primary" onclick="$('.bio-sect').addClass('toggle');">
+								<li role="presentation"><button id="button2Style" class="btn btn-primary" onclick="document.getElementById('bio-sect').className='bio-sect mode1';">
 									<i class="fa fa-camera"></i>  Change Pic 
 									</button>
 								</li>
-								<li role="presentation"><button id="button3Style" class="btn btn-primary" onclick="$('.bio-sect').addClass('toggle');">
+								<li role="presentation"><button id="button3Style" class="btn btn-primary" onclick="document.getElementById('bio-sect').className='bio-sect mode2';">
 									 <i class="fa fa-key"></i>  Security
 									</button></li>
 							</ul>
 					
-					<div class="bio-sect">
-						<div class="change-info">
-							<h3>Change Account Info</h3>
+					<div class="bio-sect mode0" id="bio-sect">
+						<div class="security">
+							<h3>Change Security Info</h3>
 							<form action="../src/settings/updateBasic.php" method="POST">
 									<div class="form-group">
 										<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uname">
@@ -111,7 +111,7 @@ $_SESSION ['user'] ['root'] = $root;
 							<hr />
 						</div>
 						
-						<div class="Security">
+						<div class="info">
 							<h3>Change Security Info</h3>
 							<form action="../src/settings/updateInfo.php" method="POST">
 								<div class="form-group">

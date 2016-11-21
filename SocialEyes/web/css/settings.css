@@ -71,3 +71,30 @@
 #buttonStyle:hover {
 	background-color: #7b0000;
 }
+.mode0 .security{
+	display:none !important;
+}
+.mode0 .change-pic{
+	display:none !important;
+}
+.mode0 .info{
+	display:block;
+}
+.mode1 .info{
+	display: none !important;
+}
+.mode1 .change-pic{
+	display: block;
+}
+.mode1 .security{
+	display: none !important;
+}
+.mode2 .info{
+	display: none !important;
+}
+.mode2 .security{
+	display: block;
+}
+.mode2 .change-pic{
+	display: none !important;
+}

@@ -495,13 +495,14 @@ class query {
 		}
 	}
 	public function updatePassword($uid, $pass, $opass) {
-		$sql = "select uid jaipal.users where password='".$opass."' and uid=".$uid.";";
+		include 'credentials.php';
+		$sql = "select uid from jaipal.users where password='".md5($opass.$salt)."' and uid=".$uid.";";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );
 		} 
 		if (pg_affected_rows ( $ret )==1) {
-			$sql = "update jaipal.users set password='".$pass."' where uid=".$uid.";";
+			$sql = "update jaipal.users set password='".md5($pass.$salt)."' where uid=".$uid.";";
 			$ret = pg_query ( $this->con, $sql );
 			if (! $ret) {
 				echo pg_last_error ( $this->con );
