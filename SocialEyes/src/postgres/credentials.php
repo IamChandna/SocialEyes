@@ -10,5 +10,6 @@ $dbUser = "student";
 $dbPass = "postgres";
 $salt = "!@#$%";
 $dbHostAlt = "localhost";
+$dbNameAlt = "postgres";
 $dbUserAlt = "postgres";
 $dbPassAlt = "postgres";

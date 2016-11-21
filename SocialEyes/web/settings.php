@@ -115,7 +115,7 @@ $_SESSION ['user'] ['root'] = $root;
 							<h3>Change Security Info</h3>
 							<form action="../src/settings/updateInfo.php" method="POST">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="DD/MM/YYYY"
+									<input type="text" class="form-control" placeholder="YYYY-MM-DD"
 										aria-describedby="basic-addon1" name="dob">
 								</div>
 								<div class="form-group">

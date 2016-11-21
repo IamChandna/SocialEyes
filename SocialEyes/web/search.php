@@ -36,6 +36,20 @@ $_SESSION ['user'] ['root'] = $root;
 	<?php include "php/topNavBar.php";?>
 	<?php 
 		$people=$o->getPersonForKeyword($_GET['key']);
+		
+		/*
+		 * each $people is
+		 * Array (
+		 * [0] => uname /
+		 * [1] => uid /
+		 * [2] => profilepicid/
+		 * [3] => emailid/
+		 * [4] => dob/
+		 * [5] => nation/
+		 * [6] => hobbies/
+		 * )
+		 */
+ 
 	?>
 	<div
 		class="col-xs-8 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-8 col-md-offset-1 col-lg-8 col-lg-offset-1"
@@ -43,11 +57,30 @@ $_SESSION ['user'] ['root'] = $root;
 		<?php 
 		foreach ($people as $person){
 			?>
-			<div class="row well">
+			<div class="row well" style='background-image:url("../src/chat/<?php echo $o->getCoverpicForUid($person[1]);?>");opacity: 0.8; height:10em; margin-bottom:1em;'>
+				<a href="profile/<?php echo $person[1];?>"></a>
 				<div class="col-md-3 propic-container">
-					<img alt=":P" src="../src/chat/<?php echo $o->getPiclinkForPidFromGallery($person[2]);?>" style="width: 5em; border-radius: 2.5em;" >
+					<img alt=":P" src="../src/chat/<?php echo $o->getPiclinkForPidFromGallery($person[2]);?>" style="width: 10em;height:10em; border-radius: 5em;" >
 				</div>
-				<div class="col-md-9 names"><a href="profile/<?php echo $person[1];?>"><?php echo $person[0];?></a></div>
+				<div class=" well col-md-6 names" style="padding-right:2em;">
+					<div class="col-md-12 names" style='color:black;'>
+						<h1><a href="profile/<?php echo $person[1];?>"><?php echo $person[0];?></a></h1>
+					</div>
+					<div class="col-md-12 names">
+						<a href="profile/<?php echo $person[1];?>"><?php echo $person[3];?></a>
+					</div>
+				</div>
+				<div class="well col-md-3 names" style="height:7.6em;">
+					<div class="col-md-12 names">
+						<h5><a href="profile/<?php echo $person[1];?>"><?php echo $person[4];?></a></h5>
+					</div>
+					<div class="col-md-12 names">
+						<h5><a href="profile/<?php echo $person[1];?>"><?php echo $person[5];?></a></h5>
+					</div>
+					<div class="col-md-12 names">
+						<h5><a href="profile/<?php echo $person[1];?>"><?php echo $person[6];?></a></h5>
+					</div>
+				</div>
 			</div>
 			<?php 
 		}
