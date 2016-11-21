@@ -40,23 +40,24 @@ $friends = $o->getFriendsForUid ( $_SESSION['user']['id'] );
 </head>
 <body>
 		 <?php include "../php/topNavBar.php";?>
+		 <?php print_r(in_array($id,$friends));?>
 		 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10"
 		style="margin-top: 3.5em;">
 		<div class="cover-pic-container">
 			<div class="Container coverpic" style="background-image: url('../../src/postgres/<?php echo $o->getCoverpicForUid($id);?>');">
-
-				<?php if($id!=$_SESSION['user']['id'])
+				<?php if(in_array($id, $friends)==1)
+				{?>	
+				<div class="btn btn-primary toggl" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
+					Unfollow <i class="fa fa-user-times"></i>
+				</div>
+				<?php }
+				else if($id!=$_SESSION['user']['id'])
 				{?>
 				<div class="btn btn-primary" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
 					Follow <i class="fa fa-user-plus"></i>
 				</div>
-				<?php }else if(in_array($id, $friends))
-				{?>	
-				<div class="btn btn-primary toggle" id="buttonStyle" onclick="toggleFollow(<?php echo $_SESSION['user']['id'].",".$id;?>,this);">
-					Unfollow <i class="fa fa-user-cross"></i>
-				</div>
-				<?php }?>
-				
+				<?php }
+				?>
 			</div>
 
 			<div class="col-md-4" style="height: 1000px; margin-top: 10px;">
