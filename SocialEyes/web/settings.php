@@ -64,7 +64,7 @@ $_SESSION ['user'] ['root'] = $root;
 							<h3>Change Security Info</h3>
 							<form action="../src/settings/updateBasic.php" method="POST">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uname" data-validation="alphanumeric" data-validation-optional="true">
+										<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="uname" data-validation="alphanumeric" data-validation-optional="true" data-validation-ignore=" ">
 									</div>
 							<div class="form-group">
 								<input type="email" class="form-control" placeholder="Email" aria-describedby="basic-addon1" name="email" data-validation="email" data-validation-optional="true">

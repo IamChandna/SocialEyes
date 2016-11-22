@@ -24,7 +24,7 @@ if ($row [0] == md5 ( $_POST ['Password'] . $salt )) {
 	header ( 'Location: ../../web/home.php' );
 	exit ( 0 );
 } else {
-	echo "either username or password incorrect";
+	echo "<script>alert('username or password is wrong');window.location='../../web/login.php';</script>";
 }
 
 ?>
