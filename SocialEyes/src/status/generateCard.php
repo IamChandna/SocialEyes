@@ -49,7 +49,7 @@ function generateCard($row,$root) {
 	</div>
 	<div class="row">
 		<div class="content col-md-10 col-md-offset-1">
-			<asd><p style="word-wrap: break-word;"><?php echo $row[3];?></p></asd>
+			<p style="word-wrap: break-word;"><?php echo $row[3];?></p>
 		</div>
 	</div>
 	<div class="row">

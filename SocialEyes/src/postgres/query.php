@@ -10,13 +10,13 @@ class query {
 	}
 	public function databaseConn() {
 		include 'credentials.php';
-		//$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
-		//if (! $con) {
-			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
+		$con = pg_connect ( "host=" . $dbHost . " port=" . $dbPort . " dbname=" . $dbName . " user=" . $dbUser . " password=" . $dbPass );
+		if (! $con) {
+			$con = pg_connect ( "host=" . $dbHostAlt . " port=" . $dbPort . " dbname=" . $dbNameAlt . " user=" . $dbUserAlt . " password=" . $dbPassAlt );
 			if (! $con) {
 				die ( "failed to connect to databases" );
 			}
-	  	//}
+	  	}
 		return $con;
 	}
 	public function getAllForEmailFromUser($email) {
@@ -86,7 +86,7 @@ class query {
 		return $friends;
 	}
 	public function getPersonForKeyword($keyword) {
-		$sql = "select uname,uid,profilepicid from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 10;";
+		$sql = "select uname,uid,profilepicid,emailid,dob,nation,hobbies from jaipal.users where uname ~* '(^| )" . $keyword . "' limit 10;";
 		$ret = pg_query ( $this->con, $sql );
 		if (! $ret) {
 			echo pg_last_error ( $this->con );

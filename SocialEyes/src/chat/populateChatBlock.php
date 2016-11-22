@@ -29,7 +29,7 @@ foreach ( $friends as $f ) {
 <div id="conversation-<?php echo $f[0];?>">
 	<div class="row well"
 		onclick="chat_expand_collapse(this.nextElementSibling,<?php echo $f[0];?>);">
-		<div class="col-xs-3 col-xs-offset-1 chat-profile-pic">
+		<div class="col-xs-3 col-xs-offset-1 chat-profile-pic" >
 			<img alt=":P"
 				src="<?php echo $root;?>../src/uploads/<?php echo $o->getPropicForUid($other); ?>">
 		</div>
