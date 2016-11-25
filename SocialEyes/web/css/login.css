@@ -9,10 +9,9 @@ body {
 
 .pen-container {
 	zoom: .8;
+	/*position: absolute;*/
 	-moz-transform: scale(.8);
-	-moz-transform-origin: 0 0;
-	position: absolute;
-	width: 125%;
+	-moz-transform-origin: 50% 0;
 }
 /* Pen Title */
 .pen-title {
@@ -246,7 +245,7 @@ body {
 }
 
 .card .input-container input:focus ~ .bar:before, .card .input-container input:focus 
-	~ .bar:after {
+	 ~ .bar:after {
 	width: 50%;
 }
 
@@ -465,7 +464,7 @@ body {
 }
 
 .card.alt .input-container input:focus ~ .bar:before, .card.alt .input-container input:focus 
-	~ .bar:after {
+	 ~ .bar:after {
 	background: #ffffff;
 }
 
